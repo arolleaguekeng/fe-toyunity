@@ -6,8 +6,7 @@ import '../../../models/categories.dart';
 import '../../../models/toy_model.dart';
 import '../../../routes/routes_name.dart';
 import '../../components/forms/custom_text.dart';
-import '../../toy/toy_details/toy_details_screen.dart';
-import 'most_popular_toy_card.dart';
+import 'most_popular_product_card.dart';
 
 class MostPopularCard extends StatefulWidget {
   const MostPopularCard({Key? key}) : super(key: key);
@@ -109,7 +108,6 @@ class _MostPopularCardState extends State<MostPopularCard> {
           if (categories[index].isSelected == true) {
             selectedCategorie.add(
               Categorie(
-                toy: categories[index].toy,
                 name: categories[index].name,
                 isSelected: true,
               ),

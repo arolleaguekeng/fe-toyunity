@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../constants/constants.dart';
 import '../../../models/toy_model.dart';
 import '../../models/categories.dart';
-import '../home/special_offers/special_offer_toy_item.dart';
+import '../home/special_offers/special_offer_product_item.dart';
 
 class PcToyListContent extends StatefulWidget {
   const PcToyListContent({super.key});

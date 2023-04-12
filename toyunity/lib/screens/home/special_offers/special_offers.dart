@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:toyunity/screens/home/special_offers/special_offer_product_item.dart';
 
 import '../../../constants/constants.dart';
 import '../../../models/categories.dart';
 import '../../../models/toy_model.dart';
 import '../../../routes/routes_name.dart';
 import '../../components/forms/custom_text.dart';
-import 'special_offer_toy_item.dart';
 
 class SpecialOfferCard extends StatefulWidget {
   const SpecialOfferCard({Key? key}) : super(key: key);

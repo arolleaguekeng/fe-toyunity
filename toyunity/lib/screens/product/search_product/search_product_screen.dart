@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants/constants.dart';
-import 'search_toy_content.dart';
+import 'search_product_content.dart';
 
 class SearchToyScreen extends StatelessWidget {
   const SearchToyScreen({Key? key}) : super(key: key);

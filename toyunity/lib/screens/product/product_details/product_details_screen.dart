@@ -1,8 +1,8 @@
 import 'package:toyunity/models/toy_model.dart';
-import 'package:toyunity/screens/toy/toy_details/toy_details_content.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/constants.dart';
+import 'product_details_content.dart';
 
 class ToyDetailsScreen extends StatelessWidget {
   final ToyModel toy;

@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/responsive.dart';
 import '../../components/forms/custom_text.dart';
-import '../../toy/toy_details/toy_details_screen.dart';
-
+import '../../product/product_details/product_details_screen.dart';
 class SoToyCard extends StatefulWidget {
   const SoToyCard({Key? key, required this.toy, required this.likebtn})
       : super(key: key);

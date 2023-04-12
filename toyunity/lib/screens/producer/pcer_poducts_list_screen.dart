@@ -1,13 +1,13 @@
 import 'package:toyunity/main.dart';
 import 'package:toyunity/screens/home/most_popular/most_popular_screen.dart';
-import 'package:toyunity/screens/producer/add_toys/add_toy_screen.dart';
-import 'package:toyunity/screens/producer/toys_list.dart';
 import 'package:toyunity/screens/producer/showCardDialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../constants/constants.dart';
+import 'add_products/add_product_screen.dart';
+import 'products_list.dart';
 
 class PcToyListScreen extends StatelessWidget {
   User? user;

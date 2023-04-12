@@ -65,7 +65,7 @@ class _NavigationContent extends State<NavigationContent> {
               appBarIcon(
                   isProducer ? "Toys" : "Profile",
                   isProducer
-                      ? Icons.toyion_quantity_limits_rounded
+                      ? Icons.ac_unit
                       : Icons.person_2_rounded,
                   4,
                   isProducer ? PcToyListScreen() : ProfileScreen()),

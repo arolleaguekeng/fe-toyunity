@@ -1,5 +1,7 @@
 import 'package:toyunity/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:toyunity/screens/carts/cart_product_card.dart';
+import 'toy.dart';
 
 import '../../../../constants/responsive.dart';
 import '../../../../models/categories.dart';
@@ -7,8 +9,7 @@ import '../../../../models/toy_model.dart';
 import '../../../../services/db_services.dart';
 import '../../../components/forms/custom_text.dart';
 import '../../../home/most_popular/most_popular_screen.dart';
-import '../../../toy/toy_details/toy_details_screen.dart';
-import 'toy.dart';
+import '../../../product/product_details/product_details_screen.dart';
 
 class MostPopular extends StatefulWidget {
   const MostPopular(
@@ -29,8 +30,8 @@ class _MostPopular extends State<MostPopular> {
 
   Future<void> getMupesInsurees() async {
     var liste = await db.getAllToys();
-    // toys =  <ToyModel>[];
-    // toys = liste;
+    toys = <ToyModel>[];
+    toys = liste;
     setState(() {
       isLoading = false;
     });

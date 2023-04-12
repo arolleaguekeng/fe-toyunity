@@ -1,14 +1,14 @@
 import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/main.dart';
 import 'package:toyunity/models/toy_model.dart';
-import 'package:toyunity/screens/carts/cart_toy_card.dart';
 import 'package:toyunity/screens/components/forms/custom_button.dart';
 import 'package:toyunity/screens/components/forms/custom_text.dart';
-import 'package:toyunity/screens/toy/toy_details/toy_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../paiement/paiement_screen.dart';
+import '../product/product_details/product_details_screen.dart';
+import 'cart_product_card.dart';
 
 /// Display cart Content page
 class CartContent extends StatefulWidget {

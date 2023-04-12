@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../constants/responsive.dart';
 import '../../../models/toy_model.dart';
 import '../../components/forms/custom_text.dart';
-import '../../toy/toy_details/toy_details_screen.dart';
+import '../../product/product_details/product_details_screen.dart';
 
 class MpToyCard extends StatelessWidget {
   final ToyModel toy;

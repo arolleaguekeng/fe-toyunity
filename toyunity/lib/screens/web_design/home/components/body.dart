@@ -101,7 +101,6 @@ class _BodyContainerState extends State<BodyContainer> {
           if (categories[index].isSelected == true) {
             selectedCategorie.add(
               Categorie(
-                toy: categories[index].toy,
                 name: categories[index].name,
                 isSelected: true,
               ),

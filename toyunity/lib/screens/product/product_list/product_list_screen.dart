@@ -1,7 +1,7 @@
-import 'package:toyunity/screens/toy/toy_list/toy_list_content.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/constants.dart';
+import 'product_list_content.dart';
 
 class ToyListScreen extends StatelessWidget {
   const ToyListScreen({Key? key}) : super(key: key);
