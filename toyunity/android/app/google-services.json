@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "959851867881",
+    "project_id": "toy-unity",
+    "storage_bucket": "toy-unity.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959851867881:android:e014c9be76ddd353794a78",
+        "android_client_info": {
+          "package_name": "com.example.toyunity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "959851867881-ni36idnj8ruhlqrm0fj3pip5bh6g5h8c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoMDv0Es57u1TueDwuN4FoyAr9Bd60X84"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "959851867881-ni36idnj8ruhlqrm0fj3pip5bh6g5h8c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,16 +9,7 @@ class Welcome {
 
 var welcomeDatas = [
   Welcome(
-      title: "Welcome to toyunity",
-      description: "Your online food toy market",
-      image: "assets/images/png/ecommerce.png"),
-  Welcome(
-      title: "Quick and easy purchase",
-      description:
-          "Buy your Agri-food toys wholesale directly from the producer",
-      image: "assets/images/png/poultry.png"),
-  Welcome(
-      title: "Are you a reseller?",
-      description: "Create a large network of farmers and breeders",
-      image: "assets/images/png/online.png"),
+      title: "Bienvenue Sur Toy Unity 🙂",
+      description: "Votre application d'échange de jouets",
+      image: "assets/images/png/welcome1.png"),
 ];

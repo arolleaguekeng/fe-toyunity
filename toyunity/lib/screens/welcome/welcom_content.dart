@@ -88,9 +88,7 @@ class _WelcomeContent extends State<WelcomeContent> {
                     height: appPadding * 2,
                   ),
                   CustomButton(
-                      text: currentIndex == welcomeDatas.length - 1
-                          ? "Continue"
-                          : "Next",
+                      text: "Nous Rejoinde !",
                       width: size.width * 0.8,
                       onPressed: () {
                         if (currentIndex == welcomeDatas.length - 1) {
