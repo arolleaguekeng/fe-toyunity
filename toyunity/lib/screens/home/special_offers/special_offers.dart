@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/constants.dart';
 import '../../../models/categories.dart';
-import '../../../models/product_model.dart';
+import '../../../models/toy_model.dart';
 import '../../../routes/routes_name.dart';
 import '../../components/forms/custom_text.dart';
-import 'special_offer_product_item.dart';
+import 'special_offer_toy_item.dart';
 
 class SpecialOfferCard extends StatefulWidget {
   const SpecialOfferCard({Key? key}) : super(key: key);
@@ -15,15 +15,14 @@ class SpecialOfferCard extends StatefulWidget {
 }
 
 class _SpecialOfferCardState extends State<SpecialOfferCard> {
-
   bool isLoading = true;
   List<Categorie> selectedCategorie = [];
-  List<ProductModel> products = productsData;
+  List<ToyModel> toys = toysData;
 
   Future<void> getMupesInsurees() async {
-    // var liste = await db.getAllProducts();
-    // products =  <ProductModel>[];
-    // products = liste;
+    // var liste = await db.getAllToys();
+    // toys =  <ToyModel>[];
+    // toys = liste;
     setState(() {
       isLoading = false;
     });
@@ -62,8 +61,8 @@ class _SpecialOfferCardState extends State<SpecialOfferCard> {
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return SoProductCard(
-                product: products[index],
+              return SoToyCard(
+                toy: toys[index],
                 likebtn: IconButton(
                   onPressed: () {},
                   icon: const Icon(
@@ -74,7 +73,7 @@ class _SpecialOfferCardState extends State<SpecialOfferCard> {
                 ),
               );
             },
-            itemCount: products.length,
+            itemCount: toys.length,
           ),
         ),
       ],

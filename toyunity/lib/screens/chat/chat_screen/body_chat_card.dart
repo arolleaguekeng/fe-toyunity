@@ -143,14 +143,14 @@ class _BodyChatCardState extends State<BodyChatCard> {
                                 message: questionController.value.text,
                                 time:
                                     "${DateTime.now().hour}:${DateTime.now().minute}"));
-                            var timer = Timer.periodic(
-                                const Duration(seconds: 6), (t) {
-                                  this.conversation.chatModels.add(ChatModel(
-                                chat: 1,
-                                message: "Wich product interest you ?",
-                                time:
-                                "${DateTime.now().hour}:${DateTime.now().minute}"));
-                                });
+                            var timer =
+                                Timer.periodic(const Duration(seconds: 6), (t) {
+                              this.conversation.chatModels.add(ChatModel(
+                                  chat: 1,
+                                  message: "Wich toy interest you ?",
+                                  time:
+                                      "${DateTime.now().hour}:${DateTime.now().minute}"));
+                            });
                             questionController.clear();
                           }
                         });

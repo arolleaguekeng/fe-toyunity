@@ -1,22 +1,22 @@
 import 'package:toyunity/constants/constants.dart';
-import 'package:toyunity/models/product_model.dart';
+import 'package:toyunity/models/toy_model.dart';
 import 'package:toyunity/screens/carts/cart_content.dart';
 import 'package:toyunity/screens/components/forms/custom_text.dart';
 import 'package:flutter/material.dart';
 
-/// Display product card item
-class ProductCard extends StatefulWidget {
+/// Display toy card item
+class ToyCard extends StatefulWidget {
   final GestureTapCallback? onTap;
-  final ProductModelCart productModel;
-  const ProductCard({super.key, this.onTap, required this.productModel});
+  final ToyModelCart toyModel;
+  const ToyCard({super.key, this.onTap, required this.toyModel});
   @override
-  State<StatefulWidget> createState() => _ProductCard(onTap, productModel);
+  State<StatefulWidget> createState() => _ToyCard(onTap, toyModel);
 }
 
-class _ProductCard extends State<ProductCard> {
+class _ToyCard extends State<ToyCard> {
   final GestureTapCallback? onTap;
-  final ProductModelCart productModel;
-  _ProductCard(this.onTap, this.productModel);
+  final ToyModelCart toyModel;
+  _ToyCard(this.onTap, this.toyModel);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class _ProductCard extends State<ProductCard> {
               Container(
                 height: 100,
                 width: 100,
-                child: Image.asset(productModel.images[0]),
+                child: Image.asset(toyModel.images[0]),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: white,
@@ -46,12 +46,12 @@ class _ProductCard extends State<ProductCard> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustumText(text: productModel.name, size: 16),
+                      CustumText(text: toyModel.name, size: 16),
                       const SizedBox(
                         height: appPadding,
                       ),
                       CustumText(
-                        text: "${productModel.price} XAF",
+                        text: "${toyModel.price} XAF",
                         size: 14,
                         weight: FontWeight.bold,
                         color: primaryColor,
@@ -76,26 +76,26 @@ class _ProductCard extends State<ProductCard> {
                                   IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          if (productModel.quantity > 1) {
+                                          if (toyModel.quantity > 1) {
                                             var qty =
-                                                productModel.getquantity() - 1;
-                                            productModel.setquantity(qty);
+                                                toyModel.getquantity() - 1;
+                                            toyModel.setquantity(qty);
                                           }
                                         });
                                       },
                                       icon: const Icon(Icons.remove_rounded,
                                           color: primaryColor, size: 15)),
                                   Text(
-                                    productModel.getquantity().toString(),
+                                    toyModel.getquantity().toString(),
                                     style: const TextStyle(color: primaryColor),
                                   ),
                                   IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          if (productModel.quantity > 0) {
+                                          if (toyModel.quantity > 0) {
                                             var qty =
-                                                productModel.getquantity() + 1;
-                                            productModel.setquantity(qty);
+                                                toyModel.getquantity() + 1;
+                                            toyModel.setquantity(qty);
                                           }
                                         });
                                       },
@@ -109,10 +109,10 @@ class _ProductCard extends State<ProductCard> {
                               child: IconButton(
                                   onPressed: () {
                                     setState(() {
-                                      CartContent.productList.removeAt(
-                                          CartContent.productList
-                                              .indexOf(productModel));
-                                      print(CartContent.productList.length);
+                                      CartContent.toyList.removeAt(CartContent
+                                          .toyList
+                                          .indexOf(toyModel));
+                                      print(CartContent.toyList.length);
                                     });
                                   },
                                   icon:

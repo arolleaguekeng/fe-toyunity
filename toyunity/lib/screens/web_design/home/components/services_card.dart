@@ -17,7 +17,7 @@ class ServicesCard extends StatelessWidget {
         ),
         const Services(
           image: 'assets/images/png/s_delivery.png',
-          title: "Products delivery",
+          title: "Toys delivery",
         ),
         const Services(
           image: 'assets/images/png/s_chat.png',

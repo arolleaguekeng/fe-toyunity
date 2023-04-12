@@ -2,15 +2,15 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/constants/responsive.dart';
-import 'package:toyunity/models/product_model.dart';
+import 'package:toyunity/models/toy_model.dart';
 
-class Products extends StatelessWidget {
-  const Products({
+class Toys extends StatelessWidget {
+  const Toys({
     Key? key,
-    required this.product,
+    required this.toy,
     required this.press,
   }) : super(key: key);
-  final ProductModel product;
+  final ToyModel toy;
   final VoidCallback press;
 
   @override
@@ -29,7 +29,7 @@ class Products extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.asset(
-                    product.images[0],
+                    toy.images[0],
                     height: Responsive.isMobile(context) ? 210 : 240,
                     width: 300,
                     fit: BoxFit.cover,
@@ -39,14 +39,14 @@ class Products extends StatelessWidget {
                   height: 10,
                 ),
                 AutoSizeText(
-                  product.name,
+                  toy.name,
                   maxLines: 2,
                   minFontSize: 14,
                   style: const TextStyle(
                       fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 AutoSizeText(
-                  product.name,
+                  toy.name,
                   maxLines: 2,
                   minFontSize: 14,
                   style: const TextStyle(fontSize: 15, color: grey),
@@ -54,7 +54,7 @@ class Products extends StatelessWidget {
                 Row(
                   children: [
                     AutoSizeText(
-                      "${product.price} XAF",
+                      "${toy.price} XAF",
                       maxLines: 2,
                       minFontSize: 14,
                       style: const TextStyle(

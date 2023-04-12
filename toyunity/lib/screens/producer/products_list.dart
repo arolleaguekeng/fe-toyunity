@@ -4,27 +4,27 @@ import 'package:toyunity/services/db_services.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/constants.dart';
-import '../../../models/product_model.dart';
+import '../../../models/toy_model.dart';
 import '../../models/categories.dart';
-import '../home/special_offers/special_offer_product_item.dart';
+import '../home/special_offers/special_offer_toy_item.dart';
 
-class PcProductListContent extends StatefulWidget {
-  const PcProductListContent({super.key});
+class PcToyListContent extends StatefulWidget {
+  const PcToyListContent({super.key});
 
   @override
-  State<PcProductListContent> createState() => _PcProductListContent();
+  State<PcToyListContent> createState() => _PcToyListContent();
 }
 
-class _PcProductListContent extends State<PcProductListContent> {
+class _PcToyListContent extends State<PcToyListContent> {
   DataBaseService db = DataBaseService();
   bool isLoading = true;
   List<Categorie> selectedCategorie = [];
-  List<ProductModel> products = [];
+  List<ToyModel> toys = [];
 
   Future<void> getMupesInsurees() async {
-    var liste = await db.getAllProducts();
-    products = <ProductModel>[];
-    products = liste;
+    var liste = await db.getAllToys();
+    toys = <ToyModel>[];
+    toys = liste;
     setState(() {
       isLoading = false;
     });
@@ -54,8 +54,8 @@ class _PcProductListContent extends State<PcProductListContent> {
                       mainAxisSpacing: 10,
                       mainAxisExtent: 300),
                   itemBuilder: (_, index) {
-                    return SoProductCard(
-                      product: products[index],
+                    return SoToyCard(
+                      toy: toys[index],
                       likebtn: IconButton(
                         icon: Icon(
                           Icons.heart_broken,
@@ -65,7 +65,7 @@ class _PcProductListContent extends State<PcProductListContent> {
                       ),
                     );
                   },
-                  itemCount: products.length,
+                  itemCount: toys.length,
                 ),
               ),
             ],

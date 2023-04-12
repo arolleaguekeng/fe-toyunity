@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../constants/constants.dart';
 import '../../../constants/responsive.dart';
 import '../../../models/categories.dart';
-import '../../../models/product_model.dart';
+import '../../../models/toy_model.dart';
 import '../../../routes/routes_name.dart';
 import '../../components/forms/custom_text.dart';
-import '../../product/product_details/product_details_screen.dart';
-import 'most_popular_product_card.dart';
+import '../../toy/toy_details/toy_details_screen.dart';
+import 'most_popular_toy_card.dart';
 
 class MostPopularCard extends StatefulWidget {
   const MostPopularCard({Key? key}) : super(key: key);
@@ -19,11 +19,11 @@ class MostPopularCard extends StatefulWidget {
 class _MostPopularCardState extends State<MostPopularCard> {
   bool isLoading = true;
   List<Categorie> selectedCategorie = [];
-  List<ProductModel> products = productsDataPop;
+  List<ToyModel> toys = toysDataPop;
 
   Future<void> getMupesInsurees() async {
-    // var liste = await db.getAllProducts();
-    // products = liste;
+    // var liste = await db.getAllToys();
+    // toys = liste;
     setState(() {
       isLoading = false;
     });
@@ -79,8 +79,8 @@ class _MostPopularCardState extends State<MostPopularCard> {
                 mainAxisSpacing: 10,
                 mainAxisExtent: 300),
             itemBuilder: (_, index) {
-              return MpProductCard(
-                product: products[index],
+              return MpToyCard(
+                toy: toys[index],
                 btnicon: IconButton(
                   icon: Icon(
                     Icons.heart_broken,
@@ -90,7 +90,7 @@ class _MostPopularCardState extends State<MostPopularCard> {
                 ),
               );
             },
-            itemCount: products.length,
+            itemCount: toys.length,
           ),
         ),
       ],
@@ -109,7 +109,7 @@ class _MostPopularCardState extends State<MostPopularCard> {
           if (categories[index].isSelected == true) {
             selectedCategorie.add(
               Categorie(
-                product: categories[index].product,
+                toy: categories[index].toy,
                 name: categories[index].name,
                 isSelected: true,
               ),

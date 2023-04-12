@@ -1,7 +1,7 @@
 // import 'dart:io';
 //
 // import 'package:toyunity/constants/constants.dart';
-// import 'package:toyunity/models/product_model.dart';
+// import 'package:toyunity/models/toy_model.dart';
 // import 'package:toyunity/screens/components/forms/custom_button.dart';
 // import 'package:toyunity/services/db_services.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
@@ -95,7 +95,7 @@
 //       final pickedFile = await ImagePickerWeb.getImageInfo;
 //       DataBaseService _db = DataBaseService();
 //       String _pUrlImg = await _db.startUpload(pickedFile!.data);
-//       _db.addProduct(ProductModel(
+//       _db.addToy(ToyModel(
 //           user: user,
 //           name: pName,
 //           description: "description",

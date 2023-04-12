@@ -1,7 +1,7 @@
 import 'package:toyunity/main.dart';
 import 'package:toyunity/screens/home/most_popular/most_popular_screen.dart';
-import 'package:toyunity/screens/producer/add_products/add_product_screen.dart';
-import 'package:toyunity/screens/producer/products_list.dart';
+import 'package:toyunity/screens/producer/add_toys/add_toy_screen.dart';
+import 'package:toyunity/screens/producer/toys_list.dart';
 import 'package:toyunity/screens/producer/showCardDialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +9,9 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../constants/constants.dart';
 
-class PcProductListScreen extends StatelessWidget {
+class PcToyListScreen extends StatelessWidget {
   User? user;
-  PcProductListScreen({this.user});
+  PcToyListScreen({this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class PcProductListScreen extends StatelessWidget {
             ),
             Expanded(
               flex: 5,
-              child: PcProductListContent(),
+              child: PcToyListContent(),
             ),
             SizedBox(
               width: appPadding * 0.7,
@@ -61,8 +61,8 @@ class PcProductListScreen extends StatelessWidget {
                 print(
                     "********************************************************");
                 //print(user!.phoneNumber);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => AddProductScreen()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => AddToyScreen()));
               },
               icon: const Icon(
                 Icons.add_rounded,

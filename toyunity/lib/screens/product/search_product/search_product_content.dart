@@ -1,20 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
-
-class SearchProductContent extends StatefulWidget {
-  const SearchProductContent({Key? key}) : super(key: key);
+class SearchToyContent extends StatefulWidget {
+  const SearchToyContent({Key? key}) : super(key: key);
 
   @override
-  State<SearchProductContent> createState() => _SearchProductContent();
+  State<SearchToyContent> createState() => _SearchToyContent();
 }
 
-class _SearchProductContent extends State<SearchProductContent> {
+class _SearchToyContent extends State<SearchToyContent> {
   bool isLoading = true;
 
-  void initState() {
-  }
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {

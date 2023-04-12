@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 import '../../../../constants/responsive.dart';
 import '../../../../models/categories.dart';
-import '../../../../models/product_model.dart';
+import '../../../../models/toy_model.dart';
 import '../../../../services/db_services.dart';
 import '../../../components/forms/custom_text.dart';
 import '../../../home/most_popular/most_popular_screen.dart';
-import '../../../product/product_details/product_details_screen.dart';
-import 'product.dart';
+import '../../../toy/toy_details/toy_details_screen.dart';
+import 'toy.dart';
 
 class MostPopular extends StatefulWidget {
   const MostPopular(
@@ -25,12 +25,12 @@ class _MostPopular extends State<MostPopular> {
   DataBaseService db = DataBaseService();
   bool isLoading = true;
   List<Categorie> selectedCategorie = [];
-  List<ProductModel> products = productsData;
+  List<ToyModel> toys = toysData;
 
   Future<void> getMupesInsurees() async {
-    var liste = await db.getAllProducts();
-    // products =  <ProductModel>[];
-    // products = liste;
+    var liste = await db.getAllToys();
+    // toys =  <ToyModel>[];
+    // toys = liste;
     setState(() {
       isLoading = false;
     });
@@ -79,17 +79,16 @@ class _MostPopular extends State<MostPopular> {
               crossAxisCount: Responsive.isMobile(context) ? 1 : 3,
               childAspectRatio: aspectRatio,
               mainAxisSpacing: 1),
-          itemBuilder: (context, index) => Products(
+          itemBuilder: (context, index) => Toys(
             press: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (_) =>
-                          ProductDetailsScreen(product: products[index])));
+                      builder: (_) => ToyDetailsScreen(toy: toys[index])));
             },
-            product: products[index],
+            toy: toys[index],
           ),
-          itemCount: products.length,
+          itemCount: toys.length,
         ),
       ],
     );

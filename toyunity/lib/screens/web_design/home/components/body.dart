@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/constants/responsive.dart';
 import 'package:toyunity/models/categories.dart';
-import '../../../../models/product_model.dart';
+import '../../../../models/toy_model.dart';
 import '../../../../services/db_services.dart';
 import '../../../home/special_offers/special_offers.dart';
 import 'email_banner.dart';
@@ -20,12 +20,12 @@ class _BodyContainerState extends State<BodyContainer> {
   DataBaseService db = DataBaseService();
   bool isLoading = true;
   List<Categorie> selectedCategorie = [];
-  List<ProductModel> products = productsData;
+  List<ToyModel> toys = toysData;
 
   Future<void> getMupesInsurees() async {
-    var liste = await db.getAllProducts();
-    // products =  <ProductModel>[];
-    // products = liste;
+    var liste = await db.getAllToys();
+    // toys =  <ToyModel>[];
+    // toys = liste;
     setState(() {
       isLoading = false;
     });
@@ -34,8 +34,8 @@ class _BodyContainerState extends State<BodyContainer> {
   void initState() {
     getMupesInsurees();
     print(
-        "############################# Liste of products ############################");
-    // print(products[0]);
+        "############################# Liste of toys ############################");
+    // print(toys[0]);
   }
 
   @override
@@ -101,7 +101,7 @@ class _BodyContainerState extends State<BodyContainer> {
           if (categories[index].isSelected == true) {
             selectedCategorie.add(
               Categorie(
-                product: categories[index].product,
+                toy: categories[index].toy,
                 name: categories[index].name,
                 isSelected: true,
               ),

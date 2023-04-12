@@ -1,9 +1,9 @@
-class ProductTarrifModel {
+class ToyTarrifModel {
   final int initialQuantity;
   final int finalQuantity;
   final double price;
 
-  ProductTarrifModel(
+  ToyTarrifModel(
       {required this.initialQuantity,
       required this.finalQuantity,
       required this.price});

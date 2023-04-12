@@ -1,5 +1,5 @@
 import 'package:toyunity/constants/constants.dart';
-import 'package:toyunity/models/product_model.dart';
+import 'package:toyunity/models/toy_model.dart';
 import 'package:toyunity/screens/components/forms/custom_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,16 +12,16 @@ import '../../paiement/paiement_screen.dart';
 import '../../shared_ui/showSnackBar.dart';
 
 class DetailsCard extends StatefulWidget {
-  final ProductModel product;
-  const DetailsCard({super.key, required this.product});
+  final ToyModel toy;
+  const DetailsCard({super.key, required this.toy});
 
   @override
-  State<DetailsCard> createState() => _DetailsCardState(product);
+  State<DetailsCard> createState() => _DetailsCardState(toy);
 }
 
 class _DetailsCardState extends State<DetailsCard>
     with SingleTickerProviderStateMixin {
-  final ProductModel product;
+  final ToyModel toy;
   bool isOpenened = false;
   AnimationController? _animationController;
   Animation<Color?>? _buttonColor;
@@ -30,7 +30,7 @@ class _DetailsCardState extends State<DetailsCard>
   Curve _curve = Curves.easeOut;
   double _fabHeight = 56.0;
 
-  _DetailsCardState(this.product);
+  _DetailsCardState(this.toy);
   @override
   void initState() {
     _animationController = AnimationController(
@@ -128,7 +128,7 @@ class _DetailsCardState extends State<DetailsCard>
 
   @override
   Widget build(BuildContext context) {
-    String imagePicture = widget.product.images[0];
+    String imagePicture = widget.toy.images[0];
     return Scaffold(
       /*floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: Column(
@@ -216,14 +216,14 @@ class _DetailsCardState extends State<DetailsCard>
               ),
               MaterialButton(
                 onPressed: () {
-                  MyApp.CARD.add(ProductModelCart(
-                      id: product.id,
-                      userId: product.userId,
-                      name: product.name,
-                      description: product.description,
-                      price: product.price,
-                      images: product.images,
-                      created_at: product.created_at));
+                  MyApp.CARD.add(ToyModelCart(
+                      id: toy.id,
+                      userId: toy.userId,
+                      name: toy.name,
+                      description: toy.description,
+                      price: toy.price,
+                      images: toy.images,
+                      created_at: toy.created_at));
                   showNotification(context, "Succesfull add to card...");
                 },
                 height: 40,
@@ -261,7 +261,7 @@ class _DetailsCardState extends State<DetailsCard>
               ],
               background: Hero(
                 transitionOnUserGestures: true,
-                tag: widget.product.name,
+                tag: widget.toy.name,
                 child: Image.asset(
                   imagePicture,
                   fit: BoxFit.cover,
@@ -321,15 +321,15 @@ class _DetailsCardState extends State<DetailsCard>
                               return InkWell(
                                 onTap: () {
                                   setState(() {
-                                    imagePicture = widget.product.images[index];
+                                    imagePicture = widget.toy.images[index];
                                   });
                                 },
                                 child: CardImage(
-                                  image: widget.product.images[index],
+                                  image: widget.toy.images[index],
                                 ),
                               );
                             },
-                            itemCount: widget.product.images.length,
+                            itemCount: widget.toy.images.length,
                           ),
                         ),
                         const SizedBox(
@@ -343,7 +343,7 @@ class _DetailsCardState extends State<DetailsCard>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 CustumText(
-                                  text: widget.product.name,
+                                  text: widget.toy.name,
                                   size: 22,
                                   color: Colors.black,
                                   weight: FontWeight.bold,
@@ -352,7 +352,7 @@ class _DetailsCardState extends State<DetailsCard>
                                   height: 10,
                                 ),
                                 CustumText(
-                                  text: widget.product.description,
+                                  text: widget.toy.description,
                                   size: 20,
                                   color: Colors.blueGrey.shade900,
                                 ),
@@ -402,7 +402,7 @@ class _DetailsCardState extends State<DetailsCard>
                                   title: Row(
                                     children: [
                                       const CustumText(
-                                        text: 'Product Details.',
+                                        text: 'Toy Details.',
                                         size: 20,
                                       ),
                                     ],

@@ -78,7 +78,7 @@ class _HistoriquePageState extends State<HistoriquePage> {
             ),
             leading: CircleAvatar(
               child: Image.asset(
-                historique.transaction.product.images[0],
+                historique.transaction.toy.images[0],
                 height: 30,
                 fit: BoxFit.cover,
               ),

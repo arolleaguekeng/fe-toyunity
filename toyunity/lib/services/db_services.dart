@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:toyunity/models/product_model.dart';
+import 'package:toyunity/models/toy_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -16,17 +16,16 @@ import 'package:image_picker/image_picker.dart';
 /// DataBaseService database =DataBaseService();
 /// database.uploadFile(file, fileWeb);
 ///
-/// database.addProduct(productModel);
+/// database.addToy(toyModel);
 /// ```
 class DataBaseService {
-  final CollectionReference _products =
-      FirebaseFirestore.instance.collection('products');
+  final CollectionReference _toys =
+      FirebaseFirestore.instance.collection('toys');
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
   /// Upload a [File] to Firebase Starage.
   Future<String> uploadFile(File file, XFile fileWeb) async {
-    Reference reference =
-        _storage.ref().child('products/${DateTime.now()}.png');
+    Reference reference = _storage.ref().child('toys/${DateTime.now()}.png');
     Uint8List imageTosave = await fileWeb.readAsBytes();
     SettableMetadata metaData = SettableMetadata(contentType: 'image/jpeg');
     UploadTask uploadTask = kIsWeb
@@ -36,31 +35,31 @@ class DataBaseService {
     return await taskSnapshot.ref.getDownloadURL();
   }
 
-  // Add products in FireStore Database
-  /// Write a [ProductModel] to Firebase Firestore.
-  void addProduct(ProductModel productModel) {
-    _products.add({
-      "userId": productModel.userId,
-      "name": productModel.name,
-      "description": productModel.name,
-      "price": productModel.price,
-      "images": productModel.images,
+  // Add toys in FireStore Database
+  /// Write a [ToyModel] to Firebase Firestore.
+  void addToy(ToyModel toyModel) {
+    _toys.add({
+      "userId": toyModel.userId,
+      "name": toyModel.name,
+      "description": toyModel.name,
+      "price": toyModel.price,
+      "images": toyModel.images,
       "pCreatedAt": FieldValue.serverTimestamp()
     });
   }
 
-  /// Get all products in Firestore and map to  [ProductModel] to Firebase Firestore.
-  Future<List<ProductModel>> getAllProducts() async {
-    List<ProductModel> listeDesObjets = [];
+  /// Get all toys in Firestore and map to  [ToyModel] to Firebase Firestore.
+  Future<List<ToyModel>> getAllToys() async {
+    List<ToyModel> listeDesObjets = [];
 
     QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection('products').get();
+        await FirebaseFirestore.instance.collection('toys').get();
 
     for (DocumentSnapshot documentSnapshot in querySnapshot.docs) {
-      ProductModel objet = ProductModel.fromFirestore(documentSnapshot);
+      ToyModel objet = ToyModel.fromFirestore(documentSnapshot);
       listeDesObjets.add(objet);
     }
-    print("************************ products list********************");
+    print("************************ toys list********************");
     print(listeDesObjets);
     return listeDesObjets;
   }

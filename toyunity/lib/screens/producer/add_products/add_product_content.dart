@@ -9,17 +9,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../models/product_model.dart';
+import '../../../models/toy_model.dart';
 import '../../../services/db_services.dart';
 
-class AddProductContent extends StatefulWidget {
-  const AddProductContent({Key? key}) : super(key: key);
+class AddToyContent extends StatefulWidget {
+  const AddToyContent({Key? key}) : super(key: key);
 
   @override
-  State<AddProductContent> createState() => _AddProductContent();
+  State<AddToyContent> createState() => _AddToyContent();
 }
 
-class _AddProductContent extends State<AddProductContent> {
+class _AddToyContent extends State<AddToyContent> {
   bool isLoading = true;
   User? user = MyApp.auth.currentUser;
   String _user_id = '';
@@ -83,7 +83,7 @@ class _AddProductContent extends State<AddProductContent> {
                   onChanged: (value) => _pName = value,
                   validator: (value) => _pName == '' ? _formError : null,
                   decoration: InputDecoration(
-                    labelText: "Enter product name",
+                    labelText: "Enter toy name",
                     border: OutlineInputBorder(),
                   ),
                 )),
@@ -94,7 +94,7 @@ class _AddProductContent extends State<AddProductContent> {
                   onChanged: (value) => _pDescription = value,
                   validator: (value) => _pDescription == '' ? _formError : null,
                   decoration: InputDecoration(
-                    labelText: "enter product description",
+                    labelText: "enter toy description",
                     border: OutlineInputBorder(),
                   ),
                 )),
@@ -144,7 +144,7 @@ class _AddProductContent extends State<AddProductContent> {
       DataBaseService _db = DataBaseService();
       String pUrlImg = await _db.uploadFile(file!, _pickedFile!);
 
-      _db.addProduct(ProductModel(
+      _db.addToy(ToyModel(
           name: pName,
           userId: user!.uid,
           description: pDescription,

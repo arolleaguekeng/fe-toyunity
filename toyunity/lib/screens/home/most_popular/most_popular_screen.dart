@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/constants.dart';
 import '../../../models/categories.dart';
-import '../../../models/product_model.dart';
+import '../../../models/toy_model.dart';
 import '../../components/forms/custom_text.dart';
-import 'most_popular_product_card.dart';
+import 'most_popular_toy_card.dart';
 
 class PopularAllPage extends StatefulWidget {
   const PopularAllPage({super.key});
@@ -16,19 +16,21 @@ class PopularAllPage extends StatefulWidget {
 class _PopularAllPageState extends State<PopularAllPage> {
   bool isLoading = true;
   List<Categorie> selectedCategorie = [];
-  List<ProductModel> products = [];
+  List<ToyModel> toys = [];
 
   Future<void> getMupesInsurees() async {
-    // var liste = await db.getAllProducts();
-    products =  <ProductModel>[];
-    // products = liste;
+    // var liste = await db.getAllToys();
+    toys = <ToyModel>[];
+    // toys = liste;
     setState(() {
       isLoading = false;
     });
   }
+
   void initState() {
     getMupesInsurees();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,8 +66,8 @@ class _PopularAllPageState extends State<PopularAllPage> {
                       mainAxisSpacing: 10,
                       mainAxisExtent: 300),
                   itemBuilder: (_, index) {
-                    return MpProductCard(
-                      product: products[index],
+                    return MpToyCard(
+                      toy: toys[index],
                       btnicon: IconButton(
                         icon: Icon(
                           Icons.heart_broken,
@@ -75,7 +77,7 @@ class _PopularAllPageState extends State<PopularAllPage> {
                       ),
                     );
                   },
-                  itemCount: products.length,
+                  itemCount: toys.length,
                 ),
               ),
             ],

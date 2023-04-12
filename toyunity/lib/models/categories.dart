@@ -1,33 +1,32 @@
-import 'package:toyunity/models/product.dart';
+import 'package:toyunity/models/toy.dart';
 
 class Categorie {
   final String name;
-  final List<Product> product;
+  final List<Toy> toy;
   bool isSelected;
-  Categorie(
-      {required this.name, required this.product, required this.isSelected});
+  Categorie({required this.name, required this.toy, required this.isSelected});
 }
 
 List<Categorie> categories = [
   Categorie(
     name: 'All',
-    product: [
-      Product(
+    toy: [
+      Toy(
           imgUrl: 'plant3.jpg',
           name: 'Boston Ivy',
           desc: 'Climbs their storied walls.',
           price: '\$13'),
-      Product(
+      Toy(
           imgUrl: 'plant3.jpg',
           name: 'Green Succulent',
           price: '\$11',
           desc: 'Store water in arid climates.'),
-      Product(
+      Toy(
           name: 'Dieffenbachia Bonsa',
           price: '\$10',
           imgUrl: 'plant3.jpg',
           desc: 'large group of beautiful tropical perennials'),
-      Product(
+      Toy(
           imgUrl: 'plant3.jpg',
           name: 'Plantagenia',
           desc: 'Grown for their foliage rather than blooms',
@@ -37,13 +36,13 @@ List<Categorie> categories = [
   ),
   Categorie(
     name: 'Monsteria',
-    product: [
-      Product(
+    toy: [
+      Toy(
           imgUrl: 'plant3.jpg',
           name: 'Boston Ivy',
           desc: 'Climbs their storied walls.',
           price: '\$13'),
-      Product(
+      Toy(
           imgUrl: 'plant3.jpg',
           name: 'Green Succulent',
           price: '\$11',
@@ -53,13 +52,13 @@ List<Categorie> categories = [
   ),
   Categorie(
     name: 'Aloe',
-    product: [
-      Product(
+    toy: [
+      Toy(
           name: 'Dieffenbachia Bonsa',
           price: '\$10',
           imgUrl: 'plant3.jpg',
           desc: 'large group of beautiful tropical perennials'),
-      Product(
+      Toy(
           imgUrl: 'plant3.jpg',
           name: 'Plantagenia',
           desc: 'Grown for their foliage rather than blooms',
@@ -69,13 +68,13 @@ List<Categorie> categories = [
   ),
   Categorie(
     name: 'Palm',
-    product: [
-      Product(
+    toy: [
+      Toy(
           imgUrl: 'plant3.jpg',
           name: 'Plantagenia',
           desc: 'Grown for their foliage rather than blooms',
           price: '\$9'),
-      Product(
+      Toy(
           imgUrl: 'plant3.jpg',
           name: 'Green Succulent',
           price: '\$11',
@@ -85,13 +84,13 @@ List<Categorie> categories = [
   ),
   Categorie(
     name: 'Yamm',
-    product: [
-      Product(
+    toy: [
+      Toy(
           imgUrl: 'plant3.jpg',
           name: 'Boston Ivy',
           desc: 'Climbs their storied walls.',
           price: '\$13'),
-      Product(
+      Toy(
           imgUrl: 'plant3.jpg',
           name: 'Plantagenia',
           desc: 'Grown for their foliage rather than blooms',
@@ -101,13 +100,13 @@ List<Categorie> categories = [
   ),
   Categorie(
     name: 'Other',
-    product: [
-      Product(
+    toy: [
+      Toy(
           imgUrl: 'plant3.jpg',
           name: 'Boston Ivy',
           desc: 'Climbs their storied walls.',
           price: '\$13'),
-      Product(
+      Toy(
           imgUrl: 'plant3.jpg',
           name: 'Green Succulent',
           price: '\$11',
@@ -117,13 +116,13 @@ List<Categorie> categories = [
   ),
   Categorie(
     name: 'OK',
-    product: [
-      Product(
+    toy: [
+      Toy(
           imgUrl: 'plant3.jpg',
           name: 'Boston Ivy',
           desc: 'Climbs their storied walls.',
           price: '\$13'),
-      Product(
+      Toy(
           name: 'Dieffenbachia Bonsa',
           price: '\$10',
           imgUrl: 'plant3.jpg',

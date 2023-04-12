@@ -83,7 +83,7 @@ class _DetailActive extends State<DetailActive> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Prepayer Product',
+                                    'Prepayer Toy',
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,

@@ -1,10 +1,10 @@
 import 'package:toyunity/constants/constants.dart';
 import 'package:flutter/material.dart';
 
-import 'add_product_content.dart';
+import 'add_toy_content.dart';
 
-class AddProductScreen extends StatelessWidget {
-  const AddProductScreen({Key? key}) : super(key: key);
+class AddToyScreen extends StatelessWidget {
+  const AddToyScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class AddProductScreen extends StatelessWidget {
           children: const [
             Expanded(
               flex: 5,
-              child: AddProductContent(),
+              child: AddToyContent(),
             )
           ],
         ),

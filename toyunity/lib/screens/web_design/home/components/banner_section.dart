@@ -84,7 +84,7 @@ class AboutSection extends StatelessWidget {
           height: 10,
         ),
         const AutoSizeText(
-          "Quality food products directly from producers",
+          "Quality food toys directly from producers",
           maxLines: 1,
           style: TextStyle(
             fontSize: 56,
@@ -94,7 +94,7 @@ class AboutSection extends StatelessWidget {
           height: 10,
         ),
         const Text(
-          "Browse the catalog of prosuits to choose quality products adapted to your needs",
+          "Browse the catalog of prosuits to choose quality toys adapted to your needs",
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.black54,
@@ -108,7 +108,7 @@ class AboutSection extends StatelessWidget {
             height: 50,
             child: CustomTextField(
                 icon: Icons.search_rounded,
-                hintText: "Search products...",
+                hintText: "Search toys...",
                 onChanged: (value) {},
                 controller: TextEditingController())),
         const SizedBox(

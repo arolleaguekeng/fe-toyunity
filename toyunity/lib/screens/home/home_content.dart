@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
 
-import '../../models/product_model.dart';
+import '../../models/toy_model.dart';
 import '../components/forms/custom_text.dart';
 import 'most_popular/most_popular.dart';
 import 'special_offers/special_offers.dart';
@@ -19,15 +19,16 @@ class HomeContent extends StatefulWidget {
 class _HomeContent extends State<HomeContent> {
   bool isLoading = true;
   // List<Categorie> selectedCategorie = [];
-  List<ProductModel> products = [];
+  List<ToyModel> toys = [];
 
   Future<void> getMupesInsurees() async {
-    // products =  <ProductModel>[];
-    // products = liste;
+    // toys =  <ToyModel>[];
+    // toys = liste;
     setState(() {
       isLoading = false;
     });
   }
+
   void initState() {
     getMupesInsurees();
   }
@@ -95,15 +96,9 @@ class _HomeContent extends State<HomeContent> {
             ),
             SpecialOfferCard(),
             MostPopularCard(),
-
           ],
         ),
       ),
     );
   }
-
-
-
-
 }
-

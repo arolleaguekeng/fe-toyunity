@@ -1,10 +1,10 @@
-import 'package:toyunity/screens/product/product_list/product_list_content.dart';
+import 'package:toyunity/screens/toy/toy_list/toy_list_content.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/constants.dart';
 
-class ProductListScreen extends StatelessWidget {
-  const ProductListScreen({Key? key}) : super(key: key);
+class ToyListScreen extends StatelessWidget {
+  const ToyListScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class ProductListScreen extends StatelessWidget {
           children: const [
             Expanded(
               flex: 5,
-              child: ProductListContent(),
+              child: ToyListContent(),
             )
           ],
         ),

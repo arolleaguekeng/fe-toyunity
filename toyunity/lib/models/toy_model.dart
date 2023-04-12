@@ -1,8 +1,8 @@
-import 'package:toyunity/models/product_tarrif_model.dart';
+import 'package:toyunity/models/toy_tarrif_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class ProductModel {
+class ToyModel {
   final String id;
   final String name;
   final String description;
@@ -11,10 +11,10 @@ class ProductModel {
   final Timestamp created_at;
   List<dynamic> images = ["assets/images/png/plant2.jpg"];
 
-  factory ProductModel.fromFirestore(DocumentSnapshot documentSnapshot) {
+  factory ToyModel.fromFirestore(DocumentSnapshot documentSnapshot) {
     Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
 
-    return ProductModel(
+    return ToyModel(
       id: documentSnapshot.id,
       name: data['name'] as String,
       description: data['description'] as String,
@@ -25,7 +25,7 @@ class ProductModel {
     );
   }
 
-  ProductModel({
+  ToyModel({
     this.id = '',
     required this.userId,
     required this.name,
@@ -36,7 +36,7 @@ class ProductModel {
   });
 }
 
-class ProductModelCart extends ProductModel {
+class ToyModelCart extends ToyModel {
   int quantity = 1;
   void setquantity(int quantity) {
     this.quantity = quantity;
@@ -46,7 +46,7 @@ class ProductModelCart extends ProductModel {
     return this.quantity;
   }
 
-  ProductModelCart({
+  ToyModelCart({
     required super.id,
     required super.userId,
     required super.name,
@@ -58,11 +58,11 @@ class ProductModelCart extends ProductModel {
   });
 }
 
-DocumentReference<Map<String, dynamic>> _products =
-    FirebaseFirestore.instance.doc('products');
+DocumentReference<Map<String, dynamic>> _toys =
+    FirebaseFirestore.instance.doc('toys');
 
-var productsData = <ProductModel>[
-  ProductModel(
+var toysData = <ToyModel>[
+  ToyModel(
       userId: "ss",
       name: "Douala laying hen",
       description: "30 month old laying chickens",
@@ -73,7 +73,7 @@ var productsData = <ProductModel>[
         "assets/images/png/poulet3.jpg",
       ],
       created_at: Timestamp.now()),
-  ProductModel(
+  ToyModel(
       userId: "devpea",
       name: "Bafoussam tomato",
       description: "tomato from the western lands",
@@ -84,7 +84,7 @@ var productsData = <ProductModel>[
         "assets/images/png/tomate3.jpg",
       ],
       created_at: Timestamp.now()),
-  ProductModel(
+  ToyModel(
       userId: "devpea",
       name: "Kumba Banana",
       description: "good quality banana",
@@ -94,7 +94,7 @@ var productsData = <ProductModel>[
         "assets/images/png/banane2.jpg",
       ],
       created_at: Timestamp.now()),
-  ProductModel(
+  ToyModel(
       userId: "devpea",
       name: "Village papaya",
       description: "natural papayas straight ",
@@ -104,7 +104,7 @@ var productsData = <ProductModel>[
         "assets/images/png/papaye2.jpg",
       ],
       created_at: Timestamp.now()),
-  ProductModel(
+  ToyModel(
       userId: "devpea",
       name: "Garoua beef",
       description: "Beef straight from farms",
@@ -116,8 +116,8 @@ var productsData = <ProductModel>[
       created_at: Timestamp.now()),
 ];
 
-var productsDataPop = <ProductModel>[
-  ProductModel(
+var toysDataPop = <ToyModel>[
+  ToyModel(
       userId: "devpea",
       name: "Kumba Banana",
       description: "good quality banana",
@@ -127,7 +127,7 @@ var productsDataPop = <ProductModel>[
         "assets/images/png/banane2.jpg",
       ],
       created_at: Timestamp.now()),
-  ProductModel(
+  ToyModel(
       userId: "devpea",
       name: "Garoua beef",
       description: "Beef straight from farms",
@@ -137,7 +137,7 @@ var productsDataPop = <ProductModel>[
         "assets/images/png/boeuf2.jpg",
       ],
       created_at: Timestamp.now()),
-  ProductModel(
+  ToyModel(
       userId: "ss",
       name: "Douala laying hen",
       description: "30 month old laying chickens",
@@ -148,7 +148,7 @@ var productsDataPop = <ProductModel>[
         "assets/images/png/poulet3.jpg",
       ],
       created_at: Timestamp.now()),
-  ProductModel(
+  ToyModel(
       userId: "devpea",
       name: "Bafoussam tomato",
       description: "tomato from the western lands",
@@ -159,7 +159,7 @@ var productsDataPop = <ProductModel>[
         "assets/images/png/tomate3.jpg",
       ],
       created_at: Timestamp.now()),
-  ProductModel(
+  ToyModel(
       userId: "devpea",
       name: "Village papaya",
       description: "natural papayas straight ",

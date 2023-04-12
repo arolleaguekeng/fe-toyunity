@@ -1,17 +1,17 @@
-import 'package:toyunity/models/product_model.dart';
+import 'package:toyunity/models/toy_model.dart';
 import 'package:toyunity/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
 class Transaction {
-  final ProductModel product;
+  final ToyModel toy;
   final UserModel user;
   final String montant;
   final Timestamp date;
   final String nom;
 
   Transaction(
-      {required this.product,
+      {required this.toy,
       required this.user,
       required this.montant,
       required this.date,

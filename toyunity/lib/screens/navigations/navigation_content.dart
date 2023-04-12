@@ -31,7 +31,7 @@ class _NavigationContent extends State<NavigationContent> {
     OrderScreen(),
     WalletScreen(),
     ProfileScreen(),
-    PcProductListScreen(),
+    PcToyListScreen(),
   ];
   AppBar? appBar = null;
 
@@ -63,12 +63,12 @@ class _NavigationContent extends State<NavigationContent> {
               appBarIcon(
                   "Messages", Icons.message_outlined, 3, ConversationScreen()),
               appBarIcon(
-                  isProducer ? "Products" : "Profile",
+                  isProducer ? "Toys" : "Profile",
                   isProducer
-                      ? Icons.production_quantity_limits_rounded
+                      ? Icons.toyion_quantity_limits_rounded
                       : Icons.person_2_rounded,
                   4,
-                  isProducer ? PcProductListScreen() : ProfileScreen()),
+                  isProducer ? PcToyListScreen() : ProfileScreen()),
             ],
           ),
         ),

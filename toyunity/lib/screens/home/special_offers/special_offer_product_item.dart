@@ -1,27 +1,27 @@
 import 'package:toyunity/constants/constants.dart';
-import 'package:toyunity/models/product_model.dart';
+import 'package:toyunity/models/toy_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/responsive.dart';
 import '../../components/forms/custom_text.dart';
-import '../../product/product_details/product_details_screen.dart';
+import '../../toy/toy_details/toy_details_screen.dart';
 
-class SoProductCard extends StatefulWidget {
-  const SoProductCard({Key? key, required this.product, required this.likebtn})
+class SoToyCard extends StatefulWidget {
+  const SoToyCard({Key? key, required this.toy, required this.likebtn})
       : super(key: key);
 
-  final ProductModel product;
+  final ToyModel toy;
   final IconButton likebtn;
 
   @override
-  State<SoProductCard> createState() => _SoProductCardState(product, likebtn);
+  State<SoToyCard> createState() => _SoToyCardState(toy, likebtn);
 }
 
-class _SoProductCardState extends State<SoProductCard> {
-  final ProductModel product;
+class _SoToyCardState extends State<SoToyCard> {
+  final ToyModel toy;
   final IconButton likebtn;
 
-  _SoProductCardState(this.product, this.likebtn);
+  _SoToyCardState(this.toy, this.likebtn);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -30,7 +30,7 @@ class _SoProductCardState extends State<SoProductCard> {
             context,
             MaterialPageRoute(
               builder: (_) {
-                return ProductDetailsScreen(product: product);
+                return ToyDetailsScreen(toy: toy);
               },
             ),
           );
@@ -50,7 +50,10 @@ class _SoProductCardState extends State<SoProductCard> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
-                          product.images[0],height: Responsive.isMobile(context)? 190: 200 ,width: 260,fit: BoxFit.cover,
+                          toy.images[0],
+                          height: Responsive.isMobile(context) ? 190 : 200,
+                          width: 260,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -63,7 +66,7 @@ class _SoProductCardState extends State<SoProductCard> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               CustumText(
-                                text: product.name,
+                                text: toy.name,
                                 size: 14,
                                 weight: FontWeight.bold,
                               ),
@@ -114,7 +117,7 @@ class _SoProductCardState extends State<SoProductCard> {
                             height: 5,
                           ),
                           CustumText(
-                            text: product.price,
+                            text: toy.price,
                             size: 13,
                             color: green,
                             weight: FontWeight.bold,

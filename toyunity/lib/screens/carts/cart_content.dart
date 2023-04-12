@@ -1,10 +1,10 @@
 import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/main.dart';
-import 'package:toyunity/models/product_model.dart';
-import 'package:toyunity/screens/carts/cart_product_card.dart';
+import 'package:toyunity/models/toy_model.dart';
+import 'package:toyunity/screens/carts/cart_toy_card.dart';
 import 'package:toyunity/screens/components/forms/custom_button.dart';
 import 'package:toyunity/screens/components/forms/custom_text.dart';
-import 'package:toyunity/screens/product/product_details/product_details_screen.dart';
+import 'package:toyunity/screens/toy/toy_details/toy_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,20 +13,20 @@ import '../paiement/paiement_screen.dart';
 /// Display cart Content page
 class CartContent extends StatefulWidget {
   const CartContent({Key? key}) : super(key: key);
-  static List<ProductModel> productList = MyApp.CARD;
+  static List<ToyModel> toyList = MyApp.CARD;
   @override
   State<CartContent> createState() => _CartContent();
 }
 
 class _CartContent extends State<CartContent> {
   bool isLoading = true;
-  var productList = [];
+  var toyList = [];
   double amound = 0;
   void initState() {
-    productList = CartContent.productList;
-    if (productList.isNotEmpty) {
+    toyList = CartContent.toyList;
+    if (toyList.isNotEmpty) {
       isLoading = false;
-      //productList = [];
+      //toyList = [];
     }
   }
 
@@ -75,7 +75,7 @@ class _CartContent extends State<CartContent> {
             //Add more icon here
           ],
         ),
-        body: productList.isNotEmpty
+        body: toyList.isNotEmpty
             ? Container(
                 decoration: const BoxDecoration(color: white),
                 child: SingleChildScrollView(
@@ -88,16 +88,16 @@ class _CartContent extends State<CartContent> {
                             ? const Center(child: CircularProgressIndicator())
                             : ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: productList.length,
-                                itemBuilder: (context, index) => ProductCard(
-                                  productModel: productList[index],
+                                itemCount: toyList.length,
+                                itemBuilder: (context, index) => ToyCard(
+                                  toyModel: toyList[index],
                                   onTap: () {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (_) {
-                                          return ProductDetailsScreen(
-                                              product: productList[index]);
+                                          return ToyDetailsScreen(
+                                              toy: toyList[index]);
                                         },
                                       ),
                                     );
@@ -135,7 +135,7 @@ class _CartContent extends State<CartContent> {
                   )
                 ],
               )),
-        bottomNavigationBar: productList.isNotEmpty
+        bottomNavigationBar: toyList.isNotEmpty
             ? BottomAppBar(
                 color: white,
                 elevation: 10,

@@ -2,15 +2,14 @@ import 'package:toyunity/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/responsive.dart';
-import '../../../models/product_model.dart';
+import '../../../models/toy_model.dart';
 import '../../components/forms/custom_text.dart';
-import '../../product/product_details/product_details_screen.dart';
+import '../../toy/toy_details/toy_details_screen.dart';
 
-class MpProductCard extends StatelessWidget {
-  final ProductModel product;
+class MpToyCard extends StatelessWidget {
+  final ToyModel toy;
   final IconButton btnicon;
-  const MpProductCard(
-      {super.key, required this.product, required this.btnicon});
+  const MpToyCard({super.key, required this.toy, required this.btnicon});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class MpProductCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (_) {
-              return ProductDetailsScreen(product: product);
+              return ToyDetailsScreen(toy: toy);
             },
           ),
         );
@@ -47,7 +46,7 @@ class MpProductCard extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
-                          product.images[0],
+                          toy.images[0],
                           height: Responsive.isMobile(context) ? 190 : 200,
                           width: 260,
                           fit: BoxFit.cover,
@@ -71,7 +70,7 @@ class MpProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       CustumText(
-                        text: product.name,
+                        text: toy.name,
                         size: 14,
                         weight: FontWeight.bold,
                       ),
@@ -120,7 +119,7 @@ class MpProductCard extends StatelessWidget {
                     height: 2,
                   ),
                   CustumText(
-                    text: product.price,
+                    text: toy.price,
                     size: 13,
                     color: primaryColor,
                     weight: FontWeight.bold,

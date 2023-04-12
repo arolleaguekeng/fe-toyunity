@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/models/conversation_model.dart';
-import 'package:toyunity/models/product_model.dart';
+import 'package:toyunity/models/toy_model.dart';
 import 'package:toyunity/models/user_model.dart';
 import 'package:toyunity/screens/carts/cart_content.dart';
 import 'package:toyunity/screens/carts/cart_screen.dart';

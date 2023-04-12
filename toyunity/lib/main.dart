@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'constants/constants.dart';
-import 'models/product_model.dart';
+import 'models/toy_model.dart';
 import 'screens/home/home_screen.dart';
 
 Future<void> main() async {
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   static var auth = FirebaseAuth.instance;
-  static List<ProductModelCart> CARD = [];
+  static List<ToyModelCart> CARD = [];
 
   static Color appBarColor = primaryColor;
   // This widget is the root of your application.
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.brown),
       home: kIsWeb ? HomeWebScreen() : HomeWebScreen(),
       color: secondaryColor,
-      onGenerateRoute: CustomRoute.allRoutes, 
+      onGenerateRoute: CustomRoute.allRoutes,
     );
   }
 }

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/constants.dart';
 import '../../../models/categories.dart';
-import '../../../models/product_model.dart';
-import 'special_offer_product_item.dart';
+import '../../../models/toy_model.dart';
+import 'special_offer_toy_item.dart';
 
 class SpecialApp extends StatefulWidget {
   const SpecialApp({super.key});
@@ -16,12 +16,12 @@ class SpecialApp extends StatefulWidget {
 class _SpecialAppState extends State<SpecialApp> {
   bool isLoading = true;
   List<Categorie> selectedCategorie = [];
-  List<ProductModel> products = [];
+  List<ToyModel> toys = [];
 
   Future<void> getMupesInsurees() async {
-    // var liste = await db.getAllProducts();
-    products = <ProductModel>[];
-    // products = liste;
+    // var liste = await db.getAllToys();
+    toys = <ToyModel>[];
+    // toys = liste;
     setState(() {
       isLoading = false;
     });
@@ -66,8 +66,8 @@ class _SpecialAppState extends State<SpecialApp> {
                       mainAxisSpacing: 10,
                       mainAxisExtent: 300),
                   itemBuilder: (_, index) {
-                    return SoProductCard(
-                      product: products[index],
+                    return SoToyCard(
+                      toy: toys[index],
                       likebtn: IconButton(
                         icon: Icon(
                           Icons.heart_broken,
@@ -77,7 +77,7 @@ class _SpecialAppState extends State<SpecialApp> {
                       ),
                     );
                   },
-                  itemCount: products.length,
+                  itemCount: toys.length,
                 ),
               ),
             ],
