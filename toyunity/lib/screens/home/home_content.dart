@@ -7,6 +7,7 @@ import '../../constants/constants.dart';
 import '../../models/toy_model.dart';
 import '../components/forms/custom_text.dart';
 import 'most_popular/most_popular.dart';
+import 'services/services_card.dart';
 import 'special_offers/special_offers.dart';
 
 class HomeContent extends StatefulWidget {
@@ -51,24 +52,15 @@ class _HomeContent extends State<HomeContent> {
               children: [
                 Row(
                   children: [
-                    const CircleAvatar(
-                      backgroundImage:
-                          AssetImage("assets/images/png/profile.png"),
-                    ),
                     const SizedBox(
                       width: appPadding,
                     ),
                     Column(
                       children: const [
                         CustumText(
-                          text: "Good morning 👋",
+                          text: "Toy unity",
                           size: 16,
-                          color: lightTextColor,
-                        ),
-                        CustumText(
-                          text: "Aguekeng Arolle ",
-                          size: 18,
-                          weight: FontWeight.bold,
+                          color: primaryColor,
                         ),
                       ],
                     )
@@ -79,8 +71,10 @@ class _HomeContent extends State<HomeContent> {
                     IconButton(
                         onPressed: () {},
                         icon: const Icon(Icons.notifications_rounded)),
-                    IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.heart_broken)),
+                    const CircleAvatar(
+                      backgroundImage:
+                          AssetImage("assets/images/png/profile.png"),
+                    ),
                   ],
                 )
               ],
@@ -88,12 +82,17 @@ class _HomeContent extends State<HomeContent> {
             const SizedBox(
               height: appPadding,
             ),
-            CustomTextField(
-              hintText: "Search...",
-              onChanged: (value) {},
-              controller: searchController,
-              icon: Icons.search_rounded,
+            // CustomTextField(
+            //   hintText: "Search...",
+            //   onChanged: (value) {},
+            //   controller: searchController,
+            //   icon: Icons.search_rounded,
+            // ),
+            Container(
+              height: 180,
+              child: ServivesContent(),
             ),
+
             SpecialOfferCard(),
             MostPopularCard(),
           ],

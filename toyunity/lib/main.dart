@@ -15,12 +15,13 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
       options: const FirebaseOptions(
-          apiKey: "AIzaSyCThibdQlziIE70rTXU8BhveRAHQWJeq_g",
-          authDomain: "toyunity.firebaseapp.com",
-          projectId: "toyunity",
-          storageBucket: "toyunity",
-          messagingSenderId: "856757854744",
-          appId: "1:856757854744:web:56dc778d210b57a5f0596d"));
+          apiKey: "AIzaSyBw6-KMcK1N936hqJhDg9fk72vyRBOCeUU",
+          authDomain: "toy-unity.firebaseapp.com",
+          projectId: "toy-unity",
+          storageBucket: "toy-unity.appspot.com",
+          messagingSenderId: "959851867881",
+          appId: "1:959851867881:web:f870808c8171da6f794a78",
+          measurementId: "G-MMETQW7FQ7"));
   runApp(MyApp());
 }
 
@@ -39,11 +40,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           fontFamily: 'Urbanist',
-          primarySwatch: Colors.green,
+          primarySwatch: Colors.orange,
           secondaryHeaderColor: Colors.white,
           textTheme: const TextTheme(bodyText2: TextStyle(color: textColor)),
           backgroundColor: Colors.brown),
-      home: kIsWeb ? HomeWebScreen() : HomeWebScreen(),
+      home: kIsWeb ? WelcomeScreen() : WelcomeScreen(),
       color: secondaryColor,
       onGenerateRoute: CustomRoute.allRoutes,
     );

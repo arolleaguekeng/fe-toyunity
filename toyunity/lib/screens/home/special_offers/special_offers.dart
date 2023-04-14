@@ -42,7 +42,7 @@ class _SpecialOfferCardState extends State<SpecialOfferCard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustumText(
-                text: 'SPecial Offers',
+                text: 'Nouveautés :',
                 size: 24,
                 weight: FontWeight.bold,
               ),

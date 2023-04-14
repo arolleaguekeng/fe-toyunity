@@ -49,10 +49,11 @@ class _NavigationContent extends State<NavigationContent> {
         child: currentPage,
         bucket: bucket,
       ),
-      bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        notchMargin: 10,
+      bottomNavigationBar: SafeArea(
         child: Container(
+          decoration: BoxDecoration(
+              color: primaryColor, borderRadius: BorderRadius.circular(20)),
+          margin: EdgeInsets.symmetric(horizontal: appPadding),
           height: 60,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -64,9 +65,7 @@ class _NavigationContent extends State<NavigationContent> {
                   "Messages", Icons.message_outlined, 3, ConversationScreen()),
               appBarIcon(
                   isProducer ? "Toys" : "Profile",
-                  isProducer
-                      ? Icons.ac_unit
-                      : Icons.person_2_rounded,
+                  isProducer ? Icons.ac_unit : Icons.person_2_rounded,
                   4,
                   isProducer ? PcToyListScreen() : ProfileScreen()),
             ],
@@ -76,8 +75,7 @@ class _NavigationContent extends State<NavigationContent> {
     );
   }
 
-  MaterialButton appBarIcon(
-      String text, IconData icon, int tab, Widget screen) {
+  MaterialButton appBarIcon(String text, icon, int tab, Widget screen) {
     return MaterialButton(
         minWidth: 60,
         onPressed: () {
@@ -91,11 +89,22 @@ class _NavigationContent extends State<NavigationContent> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: currentTab == tab ? primaryColor : Colors.grey),
+            // Text(
+            //   text,
+            //   style: TextStyle(color: currentTab == tab ? primaryColor : white),
+            // )
+            CircleAvatar(
+              backgroundColor: currentTab == tab ? secondaryColor : transparent,
+              child: SizedBox(
+                height: 36,
+                width: 36,
+                child:
+                    Icon(icon, color: currentTab == tab ? white : Colors.grey),
+              ),
+            ),
             Text(
               text,
-              style: TextStyle(
-                  color: currentTab == tab ? primaryColor : Colors.grey),
+              style: TextStyle(color: currentTab == tab ? white : Colors.grey),
             )
           ],
         ));
