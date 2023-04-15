@@ -41,7 +41,8 @@ class _ServivesContent extends State<ServivesContent>
     var data = ServiceItemDatas;
     return Scaffold(
       // [PageView.builder] is use to manage Pagination page
-      body: PageView.builder(
+      body: 
+      PageView.builder(
           controller: _controller,
           onPageChanged: (int index) {
             setState(() {
@@ -61,14 +62,21 @@ class _ServivesContent extends State<ServivesContent>
                         boxShadow: [BoxShadow(color: Colors.black12)],
                         borderRadius: BorderRadius.circular(30)),
                     child: Row(children: [
-                      Lottie.network(
-                          "https:assets3.lottiefiles.com/packages/lf20_AMBEWz.json",
-                          controller: _animationController, onLoaded: (compos) {
-                        _animationController
-                          ..duration = compos.duration
-                          ..forward().then((value) => print('hello'));
-                      }),
-                      Text(data[i].title),
+                      Container(
+                        width:100,
+                        height:100,
+                        child: Lottie.asset(data[i].image,
+                            controller: _animationController,
+                            onLoaded: (compos) {
+                          _animationController
+                            ..duration = compos.duration
+                            ..forward();
+                        }),
+                      ),
+                      CustumText(
+                        size: 16,
+                        text: data[i].title,
+                      ),
                     ]),
                   ),
                 ),

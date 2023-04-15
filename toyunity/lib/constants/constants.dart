@@ -21,3 +21,11 @@ const red = Colors.red;
 const appPadding = 16.0;
 const webPadding = 90.0;
 const kMaxWidth = 1232.0;
+
+const spacerWidt = SizedBox(
+  height: appPadding,
+);
+
+const spacerHeight = SizedBox(
+  height: appPadding,
+);

@@ -24,7 +24,8 @@ class _SoToyCardState extends State<SoToyCard> {
   _SoToyCardState(this.toy, this.likebtn);
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return 
+    GestureDetector(
         onTap: () {
           Navigator.push(
             context,

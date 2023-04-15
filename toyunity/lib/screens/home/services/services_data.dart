@@ -9,17 +9,15 @@ class ServiceItem {
 
 var ServiceItemDatas = [
   ServiceItem(
-      title: "Bienvenue Sur Toy Unity 🙂",
+      title: "Achetez 🙂",
       description: "Votre application d'échange de jouets",
-      image: "assets/images/png/ServiceItem1.png"),
-
-        ServiceItem(
-      title: "Bienvenue Sur Toy Unity 🙂",
+      image: "assets/images/lotti/cat.json"),
+  ServiceItem(
+      title: "Echangez🙂",
       description: "Votre application d'échange de jouets",
-      image: "assets/images/png/ServiceItem1.png"),
-
-        ServiceItem(
-      title: "Bienvenue Sur Toy Unity 🙂",
+      image: "assets/images/lotti/cat.json"),
+  ServiceItem(
+      title: "Recherchez 🙂",
       description: "Votre application d'échange de jouets",
-      image: "assets/images/png/ServiceItem1.png"),
+      image: "assets/images/lotti/cat.json"),
 ];

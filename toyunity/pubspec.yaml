@@ -120,6 +120,7 @@ flutter:
   assets:
     - assets/images/png/
     - assets/images/svg/
+    - assets/images/lotti/
     - assets/icons/
 
   # Add Custom fonts

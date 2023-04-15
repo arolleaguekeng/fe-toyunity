@@ -102,10 +102,12 @@ class _NavigationContent extends State<NavigationContent> {
                     Icon(icon, color: currentTab == tab ? white : Colors.grey),
               ),
             ),
-            Text(
-              text,
-              style: TextStyle(color: currentTab == tab ? white : Colors.grey),
-            )
+            if (currentTab == tab)
+              Text(
+                text,
+                style:
+                    TextStyle(color: currentTab == tab ? white : Colors.grey),
+              )
           ],
         ));
   }

@@ -65,15 +65,7 @@ class _PhoneLoginContentState extends State<PhoneLoginContent> {
                   Container(
                     decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color(0xffd9d9d9),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                            offset: Offset(0, 3),
-                          )
-                        ]),
+                        borderRadius: BorderRadius.circular(20),),
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: IntlPhoneField(
