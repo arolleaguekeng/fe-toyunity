@@ -1,15 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:toyunity/main.dart';
 import 'package:toyunity/screens/carts/cart_screen.dart';
-import 'package:toyunity/screens/chat/convesations_list/conversation_screen.dart';
 import 'package:toyunity/screens/home/home_screen.dart';
 import 'package:toyunity/screens/orders/orders_screen.dart';
 import 'package:toyunity/screens/producer/pcer_poducts_list_screen.dart';
 import 'package:toyunity/screens/profiles/profiles_screen.dart';
 import 'package:toyunity/screens/wallets/wallets_screen.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
-import '../chat/convesations_list/conversation_web_screen.dart';
+import '../../models/user_model.dart';
+import '../chat/chat_screen/chat_home.dart';
+import '../login/social_login/social_login_screen.dart';
 
 late TextEditingController myController;
 
@@ -61,8 +64,8 @@ class _NavigationContent extends State<NavigationContent> {
               appBarIcon("Home", Icons.home_filled, 0, HomeScreen()),
               appBarIcon("Cart", Icons.shopping_bag_rounded, 1, CartScreen()),
               appBarIcon("Orders", Icons.shopping_cart, 2, OrderScreen()),
-              appBarIcon(
-                  "Messages", Icons.message_outlined, 3, ConversationScreen()),
+              appBarIcon("Messages", Icons.message_outlined, 3,
+                  MyApp.currentUser! == null ?const LoginScreen() :ChatHomeScreen(MyApp.currentUser!) ),
               appBarIcon(
                   isProducer ? "Toys" : "Profile",
                   isProducer ? Icons.ac_unit : Icons.person_2_rounded,
@@ -110,5 +113,19 @@ class _NavigationContent extends State<NavigationContent> {
               )
           ],
         ));
+  }
+
+  Future<Widget> userSignedIn() async {
+    User? user = MyApp.auth.currentUser;
+    if (user != null) {
+      DocumentSnapshot userData = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+      UserModel userModel = UserModel.fromJson(userData);
+      return ChatHomeScreen(userModel);
+    } else {
+      return LoginScreen();
+    }
   }
 }

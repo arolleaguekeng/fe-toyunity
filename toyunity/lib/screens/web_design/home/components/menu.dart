@@ -1,9 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:toyunity/constants/constants.dart';
 
+import '../../../../main.dart';
+import '../../../../models/user_model.dart';
 import '../../../../screens/home/home_screen.dart';
 import '../../../carts/cart_screen.dart';
-import '../../../chat/convesations_list/conversation_screen.dart';
+import '../../../chat/chat_screen/chat_home.dart';
+import '../../../login/social_login/social_login_screen.dart';
 import '../../../orders/orders_screen.dart';
 
 class HeaderWebMenu extends StatelessWidget {
@@ -65,6 +70,20 @@ class MobMenu extends StatefulWidget {
 }
 
 class _MobMenuState extends State<MobMenu> {
+  Future<Widget> userSignedIn() async {
+    User? user = MyApp.auth.currentUser;
+    if (user != null) {
+      DocumentSnapshot userData = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+      UserModel userModel = UserModel.fromJson(userData);
+      return ChatHomeScreen(userModel);
+    } else {
+      return LoginScreen();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -115,7 +134,11 @@ List<Widget> menuItems(BuildContext context) {
     HeaderMenu(
       press: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (_) => ConversationScreen()));
+            context,
+            MaterialPageRoute(
+                builder: (_) => MyApp.currentUser! == null
+                    ? const LoginScreen()
+                    : ChatHomeScreen(MyApp.currentUser!)));
       },
       title: "Chat",
     ),

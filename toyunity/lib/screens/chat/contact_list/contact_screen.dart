@@ -1,13 +1,15 @@
 import 'package:toyunity/constants/constants.dart';
+import 'package:toyunity/models/user_model.dart';
 import 'package:toyunity/screens/components/component/tabbar_widget.dart';
 import 'package:toyunity/screens/components/forms/custom_text.dart';
 import 'package:flutter/material.dart';
 
+import '../chat_screen/chat_home.dart';
 import 'contact_content.dart';
 
 class ContactScreen extends StatelessWidget {
-  const ContactScreen({Key? key}) : super(key: key);
-
+  const ContactScreen({Key? key, required this.userModel}) : super(key: key);
+  final UserModel userModel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +59,7 @@ class ContactScreen extends StatelessWidget {
           children: [
             // SortablePage(),
             Container(
-              child: ContactContent(),
+              child: ChatHomeScreen(userModel),
             ),
             Container(),
             Container(),

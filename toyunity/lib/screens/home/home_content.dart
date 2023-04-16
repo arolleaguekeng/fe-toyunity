@@ -89,7 +89,6 @@ class _HomeContent extends State<HomeContent> {
             //   icon: Icons.search_rounded,
             // ),
             Container(
-              height: 180,
               child: ServivesContent(),
             ),
 

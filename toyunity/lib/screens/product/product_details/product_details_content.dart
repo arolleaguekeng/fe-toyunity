@@ -1,10 +1,8 @@
 import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/models/toy_model.dart';
-import 'package:toyunity/screens/components/forms/custom_button.dart';
 import 'package:toyunity/screens/components/forms/custom_text.dart';
 import 'package:flutter/material.dart';
 import '../../../constants/responsive.dart';
-import 'package:lottie/lottie.dart';
 
 class DetailsCard extends StatefulWidget {
   final ToyModel toy;
@@ -14,25 +12,21 @@ class DetailsCard extends StatefulWidget {
   State<DetailsCard> createState() => _DetailsCardState(toy);
 }
 
-class _DetailsCardState extends State<DetailsCard>
-    with SingleTickerProviderStateMixin {
+class _DetailsCardState extends State<DetailsCard> {
   final ToyModel toy;
   bool isOpenened = false;
-  late AnimationController _animationController;
   late PageController _controller;
   bool isLoading = true;
   int currentIndex = 0;
   _DetailsCardState(this.toy);
   @override
   void initState() {
-    _animationController = AnimationController(vsync: this);
     _controller = PageController(initialPage: 0);
     super.initState();
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
     _controller.dispose();
     super.dispose();
   }
@@ -41,22 +35,14 @@ class _DetailsCardState extends State<DetailsCard>
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     String imagePicture = widget.toy.images[0];
-    return Scaffold(
-      appBar: AppBar(
-        title: const CustumText(
-          text: "Details du produit",
-          size: 20,
-          weight: FontWeight.bold,
-        ),
-        centerTitle: true,
-        actions: [
-          
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            PageView.builder(
+    return Container(
+      height: size.height,
+      decoration: BoxDecoration(color: white),
+      child: Column(
+        children: [
+          Container(
+            height: 300,
+            child: PageView.builder(
                 controller: _controller,
                 onPageChanged: (int index) {
                   setState(() {
@@ -125,62 +111,62 @@ class _DetailsCardState extends State<DetailsCard>
                         ),
                       ));
                 }),
-            spacerHeight,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    CustumText(
-                      text: toy.name,
-                      size: 20,
+          ),
+          spacerHeight,
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(3, (index) => buildDot(index)),
+            ),
+          ),
+          spacerHeight,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                children: [
+                  CustumText(
+                    text: toy.name,
+                    size: 20,
+                    weight: FontWeight.bold,
+                  ),
+                  CustumText(
+                    text: toy.description,
+                    size: 14,
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  CustumText(
+                    text: toy.name,
+                    size: 14,
+                  ),
+                  CustumText(
+                      text: "${toy.name} XAF",
+                      size: 24,
                       weight: FontWeight.bold,
-                    ),
-                    CustumText(
-                      text: toy.description,
-                      size: 14,
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    CustumText(
-                      text: toy.name,
-                      size: 14,
-                    ),
-                    CustumText(
-                        text: "${toy.name} XAF",
-                        size: 24,
-                        weight: FontWeight.bold,
-                        color: secondaryColor),
-                  ],
-                )
-              ],
-            )
-          ],
-        ),
+                      color: secondaryColor),
+                ],
+              )
+            ],
+          ),
+          spacerHeight,
+          CustumText(text: toy.description, size: 14)
+        ],
       ),
-      bottomNavigationBar: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-                width: size.width * 0.4,
-                height: size.height * 0.4,
-                child: CustomButton(
-                  text: "Acheter",
-                  onPressed: () {},
-                  bgcolor: secondaryColor,
-                )),
-            Container(
-                child: CustomButton(
-              text: "Echanger",
-              onPressed: () {},
-              bgcolor: primaryColor,
-            )),
-          ],
-        ),
-      ),
+    );
+  }
+
+  /// Create carousel Dot navigator
+  Container buildDot(int index) {
+    return Container(
+      height: 10,
+      width: currentIndex == index ? 20 : 10,
+      margin: EdgeInsets.only(right: 5),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: currentIndex == index ? primaryColor : grey),
     );
   }
 }
