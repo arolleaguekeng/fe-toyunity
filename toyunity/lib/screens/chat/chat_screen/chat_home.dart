@@ -10,8 +10,8 @@ import 'chat_screen.dart';
 import 'search_screen.dart';
 
 class ChatHomeScreen extends StatefulWidget {
-  UserModel user;
-  ChatHomeScreen(this.user);
+  late UserModel user;
+  ChatHomeScreen();
   @override
   _ChatHomeScreenState createState() => _ChatHomeScreenState();
 }
@@ -69,7 +69,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                               child: CachedNetworkImage(
                                 imageUrl: friend['image'],
                                 placeholder: (conteext, url) =>
-                                    CircularProgressIndicator(),
+                                    const CircularProgressIndicator(),
                                 errorWidget: (context, url, error) => Icon(
                                   Icons.error,
                                 ),
@@ -80,7 +80,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                             subtitle: Container(
                               child: Text(
                                 "$lastMsg",
-                                style: TextStyle(color: Colors.grey),
+                                style: const TextStyle(color: Colors.grey),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),

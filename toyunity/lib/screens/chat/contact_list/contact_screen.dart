@@ -59,7 +59,7 @@ class ContactScreen extends StatelessWidget {
           children: [
             // SortablePage(),
             Container(
-              child: ChatHomeScreen(userModel),
+              child: ChatHomeScreen(),
             ),
             Container(),
             Container(),

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:toyunity/main.dart';
 import 'package:toyunity/screens/carts/cart_screen.dart';
+import 'package:toyunity/screens/home/home_content.dart';
 import 'package:toyunity/screens/home/home_screen.dart';
 import 'package:toyunity/screens/orders/orders_screen.dart';
 import 'package:toyunity/screens/producer/pcer_poducts_list_screen.dart';
@@ -64,8 +65,13 @@ class _NavigationContent extends State<NavigationContent> {
               appBarIcon("Home", Icons.home_filled, 0, HomeScreen()),
               appBarIcon("Cart", Icons.shopping_bag_rounded, 1, CartScreen()),
               appBarIcon("Orders", Icons.shopping_cart, 2, OrderScreen()),
-              appBarIcon("Messages", Icons.message_outlined, 3,
-                  MyApp.currentUser! == null ?const LoginScreen() :ChatHomeScreen(MyApp.currentUser!) ),
+              appBarIcon(
+                  "Messages",
+                  Icons.message_outlined,
+                  3,
+                  MyApp.currentUser == null
+                      ? const LoginScreen()
+                      : ChatHomeScreen()),
               appBarIcon(
                   isProducer ? "Toys" : "Profile",
                   isProducer ? Icons.ac_unit : Icons.person_2_rounded,
@@ -84,8 +90,13 @@ class _NavigationContent extends State<NavigationContent> {
         onPressed: () {
           setState(
             () {
-              currentPage = screen;
-              currentTab = tab;
+              if (currentPage != HomeContent() && MyApp.currentUser == null) {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => LoginScreen()));
+              } else {
+                currentPage = screen;
+                currentTab = tab;
+              }
             },
           );
         },
@@ -123,7 +134,7 @@ class _NavigationContent extends State<NavigationContent> {
           .doc(user.uid)
           .get();
       UserModel userModel = UserModel.fromJson(userData);
-      return ChatHomeScreen(userModel);
+      return ChatHomeScreen();
     } else {
       return LoginScreen();
     }

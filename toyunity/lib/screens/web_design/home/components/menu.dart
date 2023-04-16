@@ -78,7 +78,7 @@ class _MobMenuState extends State<MobMenu> {
           .doc(user.uid)
           .get();
       UserModel userModel = UserModel.fromJson(userData);
-      return ChatHomeScreen(userModel);
+      return ChatHomeScreen();
     } else {
       return LoginScreen();
     }
@@ -138,7 +138,7 @@ List<Widget> menuItems(BuildContext context) {
             MaterialPageRoute(
                 builder: (_) => MyApp.currentUser! == null
                     ? const LoginScreen()
-                    : ChatHomeScreen(MyApp.currentUser!)));
+                    : ChatHomeScreen()));
       },
       title: "Chat",
     ),

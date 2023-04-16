@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
 
 /// Firebase user authentification manager
 class AuthService{
   static final _auth = FirebaseAuth.instance;
+  static FirebaseFirestore firestore = FirebaseFirestore.instance;
   static GoogleSignIn _googleSignIn = GoogleSignIn();
   static GoogleAuthProvider googleProvider = GoogleAuthProvider();
 
@@ -36,23 +40,33 @@ class AuthService{
   // region Google Sign in
 
   // Connexion with google account
-  static Future<UserCredential> signInWithGoogle() async {
-    if (kIsWeb) return await _auth.signInWithPopup(googleProvider);
-
-    // start authentification Flux
-    final googleUser = await _googleSignIn.signIn();
-
-    // get authorisation details of demand
-    final googleAuth = await googleUser!.authentication;
-
-    // Create new identified
+  static Future signInWithGoogle(context,page) async {
+    GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+    if(googleUser == null){
+      return;
+    }
+    final googleAuth = await googleUser.authentication;
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
+      idToken: googleAuth.idToken
     );
+    UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
 
-    // return user id
-    return await _auth.signInWithCredential(credential);
+    DocumentSnapshot userExist = await firestore.collection('users').doc(userCredential.user!.uid).get();
+
+    if(userExist.exists){
+      print("User Already Exists in Database");
+    }else{
+       await firestore.collection('users').doc(userCredential.user!.uid).set({
+      'email':userCredential.user!.email,
+      'name':userCredential.user!.displayName,
+      'image':userCredential.user!.photoURL,
+      'uid':userCredential.user!.uid,
+      'date':DateTime.now(),
+    });
+    }
+
+   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>page()), (route) => false);
   }
   // endregion
 
