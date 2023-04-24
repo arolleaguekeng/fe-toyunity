@@ -9,7 +9,7 @@ import 'package:toyunity/screens/navigations/navigation_screen.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../../constants/constants.dart';
-import '../../../services/auth_services copy.dart';
+import '../../../services/auth_services.dart';
 import '../../home/home_screen.dart';
 
 class VerificationOtp extends StatefulWidget {

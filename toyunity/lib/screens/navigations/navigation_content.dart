@@ -66,12 +66,7 @@ class _NavigationContent extends State<NavigationContent> {
               appBarIcon("Cart", Icons.shopping_bag_rounded, 1, CartScreen()),
               appBarIcon("Orders", Icons.shopping_cart, 2, OrderScreen()),
               appBarIcon(
-                  "Messages",
-                  Icons.message_outlined,
-                  3,
-                  MyApp.currentUser == null
-                      ? const LoginScreen()
-                      : ChatHomeScreen()),
+                  "Messages", Icons.message_outlined, 3, ChatHomeScreen()),
               appBarIcon(
                   isProducer ? "Toys" : "Profile",
                   isProducer ? Icons.ac_unit : Icons.person_2_rounded,
@@ -90,7 +85,7 @@ class _NavigationContent extends State<NavigationContent> {
         onPressed: () {
           setState(
             () {
-              if (currentPage != HomeContent() && MyApp.currentUser == null) {
+              if (currentPage != const HomeScreen() && MyApp.auth != null) {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (_) => LoginScreen()));
               } else {

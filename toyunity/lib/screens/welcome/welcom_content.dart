@@ -4,6 +4,8 @@ import 'package:toyunity/screens/components/forms/custom_text.dart';
 import 'package:toyunity/screens/login/social_login/social_login_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../main.dart';
+import '../../services/api/user_api.dart';
 import '../home/home_screen.dart';
 import '../navigations/navigation_screen.dart';
 import 'data_welcome.dart';
@@ -21,6 +23,8 @@ class _WelcomeContent extends State<WelcomeContent> {
   bool isLoading = true;
   int currentIndex = 0;
   late PageController _controller;
+
+
 
   @override
   void initState() {

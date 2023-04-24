@@ -1,13 +1,16 @@
+import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:toyunity/screens/home/home_content.dart';
-import 'package:toyunity/screens/navigations/navigation_screen.dart';
 
 import '../../../constants/constants.dart';
 import '../../../constants/responsive.dart';
-import '../../../services/auth_services copy.dart';
+import '../../../services/auth_services.dart';
 import '../../components/forms/custom_button.dart';
 import '../../components/forms/custom_text.dart';
+import '../../home/home_screen.dart';
+import '../../shared_ui/showSnackBar.dart';
+import '../../web_design/home/home_screen.dart';
 import '../phone_number_login/phone_login_screen.dart';
 
 class LoginContent extends StatefulWidget {
@@ -93,8 +96,8 @@ class _LoginContent extends State<LoginContent> {
                 iconUrl: "assets/icons/ic_google.png",
                 text: "Continue with Google",
                 ontap: () {
-                  AuthService.signInWithGoogle(
-                      context, NavigationScreen(screen: const HomeContent()));
+                  AuthService.signInWithGoogle();
+                  print("Try to login with Google");
                 }),
             const SizedBox(
               height: appPadding,
@@ -172,28 +175,28 @@ class _LoginContent extends State<LoginContent> {
     );
   }
 
-  // Future signIn(BuildContext context) async {
-  //   if (kIsWeb) {
-  //     setState(() {
-  //       inLoginProcess = true;
-  //       AuthService.signInWithGoogle();
-  //       Navigator.pushReplacement(
-  //           context, MaterialPageRoute(builder: (_) => HomeWebScreen()));
-  //     });
-  //   } else {
-  //     try {
-  //       final result = await InternetAddress.lookup('google.com');
-  //       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-  //         setState(() async {
-  //           inLoginProcess = true;
-  //           AuthService.signInWithGoogle();
-  //           Navigator.pushReplacement(
-  //               context, MaterialPageRoute(builder: (_) => HomeScreen()));
-  //         });
-  //       }
-  //     } on SocketException catch (_) {
-  //       showNotification(context, 'No Network Access...');
-  //     }
-  //   }
-  // }
+  Future signIn(BuildContext context) async {
+    if (kIsWeb) {
+      setState(() {
+        inLoginProcess = true;
+        AuthService.signInWithGoogle();
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => HomeWebScreen()));
+      });
+    } else {
+      try {
+        final result = await InternetAddress.lookup('google.com');
+        if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+          setState(() async {
+            inLoginProcess = true;
+            AuthService.signInWithGoogle();
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (_) => HomeScreen()));
+          });
+        }
+      } on SocketException catch (_) {
+        showNotification(context, 'No Network Access...');
+      }
+    }
+  }
 }

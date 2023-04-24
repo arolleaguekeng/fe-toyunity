@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 
 import '../../models/toy_model.dart';
+import '../../services/auth_services.dart';
 import '../components/forms/custom_text.dart';
 import 'most_popular/most_popular.dart';
 import 'services/services_card.dart';
@@ -23,6 +24,7 @@ class _HomeContent extends State<HomeContent> {
   List<ToyModel> toys = [];
 
   Future<void> getMupesInsurees() async {
+    await AuthService.disconnect();
     // toys =  <ToyModel>[];
     // toys = liste;
     setState(() {
@@ -30,8 +32,9 @@ class _HomeContent extends State<HomeContent> {
     });
   }
 
-  void initState() {
+  void initState()  {
     getMupesInsurees();
+      
   }
 
   @override

@@ -4,7 +4,7 @@ import 'package:toyunity/screens/profiles/update_profile_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../services/auth_services copy.dart';
+import '../../services/auth_services.dart';
 import 'widgets/profile_menu.dart';
 
 class ProfileContent extends StatefulWidget {
@@ -83,7 +83,7 @@ class _ProfileContent extends State<ProfileContent> {
             ],
           ),
           const SizedBox(height: 10),
-          Text("DevPea Alpha",
+          Text("Arolle Aguekeng",
               style: Theme.of(context)
                   .textTheme
                   .headlineMedium
