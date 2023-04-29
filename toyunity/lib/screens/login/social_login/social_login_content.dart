@@ -9,8 +9,8 @@ import '../../../services/auth_services.dart';
 import '../../components/forms/custom_button.dart';
 import '../../components/forms/custom_text.dart';
 import '../../home/home_screen.dart';
+import '../../navigations/navigation_screen.dart';
 import '../../shared_ui/showSnackBar.dart';
-import '../../web_design/home/home_screen.dart';
 import '../phone_number_login/phone_login_screen.dart';
 
 class LoginContent extends StatefulWidget {
@@ -96,7 +96,7 @@ class _LoginContent extends State<LoginContent> {
                 iconUrl: "assets/icons/ic_google.png",
                 text: "Continue with Google",
                 ontap: () {
-                  AuthService.signInWithGoogle();
+                  signIn(context);
                   print("Try to login with Google");
                 }),
             const SizedBox(
@@ -179,9 +179,11 @@ class _LoginContent extends State<LoginContent> {
     if (kIsWeb) {
       setState(() {
         inLoginProcess = true;
-        AuthService.signInWithGoogle();
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => HomeWebScreen()));
+        AuthService.signInWithGoogle(
+            context: context,
+            widget: NavigationScreen(
+              screen: HomeScreen(),
+            ));
       });
     } else {
       try {
@@ -189,9 +191,11 @@ class _LoginContent extends State<LoginContent> {
         if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
           setState(() async {
             inLoginProcess = true;
-            AuthService.signInWithGoogle();
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => HomeScreen()));
+            AuthService.signInWithGoogle(
+            context: context,
+            widget: NavigationScreen(
+              screen: HomeScreen(),
+            ));
           });
         }
       } on SocketException catch (_) {

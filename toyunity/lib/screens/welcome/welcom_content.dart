@@ -1,3 +1,4 @@
+import 'package:lottie/lottie.dart';
 import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/screens/components/forms/custom_button.dart';
 import 'package:toyunity/screens/components/forms/custom_text.dart';
@@ -19,16 +20,17 @@ class WelcomeContent extends StatefulWidget {
   State<WelcomeContent> createState() => _WelcomeContent();
 }
 
-class _WelcomeContent extends State<WelcomeContent> {
+class _WelcomeContent extends State<WelcomeContent>
+    with SingleTickerProviderStateMixin {
   bool isLoading = true;
   int currentIndex = 0;
   late PageController _controller;
-
-
+  late AnimationController _animationController;
 
   @override
   void initState() {
     _controller = PageController(initialPage: 0);
+    _animationController = AnimationController(vsync: this);
   }
 
   @override
@@ -57,9 +59,15 @@ class _WelcomeContent extends State<WelcomeContent> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    data[i].image,
+                  Container(
+                    width: size.width * 0.8,
                     height: size.height * 0.5,
+                    child: Lottie.asset(data[i].image,
+                        controller: _animationController, onLoaded: (compos) {
+                      _animationController
+                        ..duration = compos.duration
+                        ..forward();
+                    }),
                   ),
                   const SizedBox(
                     height: appPadding,

@@ -119,7 +119,7 @@ class MpToyCard extends StatelessWidget {
                     height: 2,
                   ),
                   CustumText(
-                    text: toy.price,
+                    text: toy.price.toString(),
                     size: 13,
                     color: primaryColor,
                     weight: FontWeight.bold,

@@ -5,6 +5,7 @@ import 'package:toyunity/screens/home/special_offers/special_offer_product_item.
 import '../../../constants/constants.dart';
 import '../../../models/categories.dart';
 import '../../../models/toy_model.dart';
+import '../../../services/api/toy_api.dart';
 
 class SpecialApp extends StatefulWidget {
   const SpecialApp({super.key});
@@ -18,17 +19,19 @@ class _SpecialAppState extends State<SpecialApp> {
   List<Categorie> selectedCategorie = [];
   List<ToyModel> toys = [];
 
-  Future<void> getMupesInsurees() async {
-    // var liste = await db.getAllToys();
+  Future<void> getSpecials() async {
+    var liste = await ApiToy.getMostPopularToys();
     toys = <ToyModel>[];
-    // toys = liste;
+    toys = liste;
     setState(() {
       isLoading = false;
     });
   }
 
   void initState() {
-    getMupesInsurees();
+    print("******************************************************************");
+    print("try ton get specials");
+    getSpecials();
   }
 
   @override

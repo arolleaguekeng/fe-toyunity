@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../constants/constants.dart';
 import '../../../models/categories.dart';
 import '../../../models/toy_model.dart';
+import '../../../services/api/toy_api.dart';
 import '../../components/forms/custom_text.dart';
 import 'most_popular_product_card.dart';
 class PopularAllPage extends StatefulWidget {
@@ -18,9 +19,9 @@ class _PopularAllPageState extends State<PopularAllPage> {
   List<ToyModel> toys = [];
 
   Future<void> getMupesInsurees() async {
-    // var liste = await db.getAllToys();
+    var liste = await ApiToy.getMostPopularToys();
     toys = <ToyModel>[];
-    // toys = liste;
+    toys = liste;
     setState(() {
       isLoading = false;
     });

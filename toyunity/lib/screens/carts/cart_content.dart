@@ -33,7 +33,7 @@ class _CartContent extends State<CartContent> {
   @override
   Widget build(BuildContext context) {
     for (var prd in MyApp.CARD) {
-      amound += (double.parse(prd.price)) * prd.quantity;
+      amound += prd.price * prd.quantity;
     }
     var size = MediaQuery.of(context).size;
     return Container(

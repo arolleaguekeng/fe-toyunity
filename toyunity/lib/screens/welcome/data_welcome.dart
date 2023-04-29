@@ -11,5 +11,5 @@ var welcomeDatas = [
   Welcome(
       title: "Bienvenue Sur Toy Unity 🙂",
       description: "Votre application d'échange de jouets",
-      image: "assets/images/png/welcome1.png"),
+      image: "assets/images/lotti/cat.json"),
 ];

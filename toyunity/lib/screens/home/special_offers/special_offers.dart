@@ -5,6 +5,7 @@ import '../../../constants/constants.dart';
 import '../../../models/categories.dart';
 import '../../../models/toy_model.dart';
 import '../../../routes/routes_name.dart';
+import '../../../services/api/toy_api.dart';
 import '../../components/forms/custom_text.dart';
 
 class SpecialOfferCard extends StatefulWidget {
@@ -17,12 +18,12 @@ class SpecialOfferCard extends StatefulWidget {
 class _SpecialOfferCardState extends State<SpecialOfferCard> {
   bool isLoading = true;
   List<Categorie> selectedCategorie = [];
-  List<ToyModel> toys = toysData;
+  List<ToyModel> toys = [];
 
   Future<void> getMupesInsurees() async {
-    // var liste = await db.getAllToys();
-    // toys =  <ToyModel>[];
-    // toys = liste;
+    var liste = await ApiToy.getMostPopularToys();
+    toys = <ToyModel>[];
+    toys = liste;
     setState(() {
       isLoading = false;
     });

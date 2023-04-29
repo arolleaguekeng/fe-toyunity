@@ -1,6 +1,7 @@
 import 'package:toyunity/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:toyunity/screens/carts/cart_product_card.dart';
+import '../../../../services/api/toy_api.dart';
 import 'toy.dart';
 
 import '../../../../constants/responsive.dart';
@@ -26,10 +27,10 @@ class _MostPopular extends State<MostPopular> {
   DataBaseService db = DataBaseService();
   bool isLoading = true;
   List<Categorie> selectedCategorie = [];
-  List<ToyModel> toys = toysData;
+  List<ToyModel> toys = [];
 
   Future<void> getMupesInsurees() async {
-    var liste = await db.getAllToys();
+    var liste = await ApiToy.getAllToys();
     toys = <ToyModel>[];
     toys = liste;
     setState(() {

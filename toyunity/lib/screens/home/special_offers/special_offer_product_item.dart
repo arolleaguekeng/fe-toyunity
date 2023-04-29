@@ -66,13 +66,13 @@ class _SoToyCardState extends State<SoToyCard> {
                 ],
               ),
               CustumText(
-                text: toy.price,
+                text: toy.price.toString(),
                 size: 13,
                 color: green,
                 weight: FontWeight.bold,
               ),
               CustumText(
-                text: toy.price,
+                text: toy.price.toString(),
                 size: 13,
                 color: green,
                 weight: FontWeight.bold,

@@ -39,7 +39,7 @@ class DataBaseService {
   /// Write a [ToyModel] to Firebase Firestore.
   void addToy(ToyModel toyModel) {
     _toys.add({
-      "userId": toyModel.userId,
+      "userId": toyModel.uid,
       "name": toyModel.name,
       "description": toyModel.name,
       "price": toyModel.price,
@@ -49,18 +49,18 @@ class DataBaseService {
   }
 
   /// Get all toys in Firestore and map to  [ToyModel] to Firebase Firestore.
-  Future<List<ToyModel>> getAllToys() async {
-    List<ToyModel> listeDesObjets = [];
+  // Future<List<ToyModel>> getAllToys() async {
+  //   List<ToyModel> listeDesObjets = [];
 
-    QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection('toys').get();
+  //   QuerySnapshot querySnapshot =
+  //       await FirebaseFirestore.instance.collection('toys').get();
 
-    for (DocumentSnapshot documentSnapshot in querySnapshot.docs) {
-      ToyModel objet = ToyModel.fromFirestore(documentSnapshot);
-      listeDesObjets.add(objet);
-    }
-    print("************************ toys list********************");
-    print(listeDesObjets);
-    return listeDesObjets;
-  }
+  //   for (DocumentSnapshot documentSnapshot in querySnapshot.docs) {
+  //     ToyModel objet = ToyModel.fromFirestore(documentSnapshot);
+  //     listeDesObjets.add(objet);
+  //   }
+  //   print("************************ toys list********************");
+  //   print(listeDesObjets);
+  //   return listeDesObjets;
+  // }
 }

@@ -5,7 +5,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../main.dart';
 import '../models/user_model.dart';
+import '../screens/navigations/navigation_screen.dart';
 import 'api/user_api.dart';
+import 'package:flutter/material.dart';
 
 /// Firebase user authentification manager
 class AuthService {
@@ -53,10 +55,11 @@ class AuthService {
   }
 
   // Connexion with google account
-  static Future<UserCredential> signInWithGoogle() async {
+  static Future<UserCredential> signInWithGoogle(
+      {required BuildContext context, required Widget widget}) async {
     if (kIsWeb) {
       var userCredential = await _auth.signInWithPopup(googleProvider);
-      await addUsers(userCredential);
+      await addUsers(userCredential, context, widget);
       return userCredential;
     }
 
@@ -74,12 +77,13 @@ class AuthService {
     UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
 
-    await addUsers(userCredential);
+    await addUsers(userCredential, context, widget);
     // return user id
     return await _auth.signInWithCredential(credential);
   }
 
-  static Future<void> addUsers(UserCredential userCredential) async {
+  static Future<void> addUsers(UserCredential userCredential,
+      BuildContext context, Widget widget) async {
     var uid = userCredential.user!.uid;
     DocumentSnapshot userExist =
         await firestore.collection('users').doc(uid).get();
@@ -88,6 +92,12 @@ class AuthService {
       print("User Already Exists in Database");
       var userData = await ApiUser.login(uid);
       MyApp.currentUser = userData!;
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (_) => NavigationScreen(
+                    screen: widget,
+                  )));
     } else {
       var user = userCredential.user;
       print(
@@ -105,6 +115,7 @@ class AuthService {
           state: null,
           country: null);
       var userData = await ApiUser.signup(userModel);
+      await addUser(userCredential.user!);
       MyApp.currentUser = userData;
     }
   }

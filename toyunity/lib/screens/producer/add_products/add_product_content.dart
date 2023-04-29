@@ -146,11 +146,11 @@ class _AddToyContent extends State<AddToyContent> {
 
       _db.addToy(ToyModel(
           name: pName,
-          userId: user!.uid,
+          uid: user!.uid,
           description: pDescription,
-          price: price,
+          price: double.parse(price),
           images: [pUrlImg],
-          created_at: Timestamp.now()));
+          color: '', createdAt: null, status: '', updatedAt: null));
     }
   }
 

@@ -3,6 +3,7 @@ import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/constants/responsive.dart';
 import 'package:toyunity/models/categories.dart';
 import '../../../../models/toy_model.dart';
+import '../../../../services/api/toy_api.dart';
 import '../../../../services/db_services.dart';
 import '../../../home/special_offers/special_offers.dart';
 import 'email_banner.dart';
@@ -20,10 +21,10 @@ class _BodyContainerState extends State<BodyContainer> {
   DataBaseService db = DataBaseService();
   bool isLoading = true;
   List<Categorie> selectedCategorie = [];
-  List<ToyModel> toys = toysData;
+  List<ToyModel> toys = [];
 
   Future<void> getMupesInsurees() async {
-    var liste = await db.getAllToys();
+    var liste = await ApiToy.getAllToys();
     // toys =  <ToyModel>[];
     // toys = liste;
     setState(() {

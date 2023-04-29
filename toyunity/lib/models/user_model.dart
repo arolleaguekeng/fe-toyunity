@@ -53,6 +53,6 @@ class UserModel {
 
   @override
   String toString() {
-    return 'Assuré {uid: $email, image: $username,}';
+    return 'User {uid: $uid, username: $username,}';
   }
 }

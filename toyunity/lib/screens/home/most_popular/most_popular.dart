@@ -5,6 +5,7 @@ import '../../../constants/responsive.dart';
 import '../../../models/categories.dart';
 import '../../../models/toy_model.dart';
 import '../../../routes/routes_name.dart';
+import '../../../services/api/toy_api.dart';
 import '../../components/forms/custom_text.dart';
 import 'most_popular_product_card.dart';
 
@@ -17,19 +18,20 @@ class MostPopularCard extends StatefulWidget {
 
 class _MostPopularCardState extends State<MostPopularCard> {
   bool isLoading = true;
+  
   List<Categorie> selectedCategorie = [];
-  List<ToyModel> toys = toysDataPop;
+  List<ToyModel> toys = [];
 
-  Future<void> getMupesInsurees() async {
-    // var liste = await db.getAllToys();
-    // toys = liste;
+  Future<void> getMostPopular() async {
+    var liste = await ApiToy.getMostPopularToys();
+    toys = liste;
     setState(() {
       isLoading = false;
     });
   }
 
   void initState() {
-    // getMupesInsurees();
+    getMostPopular();
   }
   @override
   Widget build(BuildContext context) {

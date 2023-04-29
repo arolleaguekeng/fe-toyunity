@@ -1,5 +1,6 @@
 import 'package:toyunity/screens/home/home_content.dart';
 import 'package:toyunity/screens/home/most_popular/most_popular_screen.dart';
+import 'package:toyunity/services/api/toy_api.dart';
 import 'package:toyunity/services/db_services.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class _PcToyListContent extends State<PcToyListContent> {
   List<ToyModel> toys = [];
 
   Future<void> getMupesInsurees() async {
-    var liste = await db.getAllToys();
+    var liste = await ApiToy.getAllToys();
     toys = <ToyModel>[];
     toys = liste;
     setState(() {
