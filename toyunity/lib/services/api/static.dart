@@ -1,6 +1,6 @@
 class api_services{
-  static String simpleUrl = "127.0.0.1:3000";
+  static String simpleUrl = "toyunity.azurewebsites.net";
   static String baseUrl = "$simpleUrl/api";
-  static String httpBaseUrl = "http://$baseUrl";
-  static String httpStaticUrl = "http://$simpleUrl/static/";
+  static String httpBaseUrl = "https://$baseUrl";
+  static String httpStaticUrl = "https://$simpleUrl/static/";
 }
