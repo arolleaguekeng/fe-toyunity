@@ -1,171 +1,124 @@
+import 'dart:convert';
 import 'dart:io';
-
-import 'package:toyunity/main.dart';
-import 'package:toyunity/screens/components/forms/custom_button.dart';
-import 'package:toyunity/screens/shared_ui/showSnackBar.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../models/toy_model.dart';
-import '../../../services/db_services.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class AddToyContent extends StatefulWidget {
   const AddToyContent({Key? key}) : super(key: key);
 
   @override
-  State<AddToyContent> createState() => _AddToyContent();
+  _AddToyContentState createState() => _AddToyContentState();
 }
 
-class _AddToyContent extends State<AddToyContent> {
-  bool isLoading = true;
-  User? user = MyApp.auth.currentUser;
-  String _user_id = '';
-  File? file;
-  XFile? _pickedFile;
+class _AddToyContentState extends State<AddToyContent> {
 
-  void initState() {}
+  File? image ;
+  final _picker = ImagePicker();
+  bool showSpinner = false ;
+
+  Future getImage()async{
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery , imageQuality: 80);
+
+    if(pickedFile!= null ){
+      image = File(pickedFile.path);
+      setState(() {
+
+      });
+    }else {
+      print('no image selected');
+    }
+  }
+
+  Future<void> uploadImage ()async{
+
+    setState(() {
+      showSpinner = true ;
+    });
+
+    var stream  = new http.ByteStream(image!.openRead());
+    stream.cast();
+
+    var length = await image!.length();
+
+    var uri = Uri.parse('http://localhost:3000/upload');
+
+    var request = new http.MultipartRequest('POST', uri);
+
+    request.fields['title'] = "Static title" ;
+
+    var multiport = new http.MultipartFile(
+        'image',
+        stream,
+        length);
+
+    request.files.add(multiport);
+
+    var response = await request.send() ;
+
+    print(response.stream.toString());
+    if(response.statusCode == 200){
+      setState(() {
+        showSpinner = false ;
+      });
+      print('image uploaded');
+    }else {
+      print('failed');
+      setState(() {
+        showSpinner = false ;
+      });
+
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    bool imageShow = false;
-    final _keyForm1 = GlobalKey<FormState>();
-    final _keyForm2 = GlobalKey<FormState>();
-    final _keyForm3 = GlobalKey<FormState>();
-    String _pName = '';
-    String _pDescription = '';
-    String _price = '';
-    _user_id = _user_id;
-    _user_id = user!.uid;
-    String _formError = "Please Enter Produtc name";
-    print("***********************************");
-    print(user!.phoneNumber);
-    return SafeArea(
-      child: Container(
-        child: Column(
+    return ModalProgressHUD(
+      inAsyncCall: showSpinner,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Upload Image'),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              width: 200,
-              child: imageShow == false
-                  ? IconButton(
-                      onPressed: () {
-                        setState(() async {
-                          _pickedFile = await ImagePicker()
-                              .pickImage(source: ImageSource.gallery);
-                          file = File(_pickedFile!.path);
-                          imageShow == true;
-                        });
-                      },
-                      icon: const Icon(
-                        Icons.add_photo_alternate_rounded,
-                        size: 80,
-                      ))
-                  : kIsWeb
-                      ? Image(
-                          image: NetworkImage(file!.path),
-                          fit: BoxFit.cover,
-                        )
-                      : Image(
-                          image: FileImage(file!),
-                          fit: BoxFit.cover,
-                        ),
+            GestureDetector(
+              onTap: (){
+                getImage();
+              },
+              child: Container(
+                child: image == null ? Center(child: Text('Pick Image'),)
+              :
+              Container(
+                child: Center(
+                  child: Image.file(
+                    File(image!.path).absolute,
+                    height: 100,
+                    width: 100,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              ),
             ),
-            const SizedBox(
-              height: 30,
-            ),
-            Form(
-                key: _keyForm1,
-                child: TextFormField(
-                  maxLength: 30,
-                  onChanged: (value) => _pName = value,
-                  validator: (value) => _pName == '' ? _formError : null,
-                  decoration: InputDecoration(
-                    labelText: "Enter toy name",
-                    border: OutlineInputBorder(),
-                  ),
-                )),
-            Form(
-                key: _keyForm2,
-                child: TextFormField(
-                  maxLength: 30,
-                  onChanged: (value) => _pDescription = value,
-                  validator: (value) => _pDescription == '' ? _formError : null,
-                  decoration: InputDecoration(
-                    labelText: "enter toy description",
-                    border: OutlineInputBorder(),
-                  ),
-                )),
-            Form(
-                key: _keyForm3,
-                child: TextFormField(
-                  maxLength: 30,
-                  onChanged: (value) => _price = value,
-                  validator: (value) => _price == '' ? _formError : null,
-                  decoration: InputDecoration(
-                    labelText: "Enter price",
-                    border: OutlineInputBorder(),
-                  ),
-                )),
-            CustomButton(
-                text: "Validate",
-                onPressed: () {
-                  onSubmit(
-                    context: context,
-                    price: _price,
-                    pDescription: _pDescription,
-                    keyForm1: _keyForm1,
-                    keyForm2: _keyForm2,
-                    keyForm3: _keyForm3,
-                    pName: _pName,
-                  );
-                })
+            SizedBox(height: 150,),
+            GestureDetector(
+              onTap: (){
+                uploadImage();
+              },
+              child: Container(
+                height: 50,
+                width: 200,
+                color: Colors.green,
+                child: Center(child: Text('Upload')),
+              ),
+            )
           ],
         ),
       ),
     );
-  }
-
-  void onSubmit(
-      {context,
-      keyForm1,
-      keyForm2,
-      keyForm3,
-      required String pName,
-      required String price,
-      required String pDescription}) async {
-    if (keyForm1.currentState!.validate() &&
-        keyForm2.currentState!.validate() &&
-        keyForm3.currentState!.validate()) {
-      Navigator.of(context).pop();
-      showNotification(context, "Loading...");
-      DataBaseService _db = DataBaseService();
-      String pUrlImg = await _db.uploadFile(file!, _pickedFile!);
-
-      _db.addToy(ToyModel(
-          name: pName,
-          uid: user!.uid,
-          description: pDescription,
-          price: double.parse(price),
-          images: [pUrlImg],
-          color: '', createdAt: null, status: '', updatedAt: null));
-    }
-  }
-
-  Form inputForm(GlobalKey<FormState> _keyForm, String _pName,
-      String _formError, String labelText) {
-    return Form(
-        key: _keyForm,
-        child: TextFormField(
-          maxLength: 30,
-          onChanged: (value) => _pName = value,
-          validator: (value) => _pName == '' ? _formError : null,
-          decoration: InputDecoration(
-            labelText: labelText,
-            border: OutlineInputBorder(),
-          ),
-        ));
   }
 }

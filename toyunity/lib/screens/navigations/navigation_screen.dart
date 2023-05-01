@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:toyunity/screens/producer/add_products/add_product_screen.dart';
 
 import '../../constants/constants.dart';
 import 'navigation_content.dart';
@@ -17,14 +18,28 @@ class NavigationScreen extends StatelessWidget {
           child: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children:  [
+          children: [
             Expanded(
               flex: 5,
-              child: NavigationContent(currentPage: screen,),
+              child: NavigationContent(
+                currentPage: screen,
+              ),
             )
           ],
         ),
       )),
+      floatingActionButton: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(color: primaryColor),
+        child: IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => AddToyScreen()));
+          },
+        ),
+      ),
     );
   }
 }

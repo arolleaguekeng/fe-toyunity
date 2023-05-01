@@ -10,6 +10,7 @@ import 'package:toyunity/services/api/user_api.dart';
 import 'constants/constants.dart';
 import 'models/toy_model.dart';
 import 'models/user_model.dart';
+import 'screens/web_design/home/home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +30,7 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
   static var auth = FirebaseAuth.instance;
-  static UserModel? currentUser ;
+  static UserModel? currentUser;
   static List<ToyModelCart> CARD = [];
 
   static Color appBarColor = primaryColor;
@@ -41,15 +42,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           fontFamily: 'Urbanist',
-          primarySwatch: Colors.orange,
+          primaryColor: Colors.white,
           secondaryHeaderColor: Colors.white,
           textTheme: const TextTheme(bodyText2: TextStyle(color: textColor)),
           backgroundColor: Colors.brown),
-      home: kIsWeb ? WelcomeScreen() : WelcomeScreen(),
+      home: kIsWeb ? HomeWebScreen() : WelcomeScreen(),
       color: secondaryColor,
       onGenerateRoute: CustomRoute.allRoutes,
     );
   }
 }
-
-

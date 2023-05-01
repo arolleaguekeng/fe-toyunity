@@ -72,6 +72,7 @@ class _ServivesContent extends State<ServivesContent>
                               _animationController
                                 ..duration = compos.duration
                                 ..forward();
+                                _animationController.repeat();
                             }),
                           ),
                           CustumText(

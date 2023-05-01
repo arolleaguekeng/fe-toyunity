@@ -125,7 +125,7 @@ List<Widget> menuItems(BuildContext context) {
         Navigator.push(
             context, MaterialPageRoute(builder: (_) => OrderScreen()));
       },
-      title: "Orders",
+      title: "Panier",
     ),
     SizedBox(
       width: appPadding,

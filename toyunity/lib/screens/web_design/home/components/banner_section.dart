@@ -1,32 +1,49 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/screens/components/forms/costum_text_field.dart';
 import 'package:toyunity/screens/components/forms/custom_button.dart';
 
-class BannerSection extends StatelessWidget {
+class BannerSection extends StatefulWidget {
   const BannerSection({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<BannerSection> createState() => _BannerSectionState();
+}
+
+class _BannerSectionState extends State<BannerSection>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  @override
+  void initState() {
+    _animationController = AnimationController(vsync: this);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Expanded(
-          flex: 3,
-          child: AboutSection(),
+        Expanded(
+          flex: 2,
+          child: Container(
+            child: Lottie.asset("assets/images/lotti/cat.json",
+                controller: _animationController, onLoaded: (compos) {
+              _animationController
+                ..duration = compos.duration
+                ..forward();
+                _animationController.repeat();
+            }),
+          ),
         ),
         const SizedBox(
           width: 20,
         ),
-        Expanded(
-          flex: 2,
-          child: Column(
-            children: [
-              Image.asset("assets/images/png/ecommerce.png"),
-            ],
-          ),
+        const Expanded(
+          flex: 3,
+          child: AboutSection(),
         ),
       ],
     );
@@ -40,17 +57,30 @@ class MobBanner extends StatefulWidget {
   _MobBannerState createState() => _MobBannerState();
 }
 
-class _MobBannerState extends State<MobBanner> {
+class _MobBannerState extends State<MobBanner>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  @override
+  void initState() {
+    _animationController = AnimationController(vsync: this);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Column(
           children: [
-            Image.asset(
-              "assets/images/png/ecommerce.png",
+            Container(
               height: 250,
               width: 250,
+              child: Lottie.asset("assets/images/lotti/cat.json",
+                  controller: _animationController, onLoaded: (compos) {
+                _animationController
+                  ..duration = compos.duration
+                  ..forward();
+                  _animationController.repeat();
+              }),
             ),
           ],
         ),
@@ -76,7 +106,7 @@ class AboutSection extends StatelessWidget {
         // ignore: prefer_const_constructors
         //it will adjust its size according to screeen
         const AutoSizeText(
-          "Easily purchase",
+          "Echange simple",
           maxLines: 1,
           style: TextStyle(fontSize: 56, fontWeight: FontWeight.bold),
         ),
@@ -84,7 +114,7 @@ class AboutSection extends StatelessWidget {
           height: 10,
         ),
         const AutoSizeText(
-          "Quality food toys directly from producers",
+          "Les jouets de vos rêve à porter de main",
           maxLines: 1,
           style: TextStyle(
             fontSize: 56,
@@ -94,7 +124,7 @@ class AboutSection extends StatelessWidget {
           height: 10,
         ),
         const Text(
-          "Browse the catalog of prosuits to choose quality toys adapted to your needs",
+          "Echanger vos jouets gratuitement, rapidement et sans frais !",
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.black54,
@@ -108,7 +138,7 @@ class AboutSection extends StatelessWidget {
             height: 50,
             child: CustomTextField(
                 icon: Icons.search_rounded,
-                hintText: "Search toys...",
+                hintText: "Rechercher un jouet...",
                 onChanged: (value) {},
                 controller: TextEditingController())),
         const SizedBox(
@@ -119,9 +149,19 @@ class AboutSection extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Container(
-                  width: 200,
+                  width: 140,
                   child: CustomButton(
-                    text: 'Browse the catalog',
+                    text: 'Parcourrir le cathalogue',
+                    onPressed: () {},
+                  )),
+            ),
+            spacerWidth,
+            Expanded(
+              flex: 2,
+              child: Container(
+                  width: 140,
+                  child: CustomButton(
+                    text: 'Echanger un Jouet',
                     onPressed: () {},
                   )),
             ),

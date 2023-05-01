@@ -23,7 +23,7 @@ const webPadding = 90.0;
 const kMaxWidth = 1232.0;
 
 const spacerWidth = SizedBox(
-  height: appPadding,
+  width: appPadding,
 );
 
 const spacerHeight = SizedBox(

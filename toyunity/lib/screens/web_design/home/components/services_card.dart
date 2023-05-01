@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:toyunity/constants/constants.dart';
 
 class ServicesCard extends StatelessWidget {
@@ -12,15 +13,15 @@ class ServicesCard extends StatelessWidget {
       // ignore: prefer_const_literals_to_create_immutables
       children: [
         const Services(
-          image: 'assets/images/png/s_market.png',
+          image: 'assets/images/lotti/duck.json',
           title: "B to B marquet",
         ),
         const Services(
-          image: 'assets/images/png/s_delivery.png',
+          image: 'assets/images/lotti/buy.json',
           title: "Toys delivery",
         ),
         const Services(
-          image: 'assets/images/png/s_chat.png',
+          image: 'assets/images/lotti/train.json',
           title: "Chat directly with the producer",
         ),
       ],
@@ -28,13 +29,32 @@ class ServicesCard extends StatelessWidget {
   }
 }
 
-class Services extends StatelessWidget {
+class Services extends StatefulWidget {
   const Services({
     Key? key,
     required this.image,
     required this.title,
   }) : super(key: key);
   final String image, title;
+
+  @override
+  State<Services> createState() => _ServicesState();
+}
+
+class _ServicesState extends State<Services>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    _animationController = AnimationController(vsync: this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -51,11 +71,16 @@ class Services extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                      image,
-                      height: 80,
+                    child: Container(
                       width: 80,
-                      fit: BoxFit.cover,
+                      height: 80,
+                      child: Lottie.asset(widget.image,
+                          controller: _animationController, onLoaded: (compos) {
+                        _animationController
+                          ..duration = compos.duration
+                          ..forward();
+                        _animationController.repeat();
+                      }),
                     ),
                   ),
                   SizedBox(
@@ -63,7 +88,7 @@ class Services extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      title,
+                      widget.title,
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                     ),

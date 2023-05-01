@@ -67,6 +67,7 @@ class _WelcomeContent extends State<WelcomeContent>
                       _animationController
                         ..duration = compos.duration
                         ..forward();
+                        _animationController.repeat();
                     }),
                   ),
                   const SizedBox(
