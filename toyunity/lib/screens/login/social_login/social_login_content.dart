@@ -58,10 +58,10 @@ class _LoginContent extends State<LoginContent> {
     var size = MediaQuery.of(context).size;
     return [
       if (Responsive.isMobile(context))
-      Container(
-        width: Responsive.isMobile(context) ? size.width : size.width / 3,
-        child: svglogin(size, context),
-      ),
+        Container(
+          width: Responsive.isMobile(context) ? size.width : size.width / 3,
+          child: svglogin(size, context),
+        ),
       const SizedBox(
         height: appPadding,
       ),
@@ -128,32 +128,32 @@ class _LoginContent extends State<LoginContent> {
         ),
       ),
       if (!Responsive.isMobile(context))
-      Container(
-        width: Responsive.isMobile(context) ? size.width : size.width / 3,
-        child: svglogin(size, context),
-      ),
+        Container(
+          width: Responsive.isMobile(context) ? size.width : size.width / 3,
+          child: svglogin(size, context),
+        ),
     ];
   }
 
   Column svglogin(Size size, BuildContext context) {
     return Column(
-        children: [
-          SvgPicture.asset(
-            "assets/images/svg/baby.svg",
-            width: size.width / 3,
+      children: [
+        SvgPicture.asset(
+          "assets/images/svg/baby.svg",
+          width: size.width / 3,
+        ),
+        const SizedBox(
+          height: appPadding,
+        ),
+        if (Responsive.isMobile(context))
+          const CustumText(
+            text: "Rejoignez Nous !",
+            size: 35,
+            weight: FontWeight.bold,
+            color: primaryColor,
           ),
-          const SizedBox(
-            height: appPadding,
-          ),
-          if (Responsive.isMobile(context))
-            const CustumText(
-              text: "Rejoignez Nous !",
-              size: 35,
-              weight: FontWeight.bold,
-              color: primaryColor,
-            ),
-        ],
-      );
+      ],
+    );
   }
 
   GestureDetector buildConatainerIcons(
@@ -197,13 +197,8 @@ class _LoginContent extends State<LoginContent> {
         inLoginProcess = true;
         var state = AuthService.signInWithGoogle(
             context: context,
-            widget: NavigationScreen(
-              screen: HomeScreen(),
-            ));
-        if (MyApp.currentUser != null) {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (_) => HomeWebScreen()));
-        }
+            widget: HomeWebScreen());
+        
       });
     } else {
       try {
