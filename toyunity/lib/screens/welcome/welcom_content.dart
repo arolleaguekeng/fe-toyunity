@@ -2,11 +2,8 @@ import 'package:lottie/lottie.dart';
 import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/screens/components/forms/custom_button.dart';
 import 'package:toyunity/screens/components/forms/custom_text.dart';
-import 'package:toyunity/screens/login/social_login/social_login_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../main.dart';
-import '../../services/api/user_api.dart';
 import '../home/home_screen.dart';
 import '../navigations/navigation_screen.dart';
 import 'data_welcome.dart';

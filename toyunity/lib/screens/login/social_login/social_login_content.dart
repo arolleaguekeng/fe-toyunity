@@ -2,15 +2,18 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants/constants.dart';
 import '../../../constants/responsive.dart';
+import '../../../main.dart';
 import '../../../services/auth_services.dart';
 import '../../components/forms/custom_button.dart';
 import '../../components/forms/custom_text.dart';
 import '../../home/home_screen.dart';
 import '../../navigations/navigation_screen.dart';
 import '../../shared_ui/showSnackBar.dart';
+import '../../web_design/home/home_screen.dart';
 import '../phone_number_login/phone_login_screen.dart';
 
 class LoginContent extends StatefulWidget {
@@ -21,7 +24,7 @@ class LoginContent extends StatefulWidget {
 }
 
 class _LoginContent extends State<LoginContent> {
-  bool isLoading = true;
+  bool isLoading = false;
   bool inLoginProcess = false;
   void initState() {}
 
@@ -54,26 +57,10 @@ class _LoginContent extends State<LoginContent> {
   List<Widget> loginContent(Size size, BuildContext context) {
     var size = MediaQuery.of(context).size;
     return [
+      if (Responsive.isMobile(context))
       Container(
         width: Responsive.isMobile(context) ? size.width : size.width / 3,
-        child: Column(
-          children: [
-            Image.asset(
-              "assets/images/png/login.png",
-              width: size.width / 3,
-            ),
-            const SizedBox(
-              height: appPadding,
-            ),
-            if (Responsive.isMobile(context))
-              const CustumText(
-                text: "Let's Login",
-                size: 35,
-                weight: FontWeight.bold,
-                color: primaryColor,
-              ),
-          ],
-        ),
+        child: svglogin(size, context),
       ),
       const SizedBox(
         height: appPadding,
@@ -84,7 +71,7 @@ class _LoginContent extends State<LoginContent> {
           children: [
             if (!Responsive.isMobile(context))
               const CustumText(
-                text: "Let's Login",
+                text: "Rejoignez Nous !",
                 size: 35,
                 weight: FontWeight.bold,
                 color: primaryColor,
@@ -92,32 +79,35 @@ class _LoginContent extends State<LoginContent> {
             SizedBox(
               height: appPadding * 3,
             ),
-            buildConatainerIcons(
-                iconUrl: "assets/icons/ic_google.png",
-                text: "Continue with Google",
-                ontap: () {
-                  signIn(context);
-                  print("Try to login with Google");
-                }),
+            isLoading == false
+                ? buildConatainerIcons(
+                    iconUrl: "assets/icons/ic_google.png",
+                    text: "Continuer avec Google",
+                    ontap: () {
+                      setState(() {
+                        signIn(context);
+                      });
+                      print("Try to login with Google");
+                      setState(() {
+                        isLoading = true;
+                      });
+                    })
+                : CircularProgressIndicator(),
             const SizedBox(
               height: appPadding,
             ),
             buildConatainerIcons(
                 iconUrl: "assets/icons/ic_faceboock.png",
-                text: "Continue with Faceboock",
+                text: "Continuer avec Faceboock",
                 ontap: () {}),
             const SizedBox(
               height: appPadding,
             ),
-            buildConatainerIcons(
-                iconUrl: "assets/icons/ic_apple.png",
-                text: "Continue with Apple",
-                ontap: () {}),
             const SizedBox(
               height: appPadding,
             ),
             const CustumText(
-              text: "OR",
+              text: "OU",
               size: 16,
               color: lightTextColor,
             ),
@@ -127,7 +117,7 @@ class _LoginContent extends State<LoginContent> {
             Container(
               width: 400,
               child: CustomButton(
-                  text: "Login with Phonenumber",
+                  text: "Continuer avec le Telephone",
                   width: size.width * 0.8,
                   onPressed: () {
                     Navigator.push(context,
@@ -136,8 +126,34 @@ class _LoginContent extends State<LoginContent> {
             ),
           ],
         ),
-      )
+      ),
+      if (!Responsive.isMobile(context))
+      Container(
+        width: Responsive.isMobile(context) ? size.width : size.width / 3,
+        child: svglogin(size, context),
+      ),
     ];
+  }
+
+  Column svglogin(Size size, BuildContext context) {
+    return Column(
+        children: [
+          SvgPicture.asset(
+            "assets/images/svg/baby.svg",
+            width: size.width / 3,
+          ),
+          const SizedBox(
+            height: appPadding,
+          ),
+          if (Responsive.isMobile(context))
+            const CustumText(
+              text: "Rejoignez Nous !",
+              size: 35,
+              weight: FontWeight.bold,
+              color: primaryColor,
+            ),
+        ],
+      );
   }
 
   GestureDetector buildConatainerIcons(
@@ -175,15 +191,19 @@ class _LoginContent extends State<LoginContent> {
     );
   }
 
-  Future signIn(BuildContext context) async {
+  void signIn(BuildContext context) async {
     if (kIsWeb) {
       setState(() {
         inLoginProcess = true;
-        AuthService.signInWithGoogle(
+        var state = AuthService.signInWithGoogle(
             context: context,
             widget: NavigationScreen(
               screen: HomeScreen(),
             ));
+        if (MyApp.currentUser != null) {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (_) => HomeWebScreen()));
+        }
       });
     } else {
       try {
@@ -192,10 +212,10 @@ class _LoginContent extends State<LoginContent> {
           setState(() async {
             inLoginProcess = true;
             AuthService.signInWithGoogle(
-            context: context,
-            widget: NavigationScreen(
-              screen: HomeScreen(),
-            ));
+                context: context,
+                widget: NavigationScreen(
+                  screen: HomeScreen(),
+                ));
           });
         }
       } on SocketException catch (_) {

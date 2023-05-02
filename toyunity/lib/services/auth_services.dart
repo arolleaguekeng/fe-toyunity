@@ -90,8 +90,11 @@ class AuthService {
     if (userExist.exists) {
       await addUser(userCredential.user!);
       print("User Already Exists in Database");
-      var userData = await ApiUser.login(uid);
-      MyApp.currentUser = userData!;
+      UserModel userData = await ApiUser.login(uid);
+      print("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+      MyApp.currentUser = userData;
+      
+      print(MyApp.currentUser);
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(

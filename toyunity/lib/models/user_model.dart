@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class UserModel {
   String uid;
   String? fullName;
@@ -27,19 +25,19 @@ class UserModel {
     required this.country,
   });
 
-  factory UserModel.fromJson(DocumentSnapshot snapshot) {
+  factory UserModel.fromJson(dynamic json) {
     return UserModel(
-      uid: snapshot['uid'],
-      fullName: snapshot['fullName'],
-      username: snapshot['username'],
-      email: snapshot['email'],
-      hasPassword: snapshot['hash_password'],
-      phone: snapshot['phone'],
-      role: snapshot['role'],
-      image: snapshot['image'],
-      city: snapshot['city'],
-      state: snapshot['state'],
-      country: snapshot['country'],
+      uid: json['uid'] as String,
+      fullName: json['fullName'] as String?,
+      username: json['username'] as String,
+      email: json['email'] as String?,
+      hasPassword: json['hash_password'] as String?,
+      phone: json['phone'] as String?,
+      role: json['role'] as String?,
+      image: json['image'] as String?,
+      city: json['city'] as String?,
+      state: json['state'] as String?,
+      country: json['country'] as String?,
     );
   }
 

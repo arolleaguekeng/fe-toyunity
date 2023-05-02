@@ -54,28 +54,21 @@ class ApiUser {
     }
   }
 
-  static login(String id) async {
+  static Future<UserModel> login(String id) async {
+    final response = await http.get(
+      Uri.parse(
+        '${api_services.httpBaseUrl}/login/${id}',
+      ),
+    );
     print(
-        "*********************************************************************");
-    try {
-      var body = jsonEncode({'uid': id});
-
-      final response = await http.post(
-          Uri.parse(
-            '${api_services.httpBaseUrl}/login',
-          ),
-          headers: headers,
-          body: body);
-      Map data = jsonDecode(response.body);
-      print(
-          "============================================================================");
-      if (response.statusCode == 200) {
-        print('succesfull signup opération');
-      } else {
-        print(response.body);
-      }
-    } on Exception catch (e) {
-      print(e.toString());
+        "============================================================================");
+    if (response.statusCode == 200) {
+      print('succesfull login opération');
+    } else {
+      print(response.body);
     }
+    var data = jsonDecode(response.body);
+    print(data);
+    return UserModel.fromJson(data);
   }
 }

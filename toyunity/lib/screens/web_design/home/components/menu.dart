@@ -136,7 +136,7 @@ List<Widget> menuItems(BuildContext context) {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (_) => MyApp.currentUser! == null
+                builder: (_) => MyApp.currentUser == null
                     ? const LoginScreen()
                     : ChatHomeScreen()));
       },
