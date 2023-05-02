@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:toyunity/screens/login/social_login/social_login_screen.dart';
 
+import '../../../constants/constants.dart';
 import '../../../main.dart';
 import '../../../models/user_model.dart';
 import 'chat_screen.dart';
@@ -22,9 +23,9 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Interface de Chat'),
         centerTitle: true,
-        backgroundColor: Colors.teal,
+        backgroundColor: primaryColor,
         actions: [
           IconButton(
               onPressed: () async {
@@ -32,7 +33,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                 await FirebaseAuth.instance.signOut();
                 Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                    MaterialPageRoute(builder: (context) => const LoginScreen()),
                     (route) => false);
               },
               icon: Icon(Icons.logout))
@@ -50,7 +51,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                 if (snapshot.hasData) {
                   if (snapshot.data.docs.length < 1) {
                     return Center(
-                      child: Text("No Chats Available !"),
+                      child: Text("Aucun Chat disponible"),
                     );
                   }
                   return ListView.builder(

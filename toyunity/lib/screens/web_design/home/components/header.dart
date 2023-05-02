@@ -92,9 +92,9 @@ class Header extends StatelessWidget {
               color: primaryColor,
               borderRadius: BorderRadius.circular(8.0),
             ),
-            child: IconButton(
-                onPressed: () {
-                  Navigator.push(
+            child: GestureDetector(
+              onTap: (){
+                Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (_) => StreamBuilder<User?>(
@@ -105,12 +105,11 @@ class Header extends StatelessWidget {
                                       : ProfileScreen();
                                 },
                               )));
-                },
-                icon: Icon(
-                  Icons.person,
-                  color: Colors.white,
-                  size: 22,
-                )),
+              },
+              child: CircleAvatar(backgroundColor: primaryColor,
+            backgroundImage: NetworkImage(MyApp.currentUser!.image!),
+            ),
+            ) ,
           )
         ],
       ),

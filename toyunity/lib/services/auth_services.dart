@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:toyunity/screens/web_design/home/home_screen.dart';
 
 import '../main.dart';
 import '../models/user_model.dart';
@@ -43,14 +44,16 @@ class AuthService {
   }
   // endregion
 
-  static Future<void> addUser(User currentUser) async {
+  static Future<void> addUserInFireBase(User currentUser) async {
     DocumentReference userRef =
         firestore.collection('users').doc(currentUser.uid);
 
     await userRef.set({
-      'displayName': currentUser.displayName,
       'email': currentUser.email,
-      'photoUrl': currentUser.photoURL
+      'name': currentUser.displayName,
+      'image': currentUser.photoURL,
+      'uid': currentUser.uid,
+      'date': DateTime.now(),
     });
   }
 
@@ -59,7 +62,7 @@ class AuthService {
       {required BuildContext context, required Widget widget}) async {
     if (kIsWeb) {
       var userCredential = await _auth.signInWithPopup(googleProvider);
-      await addUsers(userCredential, context, widget);
+      await loginUser(userCredential, context, widget);
       return userCredential;
     }
 
@@ -77,30 +80,26 @@ class AuthService {
     UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
 
-    await addUsers(userCredential, context, widget);
+    await loginUser(userCredential, context, widget);
     // return user id
     return await _auth.signInWithCredential(credential);
   }
 
-  static Future<void> addUsers(UserCredential userCredential,
+  static Future<void> loginUser(UserCredential userCredential,
       BuildContext context, Widget widget) async {
     var uid = userCredential.user!.uid;
     DocumentSnapshot userExist =
         await firestore.collection('users').doc(uid).get();
     if (userExist.exists) {
-      await addUser(userCredential.user!);
       print("User Already Exists in Database");
+      await addUserInFireBase(userCredential.user!);
       UserModel userData = await ApiUser.login(uid);
       print("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
       MyApp.currentUser = userData;
-      
+
       print(MyApp.currentUser);
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (_) => NavigationScreen(
-                    screen: widget,
-                  )));
+
+      openHomePage(context, widget);
     } else {
       var user = userCredential.user;
       print(
@@ -118,9 +117,22 @@ class AuthService {
           state: null,
           country: null);
       var userData = await ApiUser.signup(userModel);
-      await addUser(userCredential.user!);
+
+      await addUserInFireBase(userCredential.user!);
       MyApp.currentUser = userData;
+      openHomePage(context, widget);
     }
+  }
+
+  static void openHomePage(BuildContext context, Widget widget) {
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (_) => kIsWeb
+                ? HomeWebScreen()
+                : NavigationScreen(
+                    screen: widget,
+                  )));
   }
 
   // endregion
