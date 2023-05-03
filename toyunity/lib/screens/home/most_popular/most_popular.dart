@@ -55,7 +55,7 @@ class _MostPopularCardState extends State<MostPopularCard> {
         Container(
           margin: const EdgeInsets.symmetric(vertical: 2),
           height: 30,
-          child: ListView.separated(
+          child: isLoading? CircularProgressIndicator(color: secondaryColor,) : ListView.separated(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return buildCard(

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/models/toy_model.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,7 @@ class _SoToyCardState extends State<SoToyCard> {
   _SoToyCardState(this.toy, this.likebtn);
   @override
   Widget build(BuildContext context) {
-    return 
-    GestureDetector(
+    return GestureDetector(
         onTap: () {
           Navigator.push(
             context,
@@ -44,11 +44,13 @@ class _SoToyCardState extends State<SoToyCard> {
                 children: [
                   CircleAvatar(
                     radius: 100,
-                    child: Image.asset(
-                      toy.images[0],
-                      height: Responsive.isMobile(context) ? 190 : 200,
-                      width: 260,
-                      fit: BoxFit.cover,
+                    child: CachedNetworkImage(
+                      imageUrl: toy.images[0],
+                      placeholder: (conteext, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(
+                        Icons.error,
+                      ),
                     ),
                   ),
                   Positioned(

@@ -29,8 +29,8 @@ class _MostPopular extends State<MostPopular> {
   List<Categorie> selectedCategorie = [];
   List<ToyModel> toys = [];
 
-  Future<void> getMupesInsurees() async {
-    var liste = await ApiToy.getAllToys();
+  Future<void> getMupesSpecial() async {
+    var liste = await ApiToy.getMostPopularToys();
     toys = <ToyModel>[];
     toys = liste;
     setState(() {
@@ -39,7 +39,7 @@ class _MostPopular extends State<MostPopular> {
   }
 
   void initState() {
-    getMupesInsurees();
+    getMupesSpecial();
   }
 
   _MostPopular({
@@ -51,7 +51,7 @@ class _MostPopular extends State<MostPopular> {
   final double aspectRatio;
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return isLoading? CircularProgressIndicator(color: secondaryColor,) : Column(
       children: [
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),

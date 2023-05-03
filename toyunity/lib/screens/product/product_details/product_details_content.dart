@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/models/toy_model.dart';
 import 'package:toyunity/screens/components/forms/custom_text.dart';
@@ -69,16 +70,20 @@ class _DetailsCardState extends State<DetailsCard> {
                             Stack(
                               children: [
                                 CircleAvatar(
-                                  radius: 100,
-                                  child: Image.asset(
-                                    toy.images[i],
-                                    height: Responsive.isMobile(context)
-                                        ? 190
-                                        : 200,
-                                    width: 260,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
+                                    radius: 100,
+                                    child: CachedNetworkImage(
+                                      imageUrl: toy.images[0],
+                                      height: Responsive.isMobile(context)
+                                          ? 190
+                                          : 200,
+                                      width: 260,
+                                      placeholder: (conteext, url) =>
+                                          const CircularProgressIndicator(),
+                                      errorWidget: (context, url, error) =>
+                                          Icon(
+                                        Icons.error,
+                                      ),
+                                    )),
                                 Positioned(
                                   bottom: 0,
                                   right: 0,

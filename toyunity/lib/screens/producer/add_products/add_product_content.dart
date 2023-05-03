@@ -208,7 +208,7 @@ class _AddToyContentState extends State<AddToyContent> {
         images: [pUrlImg],
         color: 'red',
         createdAt: '',
-        status: '',
+        status: 'wait',
         updatedAt: '',
         coordinates: [1, 1],
       ));

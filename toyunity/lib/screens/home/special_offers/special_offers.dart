@@ -20,7 +20,7 @@ class _SpecialOfferCardState extends State<SpecialOfferCard> {
   List<Categorie> selectedCategorie = [];
   List<ToyModel> toys = [];
 
-  Future<void> getMupesInsurees() async {
+  Future<void> getMupesSpecial() async {
     var liste = await ApiToy.getMostPopularToys();
     toys = <ToyModel>[];
     toys = liste;
@@ -30,12 +30,12 @@ class _SpecialOfferCardState extends State<SpecialOfferCard> {
   }
 
   void initState() {
-    getMupesInsurees();
+    getMupesSpecial();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return  Column(
       children: [
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
@@ -59,7 +59,7 @@ class _SpecialOfferCardState extends State<SpecialOfferCard> {
         Container(
           margin: const EdgeInsets.symmetric(vertical: 5),
           height: 320,
-          child: ListView.builder(
+          child: isLoading? CircularProgressIndicator(color: secondaryColor,) : ListView.builder(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return SoToyCard(
