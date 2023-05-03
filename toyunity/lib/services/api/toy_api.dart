@@ -9,7 +9,8 @@ class ApiToy {
       print("============================================================");
       print(toyModel);
       print("============================================================");
-      var body = jsonEncode(toyModel);
+      var body = jsonEncode(toyModel.toJson());
+      print(body);
       final response = await http.post(
           Uri.parse(
             '${api_services.httpBaseUrl}/toy/add',
@@ -49,12 +50,12 @@ class ApiToy {
     }
   }
 
-  static Future<List<ToyModel>>  getMostPopularToys() async {
-final response = await http.get(
-        Uri.parse(
-          '${api_services.httpBaseUrl}/toy/most-popular',
-        ),
-      );
+  static Future<List<ToyModel>> getMostPopularToys() async {
+    final response = await http.get(
+      Uri.parse(
+        '${api_services.httpBaseUrl}/toy/most-popular',
+      ),
+    );
     List data = jsonDecode(response.body);
     List temp = [];
     for (var i in data) {
@@ -63,5 +64,4 @@ final response = await http.get(
     }
     return ToyModel.recipesFromSnapshot(temp);
   }
-
 }

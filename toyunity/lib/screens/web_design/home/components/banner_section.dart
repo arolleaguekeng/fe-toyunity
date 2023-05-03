@@ -118,6 +118,7 @@ class AboutSection extends StatelessWidget {
           maxLines: 1,
           style: TextStyle(
             fontSize: 56,
+            color: secondaryColor
           ),
         ),
         const SizedBox(

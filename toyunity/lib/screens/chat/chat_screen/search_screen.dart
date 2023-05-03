@@ -107,7 +107,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       );
                     }))
           else if (isLoading == true)
-            Center(
+            const Center(
               child: CircularProgressIndicator(),
             )
         ],

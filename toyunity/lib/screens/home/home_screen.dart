@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
+import '../producer/add_products/add_product_screen.dart';
 import 'home_content.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,6 +20,18 @@ class HomeScreen extends StatelessWidget {
               child: HomeContent(),
             ),
           ],
+        ),
+      ),
+      floatingActionButton: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(color: primaryColor),
+        child: IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => AddToyScreen()));
+          },
         ),
       ),
     );

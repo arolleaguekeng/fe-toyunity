@@ -24,15 +24,16 @@ class DataBaseService {
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
   /// Upload a [File] to Firebase Starage.
-  Future<String> uploadFile(File file, XFile fileWeb) async {
+  Future<String> uploadFile(File file) async {
     Reference reference = _storage.ref().child('toys/${DateTime.now()}.png');
-    Uint8List imageTosave = await fileWeb.readAsBytes();
-    SettableMetadata metaData = SettableMetadata(contentType: 'image/jpeg');
-    UploadTask uploadTask = kIsWeb
-        ? reference.putData(imageTosave, metaData)
-        : reference.putFile(file);
-    TaskSnapshot taskSnapshot = await uploadTask;
-    return await taskSnapshot.ref.getDownloadURL();
+          var test = XFile(file.path);
+      Uint8List imageTosave = await test.readAsBytes();
+      SettableMetadata metaData = SettableMetadata(contentType: 'image/jpeg');
+      UploadTask uploadTask = kIsWeb
+          ? reference.putData(imageTosave, metaData)
+          : reference.putFile(file);
+      TaskSnapshot taskSnapshot = await uploadTask;
+      return await taskSnapshot.ref.getDownloadURL();
   }
 
   // Add toys in FireStore Database

@@ -110,6 +110,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                 );
               }),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: secondaryColor,
         child: Icon(Icons.search),
         onPressed: () {
           Navigator.push(context,

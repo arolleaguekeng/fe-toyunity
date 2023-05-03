@@ -107,7 +107,7 @@ class Header extends StatelessWidget {
                               )));
               },
               child: CircleAvatar(backgroundColor: primaryColor,
-            backgroundImage: NetworkImage(MyApp.currentUser!.image!),
+            backgroundImage: NetworkImage("MyApp.currentUser!.image!"),
             ),
             ) ,
           )

@@ -70,7 +70,7 @@ class ChatScreen extends StatelessWidget {
                   if (snapshot.hasData) {
                     if (snapshot.data.docs.length < 1) {
                       return Center(
-                        child: Text("Say Hi"),
+                        child: Text("Dire Bonjour"),
                       );
                     }
                     return ListView.builder(

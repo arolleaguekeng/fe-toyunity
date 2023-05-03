@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../../constants/constants.dart';
+
 class MessageTextField extends StatefulWidget {
   final String currentId;
   final String friendId;
@@ -24,7 +26,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
               child: TextField(
             controller: _controller,
             decoration: InputDecoration(
-                labelText: "Type your Message",
+                labelText: "Taper votre message...",
                 fillColor: Colors.grey[100],
                 filled: true,
                 border: OutlineInputBorder(
@@ -87,7 +89,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
               padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.blue,
+                color: secondaryColor,
               ),
               child: Icon(
                 Icons.send,

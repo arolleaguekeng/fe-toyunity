@@ -11,6 +11,7 @@ class ToyModel {
   final String? createdAt;
   final String? updatedAt;
   List<String> images = ["assets/images/png/plant2.jpg"];
+  List<double> coordinates = [1,1];
 
   factory ToyModel.fromJson(dynamic json) {
     return ToyModel(
@@ -24,9 +25,24 @@ class ToyModel {
       createdAt: json['createdAt'] as String,
       updatedAt: json['updatedAt'] as String,
       images: (json['image'] as List<dynamic>)?.map((e) => e.toString()).toList() ?? [],
+      coordinates:(json['coordinates'] as List<dynamic>)?.map((e) => e as double).toList() ?? [],
     );
   }
-
+Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'uid': uid,
+      'description': description,
+      'color': color,
+      'price': price,
+      'status': status,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+      'images': images,
+      'coordinates': coordinates,
+    };
+  }
   ToyModel({
     this.id = '',
     required this.uid,
@@ -38,6 +54,7 @@ class ToyModel {
     required this.status,
     required this.createdAt,
     required this.updatedAt,
+    required this.coordinates,
   });
 
   static List<ToyModel> recipesFromSnapshot(List snapshot) {
@@ -70,6 +87,11 @@ class ToyModelCart extends ToyModel {
     required super.createdAt,
     required super.color,
     required super.status,
-    required super.updatedAt,
+    required super.updatedAt, required super.coordinates,
   });
+  
+  @override String toString() {
+    // TODO: implement toString
+    return ("id" + id + name);
+  }
 }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:toyunity/constants/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -45,11 +46,14 @@ class MpToyCard extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          toy.images[0],
-                          height: Responsive.isMobile(context) ? 190 : 200,
-                          width: 260,
-                          fit: BoxFit.cover,
+                        child: CachedNetworkImage(
+                          imageUrl: toy.images[0],
+                          placeholder: (conteext, url) =>
+                              const CircularProgressIndicator(),
+                          errorWidget: (context, url, error) => Icon(
+                            Icons.error,
+                          ),
+                          height: 50,
                         ),
                       ),
                     ),
