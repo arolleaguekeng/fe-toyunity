@@ -17,19 +17,19 @@ class _ActiveContent extends State<ActiveContent> {
   List<ActiveItemCard> ActiveList = [
     ActiveItemCard(
       ActiveItem: ActiveModel(
-          name: "plantain",
-          quantity: '10 regime',
+          name: "Poupé",
+          quantity: '1',
           status: "",
           price: "30000",
-          image: "assets/images/png/plantain1.webp"),
+          image: "assets/images/png/toy1.jpg"),
     ),
     ActiveItemCard(
       ActiveItem: ActiveModel(
-          name: "Tomate",
-          quantity: '1Cago',
+          name: "voiture mi",
+          quantity: '3',
           status: "",
           price: "5000",
-          image: "assets/images/png/tomate.jpg"),
+          image: "assets/images/png/toy2.jpg"),
     ),
     ActiveItemCard(
       ActiveItem: ActiveModel(
@@ -37,39 +37,7 @@ class _ActiveContent extends State<ActiveContent> {
           quantity: '1sac',
           status: "",
           price: "1200",
-          image: "assets/images/png/poivron.jpg"),
-    ),
-    ActiveItemCard(
-      ActiveItem: ActiveModel(
-          name: "Poireau",
-          quantity: '1sac',
-          status: "",
-          price: "10000",
-          image: "assets/images/png/plant.jpg"),
-    ),
-    ActiveItemCard(
-      ActiveItem: ActiveModel(
-          name: "ail",
-          quantity: '1sac',
-          status: "",
-          price: "900",
-          image: "assets/images/png/ail.jpg"),
-    ),
-    ActiveItemCard(
-      ActiveItem: ActiveModel(
-          name: "Poule",
-          quantity: '1',
-          status: "",
-          price: "5000",
-          image: "assets/images/png/poule.jpg"),
-    ),
-    ActiveItemCard(
-      ActiveItem: ActiveModel(
-          name: "Piment",
-          quantity: '1Sac',
-          status: "",
-          price: "9000",
-          image: "assets/images/png/piment.jpg"),
+          image: "assets/images/png/toy3.jpg"),
     ),
   ];
 

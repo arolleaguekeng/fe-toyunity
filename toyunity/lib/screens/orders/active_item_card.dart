@@ -60,7 +60,7 @@ class ActiveItemCard extends StatelessWidget {
                               color: lightTextColor),
                         ),
                         CustumText(
-                          text: "In  Delivery",
+                          text: "En livraison",
                           size: 12,
                           color: primaryColor,
                         ),
@@ -90,7 +90,7 @@ class ActiveItemCard extends StatelessWidget {
                       backgroundColor: primaryColor, // Background Color
                     ),
                     child: const Text(
-                      'Track Order ',
+                      'Suivre ',
                       style: TextStyle(fontSize: 14),
                     ),
                   )

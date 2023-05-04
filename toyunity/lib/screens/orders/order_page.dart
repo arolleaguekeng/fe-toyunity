@@ -40,7 +40,7 @@ class _OrderPage extends State<OrderPage> {
                   Row(
                     children: const [
                       CustumText(
-                        text: "My Order",
+                        text: "Mes opérations",
                         size: 22,
                         weight: FontWeight.bold,
                       )
@@ -63,7 +63,7 @@ class _OrderPage extends State<OrderPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustumText(
-                text: "Active",
+                text: "En cours",
                 size: 18,
                 color: green,
                 weight: FontWeight.w400,
@@ -74,7 +74,7 @@ class _OrderPage extends State<OrderPage> {
               TextButton(
                   onPressed: () {},
                   child: Text(
-                    "Completed",
+                    "Terminé",
                   ))
             ],
           ),

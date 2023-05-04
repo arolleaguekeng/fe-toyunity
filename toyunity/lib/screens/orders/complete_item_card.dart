@@ -59,7 +59,7 @@ class CompleteItemCard extends StatelessWidget {
                               color: lightTextColor),
                         ),
                         CustumText(
-                          text: "Complete",
+                          text: "Terminé",
                           size: 12,
                           color: primaryColor,
                         ),
@@ -91,7 +91,7 @@ class CompleteItemCard extends StatelessWidget {
                                   height: appPadding,
                                 ),
                                 Text(
-                                  'Leave review',
+                                  'Commenter',
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -133,7 +133,7 @@ class CompleteItemCard extends StatelessWidget {
                                                   color: Colors.black),
                                             ),
                                             CustumText(
-                                              text: "Complete",
+                                              text: "Terminé",
                                               size: 12,
                                               color: primaryColor,
                                             ),
@@ -163,7 +163,7 @@ class CompleteItemCard extends StatelessWidget {
                                   height: appPadding,
                                 ),
                                 Text(
-                                  "How is your Order?",
+                                  "Votre Commande",
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -173,7 +173,7 @@ class CompleteItemCard extends StatelessWidget {
                                   height: appPadding,
                                 ),
                                 Text(
-                                  "Please give your raiting & also your review",
+                                  "Svp laisser une revue",
                                   style: TextStyle(
                                       fontSize: 13,
                                       fontWeight: FontWeight.w200,
@@ -223,7 +223,7 @@ class CompleteItemCard extends StatelessWidget {
                                           child: Row(
                                             children: [
                                               Text(
-                                                "Amazing Plant & Fast delivery",
+                                                "livraison rapidde",
                                                 style: TextStyle(
                                                     fontSize: 13,
                                                     color: Colors.black),
@@ -284,7 +284,7 @@ class CompleteItemCard extends StatelessWidget {
                       backgroundColor: primaryColor, // Background Color
                     ),
                     child: const Text(
-                      'Leave review',
+                      'Commenter',
                       style: TextStyle(fontSize: 14),
                     ),
                   )

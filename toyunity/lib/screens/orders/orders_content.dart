@@ -25,6 +25,7 @@ class _OrderContent extends State<OrderContent> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: white,
+        foregroundColor: white,
         automaticallyImplyLeading: false,
         elevation: 0,
         title: Row(
@@ -36,7 +37,7 @@ class _OrderContent extends State<OrderContent> {
               width: appPadding * 0.5,
             ),
             CustumText(
-              text: "My Order",
+              text: "Mes opérations",
               size: 25,
               color: Colors.black,
             ),
@@ -57,15 +58,16 @@ class _OrderContent extends State<OrderContent> {
         ],
       ),
       body: Container(
+        decoration: BoxDecoration(color:white),
         child: TabBarWidget(
           tabs: const [
             Tab(
               icon: Icon(Icons.notifications_active),
-              text: 'Active',
+              text: 'En cours',
             ),
             Tab(
               icon: Icon(Icons.content_paste_outlined),
-              text: 'Complete',
+              text: 'Terminé',
             ),
           ],
           children: [ActiveContent(), CompleteContent()],

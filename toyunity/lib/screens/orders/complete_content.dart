@@ -18,36 +18,30 @@ class _CompleteContent extends State<CompleteContent> {
   List<CompleteItemCard> ActiveList = [
     CompleteItemCard(
       ActiveItem: ActiveModel(
-          name: "Tomato",
+          name: "Poupé",
           quantity: '1',
           status: "",
-          price: "39",
-          image: "assets/images/png/tomate.jpg"),
+          price: "30000",
+          image: "assets/images/png/toy1.jpg"),
     ),
     CompleteItemCard(
       ActiveItem: ActiveModel(
-          name: "chicken",
+          name: "voiture",
           quantity: '1',
           status: "",
-          price: "39",
-          image: "assets/images/png/ail.jpg"),
+          price: "30000",
+          image: "assets/images/png/toy2.jpg"),
     ),
     CompleteItemCard(
       ActiveItem: ActiveModel(
-          name: "Pepper",
+          name: "Ballon",
           quantity: '1',
           status: "",
-          price: "39",
-          image: "assets/images/png/piment.jpg"),
+          price: "30000",
+          image: "assets/images/png/toy3.jpg"),
     ),
-    CompleteItemCard(
-      ActiveItem: ActiveModel(
-          name: "Plantain",
-          quantity: '1',
-          status: "",
-          price: "39",
-          image: "assets/images/png/plantain1.webp"),
-    ),
+    
+    
   ];
 
   @override

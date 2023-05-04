@@ -41,7 +41,7 @@ class _OrderDetailContent extends State<OrderDetailContent> {
               Row(
                 children: const [
                   CustumText(
-                    text: "Track Order",
+                    text: "Suivre",
                     size: 22,
                     weight: FontWeight.bold,
                   )

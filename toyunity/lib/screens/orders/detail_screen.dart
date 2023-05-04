@@ -40,7 +40,7 @@ class _DetailActive extends State<DetailActive> {
               width: appPadding * 0.5,
             ),
             CustumText(
-              text: "Track Order",
+              text: "Suivre",
               size: 25,
               color: Colors.black,
             ),
@@ -70,7 +70,7 @@ class _DetailActive extends State<DetailActive> {
                         Row(
                           children: [
                             Image(
-                              image: AssetImage("assets/images/png/plant.jpg"),
+                              image: AssetImage("assets/images/png/toy1.jpg"),
                               fit: BoxFit.cover,
                               height: 100,
                               width: 100,
@@ -196,7 +196,7 @@ class _DetailActive extends State<DetailActive> {
                       children: [
                         Center(
                           child: Text(
-                            'Packet in Delivery',
+                            'Packet Livré',
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.black,
@@ -207,7 +207,7 @@ class _DetailActive extends State<DetailActive> {
                           height: appPadding,
                         ),
                         Text(
-                          'Order Status Details',
+                          'Détails de la commande',
                           style: TextStyle(
                               fontSize: 14,
                               color: Colors.black,
@@ -252,7 +252,7 @@ class _DetailActive extends State<DetailActive> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
               CustumText(
-                  text: "Order in Transit - Dec 17",
+                  text: "Douala - Dec 22",
                   size: 20,
                   align: TextAlign.center),
               CustumText(text: "32 Bafoussam ,GA 30736", size: 12)

@@ -88,7 +88,7 @@ class _ProfileContent extends State<ProfileContent> {
                   .textTheme
                   .headlineMedium
                   ?.apply(color: Colors.black, fontWeightDelta: 5)),
-          Text("+237 655053546",
+          Text("+237 695404527",
               style: Theme.of(context)
                   .textTheme
                   .bodyText2
