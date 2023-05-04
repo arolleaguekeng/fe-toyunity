@@ -54,6 +54,7 @@ class MpToyCard extends StatelessWidget {
                             Icons.error,
                           ),
                           height: 50,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),

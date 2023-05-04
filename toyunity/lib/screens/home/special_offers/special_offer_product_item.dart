@@ -51,6 +51,7 @@ class _SoToyCardState extends State<SoToyCard> {
                       errorWidget: (context, url, error) => Icon(
                         Icons.error,
                       ),
+                      fit: BoxFit.cover,
                     ),
                   ),
                   Positioned(

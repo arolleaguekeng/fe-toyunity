@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/constants/responsive.dart';
@@ -27,13 +28,18 @@ class Toys extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClipRRect(
+                  
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    toy.images[0],
-                    height: Responsive.isMobile(context) ? 210 : 240,
-                    width: 300,
+                  child: CachedNetworkImage(
+                      imageUrl: toy.images[0],
+                      placeholder: (conteext, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(
+                        Icons.error,
+                      ),
+                      width: 300,
                     fit: BoxFit.cover,
-                  ),
+                    ),
                 ),
                 SizedBox(
                   height: 10,

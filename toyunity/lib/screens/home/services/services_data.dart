@@ -9,15 +9,15 @@ class ServiceItem {
 
 var ServiceItemDatas = [
   ServiceItem(
-      title: "Achetez 🙂",
+      title: "User to User marquet",
       description: "Votre application d'échange de jouets",
-      image: "assets/images/lotti/cat.json"),
+      image: "assets/images/svg/market.svg"),
   ServiceItem(
-      title: "Echangez🙂",
+      title: "Paiement rapide et sécurisé",
       description: "Votre application d'échange de jouets",
-      image: "assets/images/lotti/cat.json"),
+      image: "assets/images/svg/payement.svg"),
   ServiceItem(
-      title: "Recherchez 🙂",
+      title: "Chat directement avec le propriétère du jouet",
       description: "Votre application d'échange de jouets",
-      image: "assets/images/lotti/cat.json"),
+      image: "assets/images/svg/chat.json"),
 ];

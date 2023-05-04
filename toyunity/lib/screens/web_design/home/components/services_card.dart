@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:toyunity/constants/constants.dart';
 
@@ -13,16 +14,16 @@ class ServicesCard extends StatelessWidget {
       // ignore: prefer_const_literals_to_create_immutables
       children: [
         const Services(
-          image: 'assets/images/lotti/duck.json',
-          title: "B to B marquet",
+          image: 'assets/images/svg/market.svg',
+          title: "User to User marquet",
         ),
         const Services(
-          image: 'assets/images/lotti/buy.json',
-          title: "Toys delivery",
+          image: 'assets/images/svg/payement.svg',
+          title: "Paiement rapide et sécurisé",
         ),
         const Services(
-          image: 'assets/images/lotti/train.json',
-          title: "Chat directly with the producer",
+          image: 'assets/images/svg/chat.svg',
+          title: "Chat directement avec le propriétère du jouet",
         ),
       ],
     );
@@ -74,13 +75,7 @@ class _ServicesState extends State<Services>
                     child: Container(
                       width: 80,
                       height: 80,
-                      child: Lottie.asset(widget.image,
-                          controller: _animationController, onLoaded: (compos) {
-                        _animationController
-                          ..duration = compos.duration
-                          ..forward();
-                        _animationController.repeat();
-                      }),
+                      child: SvgPicture.asset(widget.image),
                     ),
                   ),
                   SizedBox(

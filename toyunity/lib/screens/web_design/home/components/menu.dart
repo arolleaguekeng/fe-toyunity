@@ -70,19 +70,6 @@ class MobMenu extends StatefulWidget {
 }
 
 class _MobMenuState extends State<MobMenu> {
-  Future<Widget> userSignedIn() async {
-    User? user = MyApp.auth.currentUser;
-    if (user != null) {
-      DocumentSnapshot userData = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .get();
-      UserModel userModel = UserModel.fromJson(userData);
-      return ChatHomeScreen();
-    } else {
-      return LoginScreen();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +90,7 @@ List<Widget> menuItems(BuildContext context) {
         Navigator.push(
             context, MaterialPageRoute(builder: (_) => HomeScreen()));
       },
-      title: "Home",
+      title: "Acceuil",
     ),
     SizedBox(
       width: appPadding,
@@ -114,7 +101,7 @@ List<Widget> menuItems(BuildContext context) {
         Navigator.push(
             context, MaterialPageRoute(builder: (_) => CartScreen()));
       },
-      title: "Cart",
+      title: "Carte",
     ),
     SizedBox(
       width: appPadding,
@@ -125,7 +112,7 @@ List<Widget> menuItems(BuildContext context) {
         Navigator.push(
             context, MaterialPageRoute(builder: (_) => OrderScreen()));
       },
-      title: "Panier",
+      title: "Commandes",
     ),
     SizedBox(
       width: appPadding,

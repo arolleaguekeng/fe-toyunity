@@ -59,7 +59,7 @@ class _MostPopular extends State<MostPopular> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustumText(
-                text: 'Most Popular',
+                text: 'Les plus populaires',
                 size: 24,
                 weight: FontWeight.bold,
               ),
@@ -69,7 +69,7 @@ class _MostPopular extends State<MostPopular> {
                       MaterialPageRoute(builder: (_) => PopularAllPage()));
                 },
                 child:
-                    CustumText(text: 'See all', size: 14, color: primaryColor),
+                    CustumText(text: 'Voir tout', size: 14, color: primaryColor),
               ),
             ],
           ),

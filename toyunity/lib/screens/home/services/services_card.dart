@@ -1,3 +1,4 @@
+import 'package:flutter_svg/svg.dart';
 import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/screens/components/forms/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -59,21 +60,14 @@ class _ServivesContent extends State<ServivesContent>
                       child: Container(
                         height: 130,
                         decoration: BoxDecoration(
-                            color: primaryColor,
+                            color: secondaryColor,
                             boxShadow: [BoxShadow(color: Colors.black12)],
                             borderRadius: BorderRadius.circular(30)),
                         child: Row(children: [
                           Container(
                             width: 100,
                             height: 100,
-                            child: Lottie.asset(data[i].image,
-                                controller: _animationController,
-                                onLoaded: (compos) {
-                              _animationController
-                                ..duration = compos.duration
-                                ..forward();
-                                _animationController.repeat();
-                            }),
+                            child: SvgPicture.asset(data[i].image,),
                           ),
                           CustumText(
                             size: 16,

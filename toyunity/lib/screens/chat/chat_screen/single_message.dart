@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../constants/constants.dart';
+
 class SingleMessage extends StatelessWidget {
   final String message;
   final bool isMe;
@@ -14,7 +16,7 @@ class SingleMessage extends StatelessWidget {
             margin: EdgeInsets.all(16),
             constraints: BoxConstraints(maxWidth: 200),
             decoration: BoxDecoration(
-                color: isMe ? Colors.black : Colors.orange,
+                color: isMe ? primaryColor : secondaryColor,
                 borderRadius: BorderRadius.all(Radius.circular(12))),
             child: Text(
               message,

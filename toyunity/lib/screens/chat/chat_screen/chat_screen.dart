@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../../constants/constants.dart';
 import '../../../models/user_model.dart';
 import 'message_textfield.dart';
 import 'single_message.dart';
@@ -23,7 +24,8 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal,
+        backgroundColor: white,
+        elevation: 1,
         title: Row(
           children: [
             ClipRRect(

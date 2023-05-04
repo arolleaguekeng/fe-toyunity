@@ -63,15 +63,11 @@ class _NavigationContent extends State<NavigationContent> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               appBarIcon("Home", Icons.home_filled, 0, HomeScreen()),
-              appBarIcon("Cart", Icons.shopping_bag_rounded, 1, CartScreen()),
-              appBarIcon("Orders", Icons.shopping_cart, 2, OrderScreen()),
+              appBarIcon("Carte", Icons.shopping_bag_rounded, 1, CartScreen()),
+              appBarIcon("Commandes", Icons.shopping_cart, 2, OrderScreen()),
               appBarIcon(
                   "Messages", Icons.message_outlined, 3, ChatHomeScreen()),
-              appBarIcon(
-                  isProducer ? "Toys" : "Profile",
-                  isProducer ? Icons.ac_unit : Icons.person_2_rounded,
-                  4,
-                  isProducer ? PcToyListScreen() : ProfileScreen()),
+              appBarIcon("Profile", Icons.person_2_rounded, 4, ProfileScreen()),
             ],
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../../constants/constants.dart';
 import '../../../models/user_model.dart';
 import 'chat_screen.dart';
 
@@ -50,7 +51,9 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Search your Friend"),
+        backgroundColor: white,
+        elevation: 1,
+        title: Text("Rechercher un amis"),
       ),
       body: Column(
         children: [
@@ -62,7 +65,6 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: TextField(
                     controller: searchController,
                     decoration: InputDecoration(
-                        hintText: "type username....",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10))),
                   ),

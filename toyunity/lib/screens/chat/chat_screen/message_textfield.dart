@@ -15,6 +15,7 @@ class MessageTextField extends StatefulWidget {
 
 class _MessageTextFieldState extends State<MessageTextField> {
   TextEditingController _controller = TextEditingController();
+  bool isMessageEmpty = true;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,13 +27,44 @@ class _MessageTextFieldState extends State<MessageTextField> {
               child: TextField(
             controller: _controller,
             decoration: InputDecoration(
-                labelText: "Taper votre message...",
-                fillColor: Colors.grey[100],
-                filled: true,
-                border: OutlineInputBorder(
-                    borderSide: BorderSide(width: 0),
-                    gapPadding: 10,
-                    borderRadius: BorderRadius.circular(25))),
+                        hintText: 'Ecrire votre message...',
+                        prefixIcon: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50)),
+                          padding: EdgeInsets.all(14),
+                          child: const Icon(
+                            Icons.emoji_emotions_outlined,
+                            color: lightTextColor,
+                            size: 20,
+                          ),
+                        ),
+                        suffixIcon: const Icon(
+                          Icons.camera_alt_rounded,
+                          color: lightTextColor,
+                          size: 20,
+                        ),
+                        filled: true,
+                        fillColor: white,
+                        labelStyle: const TextStyle(fontSize: 12),
+                        contentPadding: EdgeInsets.all(20),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: transparent),
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          if (_controller.value.text.isNotEmpty) {
+                            isMessageEmpty = false;
+                          } else {
+                            isMessageEmpty = true;
+                          }
+                        });
+                      },
           )),
           SizedBox(
             width: 20,
@@ -91,10 +123,9 @@ class _MessageTextFieldState extends State<MessageTextField> {
                 shape: BoxShape.circle,
                 color: secondaryColor,
               ),
-              child: Icon(
-                Icons.send,
-                color: Colors.white,
-              ),
+              child: isMessageEmpty
+                          ? const Icon(Icons.mic)
+                          : const Icon(Icons.send_rounded),
             ),
           )
         ],

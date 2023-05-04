@@ -26,7 +26,7 @@ class EmailBanner extends StatelessWidget {
             child: Column(
               children: [
                 const AutoSizeText(
-                  "Joi us an get \n  50% of reduction",
+                  "",
                   maxLines: 2,
                   minFontSize: 14,
                   style: TextStyle(
@@ -53,7 +53,7 @@ class EmailBanner extends StatelessWidget {
                                 bottomLeft: Radius.circular(15.0))),
                         child: TextFormField(
                           decoration: const InputDecoration(
-                              hintText: "Enter Your email here",
+                              hintText: "Entrer votre Email ici",
                               hintStyle: TextStyle(
                                   fontWeight: FontWeight.w600, fontSize: 14),
                               focusedBorder: UnderlineInputBorder(
