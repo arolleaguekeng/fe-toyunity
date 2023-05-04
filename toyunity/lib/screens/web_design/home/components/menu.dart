@@ -70,6 +70,19 @@ class MobMenu extends StatefulWidget {
 }
 
 class _MobMenuState extends State<MobMenu> {
+  Future<Widget> userSignedIn() async {
+    User? user = MyApp.auth.currentUser;
+    if (user != null) {
+      DocumentSnapshot userData = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+      UserModel userModel = UserModel.fromJson(userData);
+      return ChatHomeScreen();
+    } else {
+      return LoginScreen();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +125,7 @@ List<Widget> menuItems(BuildContext context) {
         Navigator.push(
             context, MaterialPageRoute(builder: (_) => OrderScreen()));
       },
-      title: "Commandes",
+      title: "Opérations",
     ),
     SizedBox(
       width: appPadding,

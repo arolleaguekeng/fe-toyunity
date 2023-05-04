@@ -288,7 +288,7 @@ class _WebProductDetailsState extends State<WebProductDetails> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(5),
         child: Image.asset(
-          toy.images[index],
+          toy.images[0],
           height: bigcardHeight / 2,
           width: bigcardWidth / 2,
           fit: BoxFit.cover,

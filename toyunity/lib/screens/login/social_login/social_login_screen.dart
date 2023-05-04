@@ -16,7 +16,6 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           children: [
             if(kIsWeb)
-            Header(),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [

@@ -44,15 +44,16 @@ class _SoToyCardState extends State<SoToyCard> {
                 children: [
                   CircleAvatar(
                     radius: 100,
-                    child: CachedNetworkImage(
-                      imageUrl: toy.images[0],
-                      placeholder: (conteext, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Icon(
-                        Icons.error,
-                      ),
-                      fit: BoxFit.cover,
-                    ),
+                    child: Image.asset(toy.images[0],fit: BoxFit.cover)
+                    // CachedNetworkImage(
+                    //   imageUrl: toy.images[0],
+                    //   placeholder: (conteext, url) =>
+                    //       const CircularProgressIndicator(),
+                    //   errorWidget: (context, url, error) => Icon(
+                    //     Icons.error,
+                    //   ),
+                    //   fit: BoxFit.cover,
+                    // ),
                   ),
                   Positioned(
                     bottom: 0,
@@ -69,10 +70,15 @@ class _SoToyCardState extends State<SoToyCard> {
                 ],
               ),
               CustumText(
-                text: toy.price.toString(),
+                text: toy.name.toString(),
                 size: 13,
                 color: green,
                 weight: FontWeight.bold,
+              ),
+              CustumText(
+                text: toy.description.toString(),
+                size: 13,
+                color: green,
               ),
               CustumText(
                 text: toy.price.toString(),

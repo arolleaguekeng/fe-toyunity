@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../constants/constants.dart';
 import '../../constants/responsive.dart';
@@ -59,8 +60,8 @@ class _PaiementMethodContent extends State<PaiementMethodContent> {
         width: Responsive.isMobile(context) ? size.width : size.width / 2,
         child: Column(
           children: [
-            Image.asset(
-              "assets/images/png/money.png",
+            SvgPicture.asset(
+              "assets/images/svg/pay.svg",
               width: size.width / 2.3,
             ),
             const SizedBox(

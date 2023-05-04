@@ -71,19 +71,28 @@ class _DetailsCardState extends State<DetailsCard> {
                               children: [
                                 CircleAvatar(
                                     radius: 100,
-                                    child: CachedNetworkImage(
-                                      imageUrl: toy.images[0],
+                                    child: Image.asset(
+                                      toy.images[0],
+                                      fit: BoxFit.cover,
                                       height: Responsive.isMobile(context)
                                           ? 190
                                           : 200,
                                       width: 260,
-                                      placeholder: (conteext, url) =>
-                                          const CircularProgressIndicator(),
-                                      errorWidget: (context, url, error) =>
-                                          Icon(
-                                        Icons.error,
-                                      ),
-                                    )),
+                                    )
+                                    // CachedNetworkImage(
+                                    //   imageUrl: toy.images[0],
+                                    //   height: Responsive.isMobile(context)
+                                    //       ? 190
+                                    //       : 200,
+                                    //   width: 260,
+                                    //   placeholder: (conteext, url) =>
+                                    //       const CircularProgressIndicator(),
+                                    //   errorWidget: (context, url, error) =>
+                                    //       Icon(
+                                    //     Icons.error,
+                                    //   ),
+                                    // )
+                                    ),
                                 Positioned(
                                   bottom: 0,
                                   right: 0,

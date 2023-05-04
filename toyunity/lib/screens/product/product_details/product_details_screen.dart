@@ -87,7 +87,9 @@ class ToyDetailsScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
+      bottomNavigationBar:kIsWeb && !Responsive.isMobile(context)
+          ? null
+          : BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
