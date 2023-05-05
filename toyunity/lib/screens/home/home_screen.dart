@@ -22,18 +22,9 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(color: primaryColor),
-        child: IconButton(
-          icon: Icon(Icons.add),
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (_) => AddToyScreen()));
-          },
-        ),
-      ),
+        floatingActionButton: FloatingActionButton(child: Icon(Icons.add),backgroundColor: secondaryColor,onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => AddToyScreen()));})
     );
   }
 }

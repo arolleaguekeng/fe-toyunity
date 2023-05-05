@@ -59,7 +59,7 @@ class _SpecialOfferCardState extends State<SpecialOfferCard> {
         Container(
           margin: const EdgeInsets.symmetric(vertical: 5),
           height: 320,
-          child: isLoading? CircularProgressIndicator(color: secondaryColor,) : ListView.builder(
+          child: isLoading? Container(width: 50,height: 50,child: CircularProgressIndicator(color: secondaryColor,)) : ListView.builder(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return SoToyCard(
