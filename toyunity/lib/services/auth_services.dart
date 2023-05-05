@@ -117,9 +117,8 @@ class AuthService {
           state: null,
           country: null);
       var userData = await ApiUser.signup(userModel);
-
       await addUserInFireBase(userCredential.user!);
-      MyApp.currentUser = userData;
+      MyApp.currentUser = userModel;
       openHomePage(context, widget);
     }
   }

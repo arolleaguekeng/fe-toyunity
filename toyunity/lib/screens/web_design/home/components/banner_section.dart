@@ -5,6 +5,8 @@ import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/screens/components/forms/costum_text_field.dart';
 import 'package:toyunity/screens/components/forms/custom_button.dart';
 
+import '../../../../constants/responsive.dart';
+
 class BannerSection extends StatefulWidget {
   const BannerSection({
     Key? key,
@@ -72,8 +74,8 @@ class _MobBannerState extends State<MobBanner>
         Column(
           children: [
             Container(
-              height: 250,
-              width: 250,
+              height: Responsive.isMobile(context) ? 150 : 250,
+              width:  Responsive.isMobile(context) ? 150 : 250,
               child: Lottie.asset("assets/images/lotti/cat.json",
                   controller: _animationController, onLoaded: (compos) {
                 _animationController
@@ -152,7 +154,7 @@ class AboutSection extends StatelessWidget {
               child: Container(
                   width: 140,
                   child: CustomButton(
-                    text: 'Parcourrir le cathalogue',
+                    text: 'Voir le cathalogue',
                     onPressed: () {},
                   )),
             ),
