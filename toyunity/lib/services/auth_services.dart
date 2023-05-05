@@ -7,6 +7,7 @@ import 'package:toyunity/screens/web_design/home/home_screen.dart';
 import '../main.dart';
 import '../models/user_model.dart';
 import '../screens/navigations/navigation_screen.dart';
+import '../screens/shared_ui/showSnackBar.dart';
 import 'api/user_api.dart';
 import 'package:flutter/material.dart';
 
@@ -116,10 +117,15 @@ class AuthService {
           city: null,
           state: null,
           country: null);
-      var userData = await ApiUser.signup(userModel);
-      await addUserInFireBase(userCredential.user!);
+      try{
+        var userData = await ApiUser.signup(userModel);
+        await addUserInFireBase(userCredential.user!);
       MyApp.currentUser = userModel;
       openHomePage(context, widget);
+      } catch (_) {
+        showNotification(context, 'No Network Access...');
+      }
+      
     }
   }
 
