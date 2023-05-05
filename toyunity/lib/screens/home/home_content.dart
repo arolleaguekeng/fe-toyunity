@@ -1,6 +1,7 @@
 import 'package:toyunity/models/categories.dart';
 import 'package:toyunity/screens/components/forms/costum_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:toyunity/screens/profiles/profiles_screen.dart';
 
 import '../../constants/constants.dart';
 
@@ -74,10 +75,17 @@ class _HomeContent extends State<HomeContent> {
                     IconButton(
                         onPressed: () {},
                         icon: const Icon(Icons.notifications_rounded)),
-                    const CircleAvatar(
-                      backgroundImage:
-                          AssetImage("assets/images/png/profile.png"),
-                    ),
+
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => ProfileScreen()));
+                      },
+                      child: CircleAvatar(
+                        backgroundImage:
+                        AssetImage("assets/images/png/profile.png"),
+                      ),
+                    )
+
                   ],
                 )
               ],

@@ -17,7 +17,7 @@ var ServiceItemDatas = [
       description: "Votre application d'échange de jouets",
       image: "assets/images/svg/payement.svg"),
   ServiceItem(
-      title: "Chat directement avec le propriétère du jouet",
+      title: "Chat  avec le propriétère",
       description: "Votre application d'échange de jouets",
-      image: "assets/images/svg/chat.json"),
+      image: "assets/images/svg/chat.svg"),
 ];

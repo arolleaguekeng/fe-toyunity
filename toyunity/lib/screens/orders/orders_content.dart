@@ -37,7 +37,7 @@ class _OrderContent extends State<OrderContent> {
               width: appPadding * 0.5,
             ),
             CustumText(
-              text: "Mes opérations",
+              text: "Opérations",
               size: 25,
               color: Colors.black,
             ),

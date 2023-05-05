@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "959851867881-ni36idnj8ruhlqrm0fj3pip5bh6g5h8c.apps.googleusercontent.com",
+          "client_id": "959851867881-d3qqlkii8o20k4olj03l1c8a0p6r7up1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,8 +27,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "959851867881-ni36idnj8ruhlqrm0fj3pip5bh6g5h8c.apps.googleusercontent.com",
+              "client_id": "959851867881-d3qqlkii8o20k4olj03l1c8a0p6r7up1.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "959851867881-fc01tsf50ga1p8t34mq0ebln6qeko0mf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.toyunity.app"
+              }
             }
           ]
         }

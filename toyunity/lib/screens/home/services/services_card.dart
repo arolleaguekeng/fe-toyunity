@@ -69,8 +69,9 @@ class _ServivesContent extends State<ServivesContent>
                             height: 100,
                             child: SvgPicture.asset(data[i].image,),
                           ),
+                          SizedBox(width: appPadding,),
                           CustumText(
-                            size: 16,
+                            size: 18,
                             text: data[i].title,
                           ),
                         ]),

@@ -66,24 +66,28 @@ class AuthService {
       await loginUser(userCredential, context, widget);
       return userCredential;
     }
+    else{
+      // Create an instance of the firebase auth and google signin
+      FirebaseAuth auth = FirebaseAuth.instance;
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      //Triger the authentication flow
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
 
-    // start authentification Flux
-    final googleUser = await _googleSignIn.signIn();
-
-    // get authorisation details of demand
-    final googleAuth = await googleUser!.authentication;
-
-    // Create new identified
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-    UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithCredential(credential);
-
-    await loginUser(userCredential, context, widget);
-    // return user id
-    return await _auth.signInWithCredential(credential);
+      //Obtain the auth details from the request
+      final GoogleSignInAuthentication googleAuth =
+      await googleUser!.authentication;
+      //Create a new credentials
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      //Sign in the user with the credentials
+      final UserCredential userCredential =
+      await auth.signInWithCredential(credential);
+      print('loginnnnnn');
+      await loginUser(userCredential, context, widget);
+      return userCredential;
+    }
   }
 
   static Future<void> loginUser(UserCredential userCredential,
@@ -118,7 +122,6 @@ class AuthService {
           state: null,
           country: null);
       try{
-        var userData = await ApiUser.signup(userModel);
         await addUserInFireBase(userCredential.user!);
       MyApp.currentUser = userModel;
       openHomePage(context, widget);
@@ -130,7 +133,7 @@ class AuthService {
   }
 
   static void openHomePage(BuildContext context, Widget widget) {
-    Navigator.pushReplacement(
+    Navigator.pop(
         context,
         MaterialPageRoute(
             builder: (_) => kIsWeb
