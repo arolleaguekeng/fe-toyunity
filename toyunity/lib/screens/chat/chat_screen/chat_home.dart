@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:toyunity/screens/components/forms/custom_text.dart';
 import 'package:toyunity/screens/login/social_login/social_login_screen.dart';
 
 import '../../../constants/constants.dart';
@@ -24,10 +25,18 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('T-U Chat'),
+        title: Row(
+          children: [
+            CustumText(
+              text: 'T-U Chat',
+              size: 20,
+              color: white,
+            ),
+          ],
+        ),
         centerTitle: true,
-        backgroundColor: white,
-        elevation: 1,
+        backgroundColor: primaryColor,
+        elevation: 0,
         actions: [
           IconButton(
               onPressed: () async {
@@ -35,23 +44,21 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                 await FirebaseAuth.instance.signOut();
                 Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()),
                     (route) => false);
               },
-              icon: Icon(Icons.logout))
+              icon: Icon(
+                Icons.logout,
+                color: textColor,
+              ))
         ],
       ),
       body: user == null
           ? Container()
-          : Column(
-            children: [
-              CustomTextField(
-              hintText: "Rechercher...",
-              onChanged: (value) {},
-              controller: TextEditingController(),
-              icon: Icons.search_rounded,
-            ),
-              StreamBuilder(
+          : Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: StreamBuilder(
                   stream: FirebaseFirestore.instance
                       .collection('users')
                       .doc(user.uid)
@@ -84,7 +91,8 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                                         imageUrl: friend['image'],
                                         placeholder: (conteext, url) =>
                                             const CircularProgressIndicator(),
-                                        errorWidget: (context, url, error) => Icon(
+                                        errorWidget: (context, url, error) =>
+                                            Icon(
                                           Icons.error,
                                         ),
                                         height: 50,
@@ -94,7 +102,8 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                                     subtitle: Container(
                                       child: Text(
                                         "$lastMsg",
-                                        style: const TextStyle(color: Colors.grey),
+                                        style:
+                                            const TextStyle(color: Colors.grey),
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
@@ -106,7 +115,8 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                                                   currentUser: user,
                                                   friendId: friend['uid'],
                                                   friendName: friend['name'],
-                                                  friendImage: friend['image'])));
+                                                  friendImage:
+                                                      friend['image'])));
                                     },
                                   );
                                 }
@@ -119,8 +129,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                       child: CircularProgressIndicator(),
                     );
                   }),
-            ],
-          ),
+            ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: secondaryColor,
         child: Icon(Icons.chat_rounded),

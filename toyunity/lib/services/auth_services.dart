@@ -65,8 +65,7 @@ class AuthService {
       var userCredential = await _auth.signInWithPopup(googleProvider);
       await loginUser(userCredential, context, widget);
       return userCredential;
-    }
-    else{
+    } else {
       // Create an instance of the firebase auth and google signin
       FirebaseAuth auth = FirebaseAuth.instance;
       final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -75,7 +74,7 @@ class AuthService {
 
       //Obtain the auth details from the request
       final GoogleSignInAuthentication googleAuth =
-      await googleUser!.authentication;
+          await googleUser!.authentication;
       //Create a new credentials
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
@@ -83,7 +82,7 @@ class AuthService {
       );
       //Sign in the user with the credentials
       final UserCredential userCredential =
-      await auth.signInWithCredential(credential);
+          await auth.signInWithCredential(credential);
       print('loginnnnnn');
       await loginUser(userCredential, context, widget);
       return userCredential;
@@ -121,14 +120,14 @@ class AuthService {
           city: null,
           state: null,
           country: null);
-      try{
+      try {
         await addUserInFireBase(userCredential.user!);
-      MyApp.currentUser = userModel;
-      openHomePage(context, widget);
+        ApiUser.signup(userModel);
+        MyApp.currentUser = userModel;
+        openHomePage(context, widget);
       } catch (_) {
         showNotification(context, 'No Network Access...');
       }
-      
     }
   }
 

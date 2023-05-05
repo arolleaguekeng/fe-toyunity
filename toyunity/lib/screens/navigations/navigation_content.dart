@@ -80,7 +80,7 @@ class _NavigationContent extends State<NavigationContent> {
         onPressed: () {
           setState(
             () {
-              if (currentPage != const HomeScreen() && MyApp.currentUser == null) {
+              if (currentPage != const HomeScreen() && MyApp.auth.currentUser == null) {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (_) => LoginScreen()));
               } else {

@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:toyunity/constants/constants.dart';
+import 'package:toyunity/constants/responsive.dart';
 
 import '../../../main.dart';
 import '../../../models/toy_model.dart';
@@ -90,95 +92,110 @@ class _AddToyContentState extends State<AddToyContent> {
       inAsyncCall: showSpinner,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Upload Image'),
+          backgroundColor: primaryColor,
+          foregroundColor: white,
+          title: Text('Ajout de Jouet'),
         ),
-        body: Column(
-          children: [
-            GestureDetector(
-              onTap: () {
-                getImage();
-              },
-              child: Container(
-                child: image == null
-                    ? Center(
-                        child: Text('Pick Image'),
-                      )
-                    : Container(
-                        child: kIsWeb
-                            ? Image(
-                                image: NetworkImage(image!.path),
-                                fit: BoxFit.cover,
-                                height: size.height / 3,
-                                width: size.width / 1.4,
-                              )
-                            : Center(
-                                child: Image.file(
-                                  File(image!.path).absolute,
-                                  height: 100,
-                                  width: 100,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  getImage();
+                },
+                child: Container(
+                  child: image == null
+                      ? Center(
+                          child: Icon(
+                            Icons.add_a_photo_rounded,
+                            size: Responsive.isMobile(context)
+                                ? size.width
+                                : size.width * 0.4,
+                          ),
+                        )
+                      : Container(
+                          child: kIsWeb
+                              ? Image(
+                                  image: NetworkImage(image!.path),
                                   fit: BoxFit.cover,
+                                  height: size.height / 3,
+                                  width: size.width / 1.4,
+                                )
+                              : Center(
+                                  child: Image.file(
+                                    File(image!.path).absolute,
+                                    height: 100,
+                                    width: 100,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
-                      ),
+                        ),
+                ),
               ),
-            ),
-            Form(
-                key: _keyForm1,
-                child: TextFormField(
-                  maxLength: 30,
-                  onChanged: (value) => _pName = value,
-                  validator: (value) => _pName == '' ? _formError : null,
-                  decoration: InputDecoration(
-                    labelText: "Enter product name",
-                    border: OutlineInputBorder(),
-                  ),
-                )),
-            Form(
-                key: _keyForm2,
-                child: TextFormField(
-                  maxLength: 30,
-                  onChanged: (value) => _pDescription = value,
-                  validator: (value) => _pDescription == '' ? _formError : null,
-                  decoration: InputDecoration(
-                    labelText: "Entrer la description du jouet",
-                    border: OutlineInputBorder(),
-                  ),
-                )),
-            Form(
-                key: _keyForm3,
-                child: TextFormField(
-                  maxLength: 30,
-                  onChanged: (value) => _price = value,
-                  validator: (value) => _price == '' ? _formError : null,
-                  decoration: InputDecoration(
-                    labelText: "Entrer le prix du jouet",
-                    border: OutlineInputBorder(),
-                  ),
-                )),
-            CustomButton(
-                text: "Lieux de retrait",
-                onPressed: () async {
-                  final LatLng? selectedLocation = await showDialog(
-                      context: context, builder: (ctx) => MapDialog());
-                  if (selectedLocation != null) {
-                    coordinate.add(selectedLocation.longitude);
-                    coordinate.add(selectedLocation.latitude);
-                  }
-                }),
-            CustomButton(
-                text: "Validate",
-                onPressed: () {
-                  onSubmit(
-                    context: context,
-                    price: _price,
-                    pDescription: _pDescription,
-                    keyForm1: _keyForm1,
-                    keyForm2: _keyForm2,
-                    keyForm3: _keyForm3,
-                    pName: _pName,
-                  );
-                })
-          ],
+              Padding(
+                padding: const EdgeInsets.all(appPadding),
+                child: Column(
+                  children: [
+                    Form(
+                        key: _keyForm1,
+                        child: TextFormField(
+                          maxLength: 30,
+                          onChanged: (value) => _pName = value,
+                          validator: (value) =>
+                              _pName == '' ? _formError : null,
+                          decoration: InputDecoration(
+                            labelText: "Enter product name",
+                            border: OutlineInputBorder(),
+                          ),
+                        )),
+                    Form(
+                        key: _keyForm2,
+                        child: TextFormField(
+                          maxLength: 100,
+                          onChanged: (value) => _pDescription = value,
+                          validator: (value) =>
+                              _pDescription == '' ? _formError : null,
+                          decoration: InputDecoration(
+                            labelText: "Entrer la description du jouet",
+                            border: OutlineInputBorder(),
+                          ),
+                        )),
+                    Form(
+                        key: _keyForm3,
+                        child: TextFormField(
+                          maxLength: 10,
+                          onChanged: (value) => _price = value,
+                          validator: (value) =>
+                              _price == '' ? _formError : null,
+                          decoration: InputDecoration(
+                            labelText: "Entrer le prix du jouet",
+                            border: OutlineInputBorder(),
+                          ),
+                        )),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomButton(
+                      bgcolor: secondaryColor,
+                      text: "Enregistrer",
+                      onPressed: () {
+                        onSubmit(
+                          context: context,
+                          price: _price,
+                          pDescription: _pDescription,
+                          keyForm1: _keyForm1,
+                          keyForm2: _keyForm2,
+                          keyForm3: _keyForm3,
+                          pName: _pName,
+                        );
+                      }),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

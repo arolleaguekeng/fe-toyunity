@@ -193,19 +193,11 @@ class _LoginContent extends State<LoginContent> {
 
   void signIn(BuildContext context) async {
     if (kIsWeb) {
-      try{
-        final result = await InternetAddress.lookup('google.com');
-        setState(() {
+      setState(() {
         inLoginProcess = true;
         var state = AuthService.signInWithGoogle(
-            context: context,
-            widget: HomeWebScreen());
-        
+            context: context, widget: HomeWebScreen());
       });
-      }on SocketException catch (_) {
-        showNotification(context, 'No Network Access...');
-      }
-      
     } else {
       try {
         final result = await InternetAddress.lookup('google.com');

@@ -78,9 +78,10 @@ class _MostPopular extends State<MostPopular> {
           shrinkWrap: true,
           physics: ScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: Responsive.isMobile(context) ? 1 : 3,
+              crossAxisCount: Responsive.isMobile(context) ? 1 : 4,
               childAspectRatio: aspectRatio,
-              mainAxisSpacing: 1),
+              mainAxisSpacing: 1,
+              crossAxisSpacing: 13),
           itemBuilder: (context, index) => Toys(
             press: () {
               Navigator.push(

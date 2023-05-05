@@ -2,10 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:toyunity/main.dart';
 import 'package:toyunity/models/toy_model.dart';
 import 'package:flutter/material.dart';
+import 'package:toyunity/screens/paiement_method/paiement_method_screen.dart';
 import 'package:toyunity/screens/product/product_details/product_details_web.dart';
 
 import '../../../constants/constants.dart';
 import '../../../constants/responsive.dart';
+import '../../chat/chat_screen/chat_screen.dart';
 import '../../components/forms/custom_button.dart';
 import '../../components/forms/custom_text.dart';
 import 'product_details_content.dart';
@@ -22,11 +24,12 @@ class ToyDetailsScreen extends StatelessWidget {
       appBar: kIsWeb && !Responsive.isMobile(context)
           ? null
           : AppBar(
-              backgroundColor: white,
+              backgroundColor: primaryColor,
               elevation: 0,
               title: const CustumText(
                 text: "Details du produit",
                 size: 20,
+                color: white,
                 weight: FontWeight.bold,
               ),
               centerTitle: true,
@@ -36,7 +39,7 @@ class ToyDetailsScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     children: [
                       const Icon(
-                        Icons.notifications,
+                        Icons.shopping_bag,
                         color: Colors.black,
                         size: 30,
                       ),
@@ -87,49 +90,46 @@ class ToyDetailsScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar:kIsWeb && !Responsive.isMobile(context)
+      bottomNavigationBar: kIsWeb && !Responsive.isMobile(context)
           ? null
           : BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-                width: size.width * 0.4,
-                child: IconButton(
-                  onPressed: () {
-                    MyApp.CARD.add(ToyModelCart(
-                        id: toy.id,
-                        uid: toy.uid,
-                        name: toy.name,
-                        description: toy.description,
-                        price: toy.price,
-                        images: toy.images,
-                        createdAt: toy.createdAt,
-                        color: toy.color,
-                        status: toy.status,
-                        updatedAt: toy.updatedAt,
-                        coordinates: toy.coordinates));
-                  },
-                  icon: Icon(Icons.add),
-                )),
-            Container(
-                width: size.width * 0.4,
-                child: CustomButton(
-                  text: "Echanger",
-                  onPressed: () {},
-                  bgcolor: secondaryColor,
-                )),
-            spacerWidth,
-            Container(
-                width: size.width * 0.4,
-                child: CustomButton(
-                  text: "discuter",
-                  onPressed: () {},
-                  bgcolor: primaryColor,
-                )),
-          ],
-        ),
-      ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  
+                  Container(
+                      width: 100,
+                      child: CustomButton(
+                        text: "Echanger",
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PaiementMethodScreen()));
+                        },
+                        bgcolor: secondaryColor,
+                      )),
+                  spacerWidth,
+                  Container(
+                      width: 100,
+                      child: CustomButton(
+                        text: "discuter",
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ChatScreen(
+                                      currentUser: MyApp.currentUser!,
+                                      friendId: toy.uid,
+                                      friendName: "Vendeur",
+                                      friendImage: "")));
+                        },
+                        bgcolor: primaryColor,
+                      )),
+                ],
+              ),
+            ),
     );
   }
 }

@@ -19,7 +19,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: transparent,
       padding: EdgeInsetsDirectional.all(8),
       child: Row(
         children: [
@@ -27,44 +27,44 @@ class _MessageTextFieldState extends State<MessageTextField> {
               child: TextField(
             controller: _controller,
             decoration: InputDecoration(
-                        hintText: 'Ecrire votre message...',
-                        prefixIcon: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50)),
-                          padding: EdgeInsets.all(14),
-                          child: const Icon(
-                            Icons.emoji_emotions_outlined,
-                            color: lightTextColor,
-                            size: 20,
-                          ),
-                        ),
-                        suffixIcon: const Icon(
-                          Icons.camera_alt_rounded,
-                          color: lightTextColor,
-                          size: 20,
-                        ),
-                        filled: true,
-                        fillColor: white,
-                        labelStyle: const TextStyle(fontSize: 12),
-                        contentPadding: EdgeInsets.all(20),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: transparent),
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                      ),
-                      onChanged: (value) {
-                        setState(() {
-                          if (_controller.value.text.isNotEmpty) {
-                            isMessageEmpty = false;
-                          } else {
-                            isMessageEmpty = true;
-                          }
-                        });
-                      },
+              hintText: 'Ecrire votre message...',
+              prefixIcon: Container(
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(50)),
+                padding: EdgeInsets.all(14),
+                child: const Icon(
+                  Icons.emoji_emotions_outlined,
+                  color: white,
+                  size: 20,
+                ),
+              ),
+              suffixIcon: const Icon(
+                Icons.camera_alt_rounded,
+                color: lightTextColor,
+                size: 20,
+              ),
+              filled: true,
+              fillColor: white,
+              labelStyle: const TextStyle(fontSize: 12),
+              contentPadding: EdgeInsets.all(20),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(25),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: transparent),
+                borderRadius: BorderRadius.circular(25),
+              ),
+            ),
+            onChanged: (value) {
+              setState(() {
+                if (_controller.value.text.isNotEmpty) {
+                  isMessageEmpty = false;
+                } else {
+                  isMessageEmpty = true;
+                }
+              });
+            },
           )),
           SizedBox(
             width: 20,
@@ -118,14 +118,22 @@ class _MessageTextFieldState extends State<MessageTextField> {
               });
             },
             child: Container(
+              height: 40,
+              width: 40,
               padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: secondaryColor,
               ),
               child: isMessageEmpty
-                          ? const Icon(Icons.mic)
-                          : const Icon(Icons.send_rounded),
+                  ? const Icon(
+                      Icons.mic,
+                      color: white,
+                    )
+                  : const Icon(
+                      Icons.send_rounded,
+                      color: white,
+                    ),
             ),
           )
         ],

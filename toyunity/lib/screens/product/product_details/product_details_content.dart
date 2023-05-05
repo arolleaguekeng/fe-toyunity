@@ -4,6 +4,7 @@ import 'package:toyunity/models/toy_model.dart';
 import 'package:toyunity/screens/components/forms/custom_text.dart';
 import 'package:flutter/material.dart';
 import '../../../constants/responsive.dart';
+import '../../../main.dart';
 
 class DetailsCard extends StatefulWidget {
   final ToyModel toy;
@@ -130,14 +131,16 @@ class _DetailsCardState extends State<DetailsCard> {
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(3, (index) => buildDot(index)),
+              children:
+                  List.generate(toy.images.length, (index) => buildDot(index)),
             ),
           ),
           spacerHeight,
           Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   CustumText(
                     text: toy.name,
@@ -161,6 +164,30 @@ class _DetailsCardState extends State<DetailsCard> {
                       size: 24,
                       weight: FontWeight.bold,
                       color: secondaryColor),
+                      Center(
+                        child: CircleAvatar(
+                          child: Container(
+                            color: primaryColor,
+                          width: 60,
+                          child: IconButton(
+                            onPressed: () {
+                              MyApp.CARD.add(ToyModelCart(
+                                  id: toy.id,
+                                  uid: toy.uid,
+                                  name: toy.name,
+                                  description: toy.description,
+                                  price: toy.price,
+                                  images: toy.images,
+                                  createdAt: toy.createdAt,
+                                  color: toy.color,
+                                  status: toy.status,
+                                  updatedAt: toy.updatedAt,
+                                  coordinates: toy.coordinates));
+                            },
+                            icon: Icon(Icons.shop),
+                          )),
+                        ),
+                      ),
                 ],
               )
             ],

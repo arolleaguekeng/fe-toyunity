@@ -31,13 +31,15 @@ class _BannerSectionState extends State<BannerSection>
         Expanded(
           flex: 2,
           child: Container(
-            child: Lottie.asset("assets/images/lotti/cat.json",
-                controller: _animationController, onLoaded: (compos) {
-              _animationController
-                ..duration = compos.duration
-                ..forward();
-                _animationController.repeat();
-            }),
+            child: Responsive.isMobile(context)
+                ? Image.asset("assets/images/png/cat.png")
+                : Lottie.asset("assets/images/lotti/cat.json",
+                    controller: _animationController, onLoaded: (compos) {
+                    _animationController
+                      ..duration = compos.duration
+                      ..forward();
+                    _animationController.repeat();
+                  }),
           ),
         ),
         const SizedBox(
@@ -75,14 +77,16 @@ class _MobBannerState extends State<MobBanner>
           children: [
             Container(
               height: Responsive.isMobile(context) ? 150 : 250,
-              width:  Responsive.isMobile(context) ? 150 : 250,
-              child: Lottie.asset("assets/images/lotti/cat.json",
-                  controller: _animationController, onLoaded: (compos) {
-                _animationController
-                  ..duration = compos.duration
-                  ..forward();
-                  _animationController.repeat();
-              }),
+              width: Responsive.isMobile(context) ? 150 : 250,
+              child: Responsive.isMobile(context)
+                  ? Image.asset("assets/images/png/cat.png")
+                  : Lottie.asset("assets/images/lotti/cat.json",
+                      controller: _animationController, onLoaded: (compos) {
+                      _animationController
+                        ..duration = compos.duration
+                        ..forward();
+                      _animationController.repeat();
+                    }),
             ),
           ],
         ),
@@ -118,10 +122,7 @@ class AboutSection extends StatelessWidget {
         const AutoSizeText(
           "Les jouets de vos rêve à porter de main",
           maxLines: 1,
-          style: TextStyle(
-            fontSize: 56,
-            color: secondaryColor
-          ),
+          style: TextStyle(fontSize: 56, color: secondaryColor),
         ),
         const SizedBox(
           height: 10,

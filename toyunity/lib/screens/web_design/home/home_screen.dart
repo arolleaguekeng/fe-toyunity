@@ -4,6 +4,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:toyunity/constants/constants.dart';
+import 'package:toyunity/main.dart';
+import 'package:toyunity/services/api/user_api.dart';
+import '../../../services/auth_services.dart';
 import '../../producer/add_products/add_product_screen.dart';
 import 'components/body.dart';
 import 'components/footer.dart';
@@ -38,7 +41,7 @@ class _HomeWebScreenState extends State<HomeWebScreen> {
                         height: appPadding,
                       ),
                       Text(
-                        "toyunity",
+                        "ToyUnity",
                         style: TextStyle(
                             fontSize: 25.0,
                             fontWeight: FontWeight.w900,
@@ -71,8 +74,12 @@ class _HomeWebScreenState extends State<HomeWebScreen> {
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(child: Icon(Icons.add),backgroundColor: secondaryColor,onPressed: () {
-        Navigator.push(
-                context, MaterialPageRoute(builder: (_) => AddToyScreen()));}));
+        floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            backgroundColor: secondaryColor,
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => AddToyScreen()));
+            }));
   }
 }

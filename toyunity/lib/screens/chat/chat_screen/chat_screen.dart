@@ -24,7 +24,7 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: white,
+        backgroundColor: primaryColor,
         elevation: 1,
         title: Row(
           children: [
@@ -55,7 +55,7 @@ class ChatScreen extends StatelessWidget {
               child: Container(
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
-                color: Colors.white,
+                color: bgLightColor,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(25),
                     topRight: Radius.circular(25))),

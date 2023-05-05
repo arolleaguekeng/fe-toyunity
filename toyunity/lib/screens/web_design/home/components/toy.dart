@@ -16,30 +16,31 @@ class Toys extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Container(
-      height: 100,
+      height: 130,
       width: 100,
       padding: const EdgeInsets.all(appPadding / 2),
       child: InkWell(
           onTap: press,
           child: Container(
-            height: 20,
+
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClipRRect(
-                  
                   borderRadius: BorderRadius.circular(10),
                   child: CachedNetworkImage(
-                      imageUrl: toy.images[0],
-                      placeholder: (conteext, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Icon(
-                        Icons.error,
-                      ),
-                      width: 300,
-                    fit: BoxFit.cover,
+                    imageUrl: toy.images[0],
+                    placeholder: (conteext, url) =>
+                        const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(
+                      Icons.error,
                     ),
+                    width: 230,
+                    height: 230,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 SizedBox(
                   height: 10,
@@ -52,7 +53,7 @@ class Toys extends StatelessWidget {
                       fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 AutoSizeText(
-                  toy.name,
+                  toy.description,
                   maxLines: 2,
                   minFontSize: 14,
                   style: const TextStyle(fontSize: 15, color: grey),
@@ -68,14 +69,6 @@ class Toys extends StatelessWidget {
                     ),
                     const SizedBox(
                       width: 5,
-                    ),
-                    const AutoSizeText(
-                      "par nuit",
-                      maxLines: 2,
-                      minFontSize: 14,
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
                     ),
                   ],
                 )
