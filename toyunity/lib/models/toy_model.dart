@@ -8,8 +8,8 @@ class ToyModel {
   final String color;
   final double price;
   final String status;
-  final String? createdAt;
-  final String? updatedAt;
+   String? createdAt;
+   String? updatedAt;
   List<String> images = ["assets/images/png/plant2.jpg"];
   List<double> coordinates = [1,1];
 
@@ -52,8 +52,8 @@ Map<String, dynamic> toJson() {
     required this.images,
     required this.color,
     required this.status,
-    required this.createdAt,
-    required this.updatedAt,
+    this.createdAt,
+    this.updatedAt,
     required this.coordinates,
   });
 
@@ -84,10 +84,10 @@ class ToyModelCart extends ToyModel {
     required super.price,
     required super.images,
     this.quantity = 1,
-    required super.createdAt,
+     super.createdAt,
     required super.color,
     required super.status,
-    required super.updatedAt, required super.coordinates,
+     super.updatedAt, required super.coordinates,
   });
   
   @override String toString() {

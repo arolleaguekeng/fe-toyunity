@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../../constants/constants.dart';
 import '../../constants/responsive.dart';
@@ -24,23 +23,24 @@ class _PaiementMethodContent extends State<PaiementMethodContent> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding:  EdgeInsets.only(top: size.height/4),
-          child: Container(
-            width: size.width,
-            height: size.height,
-            child: Responsive.isMobile(context)
-                ? Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: loginContent(size, context),
-                  )
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: loginContent(size, context),
-                  ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.only(top: size.height / 10),
+            child: Container(
+              width: size.width,
+              child: Responsive.isMobile(context)
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: loginContent(size, context),
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: loginContent(size, context),
+                    ),
+            ),
           ),
         ),
       ),
@@ -59,11 +59,14 @@ class _PaiementMethodContent extends State<PaiementMethodContent> {
       Container(
         width: Responsive.isMobile(context) ? size.width : size.width / 2,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              "assets/images/svg/pay.svg",
-              width: size.width / 2.3,
-            ),
+            if (!Responsive.isMobile(context))
+              Image.asset(
+                "assets/images/png/pay.png",
+                width: size.width / 3.2,
+              ),
             const SizedBox(
               height: appPadding,
             ),
@@ -81,39 +84,44 @@ class _PaiementMethodContent extends State<PaiementMethodContent> {
         height: appPadding,
       ),
       Container(
-        height: size.height,
         width: Responsive.isMobile(context) ? size.width : size.width / 2,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (!Responsive.isMobile(context))
-            const CustumText(
-              text: "Choisir le mode de paiement",
-              size: 35,
-              weight: FontWeight.bold,
-              color: primaryColor,
-            ),
+              const CustumText(
+                text: "Choisir le mode de paiement",
+                size: 35,
+                weight: FontWeight.bold,
+                color: primaryColor,
+              ),
             if (!Responsive.isMobile(context))
-            const SizedBox(
-              height: appPadding*3,
-            ),
+              const SizedBox(
+                height: appPadding * 2,
+              ),
             Container(
-              child: GridView.count(
-                crossAxisCount: 2,
-                childAspectRatio: 2.1,
-                mainAxisSpacing: 1,
-                shrinkWrap: true,
-                children: List.generate(
-                  paiements.length,
-                  (index) {
-                    return Container(
-                      width: size.width /6,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: paiements[index],
-                      ),
-                    );
-                  },
-                ),
+              margin:
+                  EdgeInsets.only(left: size.width * 0.13, top: appPadding * 3),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      paiements[0],
+                      spacerWidth,
+                      paiements[1],
+                    ],
+                  ),
+                  spacerHeight,
+                  Row(
+                    children: [
+                      paiements[2],
+                      spacerWidth,
+                      paiements[3],
+                    ],
+                  ),
+                ],
               ),
             )
           ],
@@ -127,33 +135,45 @@ class _PaiementMethodContent extends State<PaiementMethodContent> {
       await showDialog<void>(
           context: context,
           builder: (BuildContext context) {
-            return SimpleDialog( // <-- SEE HERE
-              title:  const CustumText(text: 'Voulez vous continuer ?', size: 30,color: primaryColor,),
+            return SimpleDialog(
+              // <-- SEE HERE
+              title: const CustumText(
+                text: 'Voulez vous continuer ?',
+                size: 30,
+                color: primaryColor,
+              ),
               children: <Widget>[
                 SimpleDialogOption(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_)=> kIsWeb?HomeWebScreen():HomeScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) =>
+                                kIsWeb ? HomeWebScreen() : HomeScreen()));
                   },
-                  child: const CustumText(text: "oui j'ai fais mon choix", size: 20),
+                  child: const CustumText(
+                      text: "oui j'ai fais mon choix", size: 20),
                 ),
                 SimpleDialogOption(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: const CustumText(text: "Non J'ai changé d'avis", size: 20),
+                  child: const CustumText(
+                      text: "Non J'ai changé d'avis", size: 20),
                 ),
               ],
             );
           });
     }
+
     return GestureDetector(
         onTap: _showSimpleDialog,
         child: Material(
-          borderRadius: BorderRadius.circular(15),
-            elevation: 5,
+            borderRadius: BorderRadius.circular(15),
+            elevation: 3,
             child: Container(
-              height: 40,
-              width: 40,
+              height: 120,
+              width: 120,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -162,10 +182,6 @@ class _PaiementMethodContent extends State<PaiementMethodContent> {
                     iconUrl,
                     width: 100,
                   ),
-                  const SizedBox(
-                    height: appPadding,
-                  ),
-                  //CustumText(text: text, size: 26)
                 ],
               ),
             )));

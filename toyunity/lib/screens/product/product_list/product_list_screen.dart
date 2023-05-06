@@ -16,7 +16,7 @@ class ToyListScreen extends StatelessWidget {
           children: const [
             Expanded(
               flex: 5,
-              child: ToyListContent(),
+              child: UserToylistScreen(),
             )
           ],
         ),

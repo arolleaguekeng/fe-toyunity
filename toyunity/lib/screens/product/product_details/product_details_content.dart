@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/models/toy_model.dart';
 import 'package:toyunity/screens/components/forms/custom_text.dart';
 import 'package:flutter/material.dart';
 import '../../../constants/responsive.dart';
 import '../../../main.dart';
+import '../../home/home_screen.dart';
+import '../../web_design/home/home_screen.dart';
 
 class DetailsCard extends StatefulWidget {
   final ToyModel toy;
@@ -210,4 +213,5 @@ class _DetailsCardState extends State<DetailsCard> {
           color: currentIndex == index ? primaryColor : grey),
     );
   }
+        
 }

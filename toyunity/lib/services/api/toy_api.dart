@@ -9,7 +9,16 @@ class ApiToy {
       print("============================================================");
       print(toyModel);
       print("============================================================");
-      var body = jsonEncode(toyModel.toJson());
+      var body = jsonEncode({
+        "name": toyModel.name,
+        "uid": toyModel.uid,
+        "description": toyModel.description,
+        "price": 200,
+        "image": toyModel.images,
+        "color": toyModel.color,
+        "status": toyModel.status,
+        "coordinates": toyModel.coordinates,
+      });
       print(body);
       final response = await http.post(
           Uri.parse(
@@ -54,6 +63,22 @@ class ApiToy {
     final response = await http.get(
       Uri.parse(
         '${api_services.httpBaseUrl}/toy/most-popular',
+      ),
+    );
+    List data = jsonDecode(response.body);
+    List temp = [];
+    for (var i in data) {
+      print(i);
+      temp.add(i);
+    }
+    return ToyModel.recipesFromSnapshot(temp);
+  }
+
+
+  static Future<List<ToyModel>> getUserToys(String uid) async {
+    final response = await http.get(
+      Uri.parse(
+        '${api_services.httpBaseUrl}/toy/${uid}',
       ),
     );
     List data = jsonDecode(response.body);

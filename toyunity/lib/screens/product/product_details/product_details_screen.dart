@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:toyunity/main.dart';
 import 'package:toyunity/models/toy_model.dart';
@@ -10,6 +11,8 @@ import '../../../constants/responsive.dart';
 import '../../chat/chat_screen/chat_screen.dart';
 import '../../components/forms/custom_button.dart';
 import '../../components/forms/custom_text.dart';
+import '../../login/social_login/social_login_screen.dart';
+import '../product_list/product_list_content.dart';
 import 'product_details_content.dart';
 
 class ToyDetailsScreen extends StatelessWidget {
@@ -96,17 +99,12 @@ class ToyDetailsScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  
                   Container(
                       width: 100,
                       child: CustomButton(
                         text: "Echanger",
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      PaiementMethodScreen()));
+                          showSimpleDialog(context);
                         },
                         bgcolor: secondaryColor,
                       )),
@@ -131,5 +129,54 @@ class ToyDetailsScreen extends StatelessWidget {
               ),
             ),
     );
+  }
+
+  static Future<void> showSimpleDialog(context) async {
+    await showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            // <-- SEE HERE
+            title: const CustumText(
+              text: 'Avez vous un jouet à échanger ?',
+              size: 18,
+              color: primaryColor,
+            ),
+            children: <Widget>[
+              SimpleDialogOption(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => StreamBuilder<User?>(
+                                stream: MyApp.auth.authStateChanges(),
+                                builder: (context, snapshot) {
+                                  return snapshot.data == null
+                                      ? const LoginScreen()
+                                      : UserToylistScreen();
+                                },
+                              )));
+                },
+                child: const CustumText(text: "Oui", size: 20),
+              ),
+              SimpleDialogOption(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => StreamBuilder<User?>(
+                                stream: MyApp.auth.authStateChanges(),
+                                builder: (context, snapshot) {
+                                  return snapshot.data == null
+                                      ? const LoginScreen()
+                                      : PaiementMethodScreen();
+                                },
+                              )));
+                },
+                child: const CustumText(text: "Non", size: 20),
+              ),
+            ],
+          );
+        });
   }
 }

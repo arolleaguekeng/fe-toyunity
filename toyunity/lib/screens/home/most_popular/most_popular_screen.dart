@@ -70,8 +70,8 @@ class _PopularAllPageState extends State<PopularAllPage> {
                       toy: toys[index],
                       btnicon: IconButton(
                         icon: Icon(
-                          Icons.heart_broken,
-                          color: green,
+                          Icons.favorite,
+                          color: red,
                         ),
                         onPressed: () {},
                       ),

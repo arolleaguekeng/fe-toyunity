@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import '../../login/social_login/social_login_screen.dart';
 import '../../paiement_method/paiement_method_screen.dart';
 import '../../web_design/home/components/header.dart';
+import 'product_details_screen.dart';
 
 class WebProductDetails extends StatefulWidget {
   final ToyModel toy;
@@ -187,21 +188,9 @@ class _WebProductDetailsState extends State<WebProductDetails> {
                                 CustomButton(
                                     text: "Echanger",
                                     onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) =>
-                                                  StreamBuilder<User?>(
-                                                    stream: MyApp.auth
-                                                        .authStateChanges(),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      return snapshot.data ==
-                                                              null
-                                                          ? const PaiementMethodScreen()
-                                                          : PaiementMethodScreen();
-                                                    },
-                                                  )));
+                                      ToyDetailsScreen.showSimpleDialog(
+                                          context);
+                                      
                                     })
                               ],
                             ),

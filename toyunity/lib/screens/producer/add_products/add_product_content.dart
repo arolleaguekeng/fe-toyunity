@@ -89,116 +89,148 @@ class _AddToyContentState extends State<AddToyContent> {
     String _formError = "Veuillez entrer toutes les informations";
     var size = MediaQuery.of(context).size;
     return ModalProgressHUD(
-      inAsyncCall: showSpinner,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          foregroundColor: white,
-          title: Text('Ajout de Jouet'),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  getImage();
-                },
-                child: Container(
-                  child: image == null
-                      ? Center(
-                          child: Icon(
-                            Icons.add_a_photo_rounded,
-                            size: Responsive.isMobile(context)
-                                ? size.width
-                                : size.width * 0.4,
-                          ),
+        inAsyncCall: showSpinner,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: primaryColor,
+            foregroundColor: white,
+            title: Text('Ajout de Jouet'),
+          ),
+          body: SingleChildScrollView(
+            child: !Responsive.isDesktop(context)
+                ? Column(
+                    children: items(
+                        context,
+                        size,
+                        _keyForm1,
+                        _pName,
+                        _formError,
+                        _keyForm2,
+                        _pDescription,
+                        _keyForm3,
+                        _price),
+                  )
+                : Row(
+                    children: items(
+                        context,
+                        size,
+                        _keyForm1,
+                        _pName,
+                        _formError,
+                        _keyForm2,
+                        _pDescription,
+                        _keyForm3,
+                        _price),
+                  ),
+          ),
+        ));
+  }
+
+  List<Widget> items(
+      BuildContext context,
+      Size size,
+      GlobalKey<FormState> _keyForm1,
+      String _pName,
+      String _formError,
+      GlobalKey<FormState> _keyForm2,
+      String _pDescription,
+      GlobalKey<FormState> _keyForm3,
+      String _price) {
+    return [
+      GestureDetector(
+        onTap: () {
+          getImage();
+        },
+        child: Container(
+          child: image == null
+              ? Center(
+                  child: Icon(
+                    Icons.add_a_photo_rounded,
+                    size: Responsive.isMobile(context)
+                        ? size.width
+                        : size.width * 0.4,
+                  ),
+                )
+              : Container(
+                  child: kIsWeb
+                      ? Image(
+                          image: NetworkImage(image!.path),
+                          fit: BoxFit.cover,
+                          height: size.height / 3,
+                          width: size.width / 1.4,
                         )
-                      : Container(
-                          child: kIsWeb
-                              ? Image(
-                                  image: NetworkImage(image!.path),
-                                  fit: BoxFit.cover,
-                                  height: size.height / 3,
-                                  width: size.width / 1.4,
-                                )
-                              : Center(
-                                  child: Image.file(
-                                    File(image!.path).absolute,
-                                    height: 100,
-                                    width: 100,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
+                      : Center(
+                          child: Image.file(
+                            File(image!.path).absolute,
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(appPadding),
-                child: Column(
-                  children: [
-                    Form(
-                        key: _keyForm1,
-                        child: TextFormField(
-                          maxLength: 30,
-                          onChanged: (value) => _pName = value,
-                          validator: (value) =>
-                              _pName == '' ? _formError : null,
-                          decoration: InputDecoration(
-                            labelText: "Enter product name",
-                            border: OutlineInputBorder(),
-                          ),
-                        )),
-                    Form(
-                        key: _keyForm2,
-                        child: TextFormField(
-                          maxLength: 100,
-                          onChanged: (value) => _pDescription = value,
-                          validator: (value) =>
-                              _pDescription == '' ? _formError : null,
-                          decoration: InputDecoration(
-                            labelText: "Entrer la description du jouet",
-                            border: OutlineInputBorder(),
-                          ),
-                        )),
-                    Form(
-                        key: _keyForm3,
-                        child: TextFormField(
-                          maxLength: 10,
-                          onChanged: (value) => _price = value,
-                          validator: (value) =>
-                              _price == '' ? _formError : null,
-                          decoration: InputDecoration(
-                            labelText: "Entrer le prix du jouet",
-                            border: OutlineInputBorder(),
-                          ),
-                        )),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomButton(
-                      bgcolor: secondaryColor,
-                      text: "Enregistrer",
-                      onPressed: () {
-                        onSubmit(
-                          context: context,
-                          price: _price,
-                          pDescription: _pDescription,
-                          keyForm1: _keyForm1,
-                          keyForm2: _keyForm2,
-                          keyForm3: _keyForm3,
-                          pName: _pName,
-                        );
-                      }),
-                ],
-              )
-            ],
-          ),
         ),
       ),
-    );
+      Container(
+        width: size.width * 0.36,
+        padding: const EdgeInsets.all(appPadding),
+        child: Column(
+          children: [
+            Form(
+                key: _keyForm1,
+                child: TextFormField(
+                  maxLength: 30,
+                  onChanged: (value) => _pName = value,
+                  validator: (value) => _pName == '' ? _formError : null,
+                  decoration: InputDecoration(
+                    labelText: "Enter product name",
+                    border: OutlineInputBorder(),
+                  ),
+                )),
+            Form(
+                key: _keyForm2,
+                child: TextFormField(
+                  maxLength: 100,
+                  onChanged: (value) => _pDescription = value,
+                  validator: (value) => _pDescription == '' ? _formError : null,
+                  decoration: InputDecoration(
+                    labelText: "Entrer la description du jouet",
+                    border: OutlineInputBorder(),
+                  ),
+                )),
+            Form(
+                key: _keyForm3,
+                child: TextFormField(
+                  maxLength: 10,
+                  onChanged: (value) => _price = value,
+                  validator: (value) => _price == '' ? _formError : null,
+                  decoration: InputDecoration(
+                    labelText: "Entrer le prix du jouet",
+                    border: OutlineInputBorder(),
+                  ),
+                )),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomButton(
+                    bgcolor: secondaryColor,
+                    text: "Enregistrer",
+                    onPressed: () {
+                      onSubmit(
+                        context: context,
+                        price: _price,
+                        pDescription: _pDescription,
+                        keyForm1: _keyForm1,
+                        keyForm2: _keyForm2,
+                        keyForm3: _keyForm3,
+                        pName: _pName,
+                      );
+                    }),
+              ],
+            )
+          ],
+        ),
+      ),
+    ];
   }
 
   void onSubmit(
@@ -219,14 +251,12 @@ class _AddToyContentState extends State<AddToyContent> {
       print("==============try to save toy================");
       ApiToy.addToy(ToyModel(
         name: pName,
-        uid: "q37IlveCvobp8NMlhtyoczIDesF3",
+        uid: MyApp.currentUser!.uid,
         description: pDescription,
-        price: double.parse(price),
+        price: 400,
         images: [pUrlImg],
         color: 'red',
-        createdAt: '',
         status: 'wait',
-        updatedAt: '',
         coordinates: [1, 1],
       ));
     }
