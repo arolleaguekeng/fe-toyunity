@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:toyunity/constants/constants.dart';
 import 'package:toyunity/constants/responsive.dart';
+import 'package:toyunity/screens/components/forms/custom_text.dart';
 
 import '../../../main.dart';
 import '../../../models/toy_model.dart';
@@ -92,7 +94,7 @@ class _AddToyContentState extends State<AddToyContent> {
         inAsyncCall: showSpinner,
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: primaryColor,
+            backgroundColor: pickerColor,
             foregroundColor: white,
             title: Text('Ajout de Jouet'),
           ),
@@ -146,6 +148,7 @@ class _AddToyContentState extends State<AddToyContent> {
               ? Center(
                   child: Icon(
                     Icons.add_a_photo_rounded,
+                    color: pickerColor,
                     size: Responsive.isMobile(context)
                         ? size.width
                         : size.width * 0.4,
@@ -171,10 +174,34 @@ class _AddToyContentState extends State<AddToyContent> {
         ),
       ),
       Container(
-        width: size.width * 0.36,
+        width:
+            Responsive.isMobile(context) ? size.width * 0.9 : size.width * 0.36,
         padding: const EdgeInsets.all(appPadding),
         child: Column(
           children: [
+            InkWell(
+              onTap: () {
+                showPicker();
+              },
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    backgroundColor: pickerColor,
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                    ),
+                  ),
+                  spacerWidth,
+                  CustumText(
+                    text: "Choisir la couleure",
+                    size: 16,
+                    color: pickerColor,
+                    weight: FontWeight.bold,
+                  )
+                ],
+              ),
+            ),
             Form(
                 key: _keyForm1,
                 child: TextFormField(
@@ -275,5 +302,58 @@ class _AddToyContentState extends State<AddToyContent> {
             border: OutlineInputBorder(),
           ),
         ));
+  }
+
+  // create some values
+  Color pickerColor = primaryColor;
+  Color currentColor = Color(0xff443a49);
+
+// ValueChanged<Color> callback
+  void changeColor(Color color) {
+    setState(() => pickerColor = color);
+  }
+
+  Future showPicker() {
+    // raise the [showDialog] widget
+    return showDialog(
+      builder: (context) => AlertDialog(
+        title: const Text('Pick a color!'),
+        content: SingleChildScrollView(
+          child: ColorPicker(
+            pickerColor: pickerColor,
+            onColorChanged: changeColor,
+          ),
+          // Use Material color picker:
+          //
+          // child: MaterialPicker(
+          //   pickerColor: pickerColor,
+          //   onColorChanged: changeColor,
+          // ),
+          //
+          // Use Block color picker:
+          //
+          // child: BlockPicker(
+          //   pickerColor: currentColor,
+          //   onColorChanged: changeColor,
+          // ),
+          //
+          // child: MultipleChoiceBlockPicker(
+          //   pickerColors: currentColor,
+          //   onColorsChanged: changeColors,
+          // ),
+        ),
+        actions: <Widget>[
+          CustomButton(
+            bgcolor: pickerColor,
+            onPressed: () {
+              setState(() => currentColor = pickerColor);
+              Navigator.of(context).pop();
+            },
+            text: 'Valider',
+          ),
+        ],
+      ),
+      context: context,
+    );
   }
 }

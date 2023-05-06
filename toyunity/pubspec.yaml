@@ -61,7 +61,8 @@ dependencies:
 
   # To write and red datas from Firebase Firestore.
   cloud_firestore: ^4.4.4
-
+  
+  firebase_analytics: ^10.3.0
   #
   flutter_switch: ^0.3.2
 
@@ -90,8 +91,8 @@ dependencies:
   lottie: ^2.3.2
 
 
-  # Ai
-  google_vision: ^1.0.7+6
+  # color
+  flutter_colorpicker: ^1.0.3
 
   
 

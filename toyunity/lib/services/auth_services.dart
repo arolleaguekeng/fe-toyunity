@@ -37,10 +37,61 @@ class AuthService {
   }
 
   /// Check OPT Code and SignIn
-  static Future<void> validateOtp(String smsCode, String verificationId) async {
+  static Future<void> validateOtp(String smsCode, String verificationId,
+      BuildContext context, Widget widget) async {
     final _credential = PhoneAuthProvider.credential(
         verificationId: verificationId, smsCode: smsCode);
     await _auth.signInWithCredential(_credential);
+    var user = _auth.currentUser;
+    var uid = user!.uid;
+    DocumentSnapshot userExist =
+        await firestore.collection('users').doc(uid).get();
+    if (userExist.exists) {
+      print("User Already Exists in Database");
+      await addUserInFireBase(user);
+      UserModel userData = await ApiUser.login(uid);
+      print("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+      MyApp.currentUser = userData;
+
+      print(MyApp.currentUser);
+
+      openHomePage(context, widget);
+    } else {
+      print(
+          "///////////////////////////////////////////////////////////////////////////////");
+      var userModel = UserModel(
+          uid: uid,
+          fullName: user.displayName,
+          username: user.displayName!,
+          email: user.email,
+          hasPassword: null,
+          phone: user.phoneNumber,
+          role: null,
+          image: user.photoURL,
+          city: null,
+          state: null,
+          country: null);
+      try {
+        await addUserInFireBase(user);
+        ApiUser.signup(userModel);
+        MyApp.currentUser = userModel;
+        openHomePage(context, widget);
+      } catch (_) {
+        showNotification(context, 'No Network Access...');
+      }
+    }
+    ApiUser.signup(UserModel(
+        uid: user.uid,
+        fullName: user.displayName,
+        username: user.displayName!,
+        email: user.email,
+        hasPassword: null,
+        phone: user.phoneNumber,
+        role: 'user',
+        image: user.photoURL,
+        city: null,
+        state: null,
+        country: null));
     return;
   }
   // endregion

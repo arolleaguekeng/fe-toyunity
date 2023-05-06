@@ -74,7 +74,15 @@ class _VerificationOtpState extends State<VerificationOtp> {
   void onVerifySmsCode() async {
     loading = true;
     setState(() {});
-    await AuthService.validateOtp(smsCode, widget.verificationId);
+    await AuthService.validateOtp(
+        smsCode,
+        widget.verificationId,
+        context,
+        kIsWeb
+            ? HomeWebScreen()
+            : NavigationScreen(
+                screen: HomeScreen(),
+              ));
     loading = true;
     setState(() {});
     Navigator.pushReplacement(
