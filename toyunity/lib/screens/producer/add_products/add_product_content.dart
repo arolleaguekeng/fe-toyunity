@@ -280,9 +280,9 @@ class _AddToyContentState extends State<AddToyContent> {
         name: pName,
         uid: MyApp.currentUser!.uid,
         description: pDescription,
-        price: 400,
+        price: double.parse(price),
         images: [pUrlImg],
-        color: 'red',
+        color: pickerColor.toString(),
         status: 'wait',
         coordinates: [1, 1],
       ));

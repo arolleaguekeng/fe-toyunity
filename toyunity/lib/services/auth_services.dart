@@ -62,7 +62,7 @@ class AuthService {
       var userModel = UserModel(
           uid: uid,
           fullName: user.displayName,
-          username: user.displayName!,
+          username: "invité",
           email: user.email,
           hasPassword: null,
           phone: user.phoneNumber,

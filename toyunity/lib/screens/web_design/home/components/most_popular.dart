@@ -51,49 +51,61 @@ class _MostPopular extends State<MostPopular> {
   final double aspectRatio;
   @override
   Widget build(BuildContext context) {
-    return isLoading? CircularProgressIndicator(color: secondaryColor,) : Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    var size = MediaQuery.of(context).size;
+    return isLoading
+        ? CircularProgressIndicator(
+            color: secondaryColor,
+          )
+        : Column(
             children: [
-              CustumText(
-                text: 'Les plus populaires',
-                size: 24,
-                weight: FontWeight.bold,
+              Container(
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustumText(
+                      text: 'Les plus populaires',
+                      size: 24,
+                      weight: FontWeight.bold,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => PopularAllPage()));
+                      },
+                      child: CustumText(
+                          text: 'Voir tout', size: 14, color: primaryColor),
+                    ),
+                  ],
+                ),
               ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => PopularAllPage()));
-                },
-                child:
-                    CustumText(text: 'Voir tout', size: 14, color: primaryColor),
+              GridView.builder(
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: Responsive.isMobile(context) ? 1 : 4,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  mainAxisExtent: Responsive.isDesktop(context)
+                      ? size.width * 0.3
+                      : size.width * 0.9,
+                ),
+                itemBuilder: (context, index) => Toys(
+                  press: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) =>
+                                ToyDetailsScreen(toy: toys[index])));
+                  },
+                  toy: toys[index],
+                ),
+                itemCount: toys.length,
               ),
             ],
-          ),
-        ),
-        GridView.builder(
-          shrinkWrap: true,
-          physics: ScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: Responsive.isMobile(context) ? 1 : 4,
-              childAspectRatio: aspectRatio,
-              mainAxisSpacing: 1,
-              crossAxisSpacing: 13),
-          itemBuilder: (context, index) => Toys(
-            press: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => ToyDetailsScreen(toy: toys[index])));
-            },
-            toy: toys[index],
-          ),
-          itemCount: toys.length,
-        ),
-      ],
-    );
+          );
   }
 }

@@ -18,13 +18,12 @@ class Toys extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-      height: 130,
+      height: 245,
       width: 100,
       padding: const EdgeInsets.all(appPadding / 2),
       child: InkWell(
           onTap: press,
           child: Container(
-
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -37,7 +36,9 @@ class Toys extends StatelessWidget {
                     errorWidget: (context, url, error) => Icon(
                       Icons.error,
                     ),
-                    width: 230,
+                    width: Responsive.isDesktop(context)
+                        ? size.width * 0.3
+                        : size.width * 0.87,
                     height: 230,
                     fit: BoxFit.cover,
                   ),

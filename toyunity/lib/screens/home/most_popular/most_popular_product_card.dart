@@ -45,19 +45,19 @@ class MpToyCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                         child: Image.asset(toy.images[0],fit: BoxFit.cover,height: 50,)
-                        // CachedNetworkImage(
-                        //   imageUrl: toy.images[0],
-                        //   placeholder: (conteext, url) =>
-                        //       const CircularProgressIndicator(),
-                        //   errorWidget: (context, url, error) => Icon(
-                        //     Icons.error,
-                        //   ),
-                        //   height: 50,
-                        //   fit: BoxFit.cover,
-                        // ),
-                      ),
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(toy.images[0], fit: BoxFit.cover)
+                          // CachedNetworkImage(
+                          //   imageUrl: toy.images[0],
+                          //   placeholder: (conteext, url) =>
+                          //       const CircularProgressIndicator(),
+                          //   errorWidget: (context, url, error) => Icon(
+                          //     Icons.error,
+                          //   ),
+                          //   height: 50,
+                          //   fit: BoxFit.cover,
+                          // ),
+                          ),
                     ),
                     Positioned(
                       top: 20.0,
