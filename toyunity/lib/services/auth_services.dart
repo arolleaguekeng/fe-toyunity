@@ -61,16 +61,16 @@ class AuthService {
           "///////////////////////////////////////////////////////////////////////////////");
       var userModel = UserModel(
           uid: uid,
-          fullName: user.displayName,
+          fullName: "User",
           username: "invité",
-          email: user.email,
-          hasPassword: null,
+          email: "default@gmail.def",
+          hasPassword: '0000',
           phone: user.phoneNumber,
-          role: null,
-          image: user.photoURL,
-          city: null,
-          state: null,
-          country: null);
+          role: 'user',
+          image: 'default',
+          city: "null",
+          state: "null",
+          country: "null");
       try {
         await addUserInFireBase(user);
         ApiUser.signup(userModel);
@@ -183,7 +183,7 @@ class AuthService {
   }
 
   static void openHomePage(BuildContext context, Widget widget) {
-    Navigator.pop(
+    Navigator.pushReplacement(
         context,
         MaterialPageRoute(
             builder: (_) => kIsWeb
